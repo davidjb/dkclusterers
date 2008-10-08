@@ -1,0 +1,432 @@
+#LyX 1.6.0rc2 created this file. For more info see http://www.lyx.org/
+\lyxformat 340
+\begin_document
+\begin_header
+\textclass latex8
+\begin_preamble
+
+%
+%  $Description: Author guidelines and sample document in LaTeX 2.09$
+%
+%  $Author: ienne $
+%  $Date: 1995/09/15 15:20:59 $
+%  $Revision: 1.4 $
+%
+
+
+\usepackage{latex8}
+
+\usepackage{times}
+
+\usepackage{epsf}
+
+\usepackage{epsfig}
+
+\usepackage[config, font={sf,bf}]{caption}
+
+\usepackage[config, font={small, sf}]{subfig}
+
+\usepackage{latexsym}
+   % additional packages that may be read in
+    % to augment generic LaTeX; needed for \mathbb
+
+\newcommand{\VD}{{Voronoi diagram}}
+\newcommand{\VDs}{{Voronoi diagrams}}
+%\documentstyle[times,art10,twocolumn,latex8]{article}
+
+%-------------------------------------------------------------------------
+% take the % away on next line to produce the final camera-ready version
+
+
+%-------------------------------------------------------------------------
+\end_preamble
+\options times
+\language english
+\inputencoding auto
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\paperfontsize 10
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 0
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\defskip medskip
+\quotes_language english
+\papercolumns 2
+\papersides 1
+\paperpagestyle empty
+\tracking_changes false
+\output_changes false
+\author "" 
+\author "" 
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Clusterers: A Comparison
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+author{David Breitkreutz
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+textit{School of Mathematics, Physics 
+\backslash
+& IT } 
+\backslash
+
+\backslash
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+textit{James Cook University} 
+\backslash
+
+\backslash
+ Townsville, QLD 4811, Australia
+\backslash
+
+\backslash
+ David.Breitkreutz@jcu.edu.au
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+and
+\end_layout
+
+\begin_layout Plain Layout
+
+Kate Casey
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+textit{School of Mathematics, Physics 
+\backslash
+& IT} 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+textit{James Cook University} 
+\backslash
+
+\backslash
+ Townsville, QLD 4811, Australia 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Kate.Casey@jcu.edu.au
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Abstract
+<Something about clustering goes here>
+\end_layout
+
+\begin_layout Abstract
+This paper presents detailed comparison of these widely used clustering
+ algorithms against others.
+ It also suggests a number of improvements to the DBScan and K-Medoids algorithm
+s that apply to the data set investigated.
+ These improvements utilise the given implementations of these algorithms,
+ and build upon them accordingly.
+ Several key applications for these clustering procedures are detailed,
+ and a number of areas of extension for this work are also.
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "Sec:Introduction"
+
+\end_inset
+
+Introduction 
+\end_layout
+
+\begin_layout Standard
+Introduction
+\end_layout
+
+\begin_layout Standard
+Describe what the specific data set we've chosen here, and why our selected
+ algorithm(s) are worthwhile to be exectued here
+\end_layout
+
+\begin_layout Standard
+Why is the data set relevant to some aspect of life on earth (and why should
+ we care)? - this makes the problem important to tackle, and should make
+ people interested
+\end_layout
+
+\begin_layout Standard
+Brief introduction as to the results of the comparison were..
+\end_layout
+
+\begin_layout Standard
+---
+\end_layout
+
+\begin_layout Standard
+The improvements this paper suggests to both the DBSCAN and K-medoids algorithms
+ show a level of improvement for the data set that is utilised for testing.
+ This suggests potential for futher improvement given additional levels
+ of interest....
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "Sec:Related-Work"
+
+\end_inset
+
+Related Work
+\end_layout
+
+\begin_layout Standard
+Detail about the algorithms themselves, who introduced them (what's been
+ done on them before)
+\end_layout
+
+\begin_layout Standard
+Literature review of related works (highlight past examples of papers) that
+ have done similar comparisons before
+\end_layout
+
+\begin_layout Standard
+What is clustering?
+\end_layout
+
+\begin_layout Standard
+How close is it to things like association or classification?
+\end_layout
+
+\begin_layout Standard
+Why use clustering over these others?
+\end_layout
+
+\begin_layout Standard
+Algorithms: what do we have available, who developed them originally, improvemen
+ts?
+\end_layout
+
+\begin_layout Standard
+Usefulness and detriments of each algorithm, best types of data set (if
+ any)?
+\end_layout
+
+\begin_layout Standard
+Generalised overview - who's done surverys like this before, what did they
+ find out, what we set out to do bettert than them
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "Sec:Comparison"
+
+\end_inset
+
+Comparison
+\end_layout
+
+\begin_layout Standard
+Need to run a comparison (on our sample data set) of our two algorithms
+ we've implemented, and several others that already exist within Weka.
+ How does their 1) 
+\emph on
+performance
+\emph default
+ and 2) 
+\emph on
+accuracy
+\emph default
+ stand up to one another? May need to look at how many clusters (on average)
+ each method produces and them perform the same function like this (keep
+ running until completed)
+\end_layout
+
+\begin_layout Subsection
+DBSCAN
+\end_layout
+
+\begin_layout Subsection
+K-Medoids
+\end_layout
+
+\begin_layout Subsection
+K-Means etc
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "Sec:Discussion"
+
+\end_inset
+
+Discussion
+\end_layout
+
+\begin_layout Standard
+Is there sufficient evidence here to show that our algorithms are worthy
+ of use?
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "Sec:Issues"
+
+\end_inset
+
+Issues
+\end_layout
+
+\begin_layout Standard
+What drawbacks do we see with our various sets of data and algorithms
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "Sec:Conclusion"
+
+\end_inset
+
+Conclusion
+\end_layout
+
+\begin_layout Standard
+Overall: better or worse? Able to satisify or not-possible? It might not
+ be given the fact that 
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "Sec:Future-Work"
+
+\end_inset
+
+Future Work
+\end_layout
+
+\begin_layout Standard
+Describe potential improvements to the methodologies we've presented within
+ this paper.
+ Others can extend our work by seeking other ways of improving the semantics
+ of the algorithm, rather than attempting to improve its operation itself.
+ Given that these algorithms this paper discusses have been in existance
+ for <X> years, and that there have been many various papers and theses
+ produced regarding these issues, this appears the logical path for improvements
+ to take.
+ Should any future developers decide to follow through on the same path,
+ this paper has logically set out its concepts and ideas, and will provide
+ a solid basis for such research.
+\end_layout
+
+\begin_layout Standard
+As the topic of data minining, and more specifically, clustering, becomes
+ more of a part of every-day business and organisational operation, the
+ necessity for faster and equally accurate algorithms rises.
+ This paper has shown this, and several other applications do exist, and
+ it can only be assumed that 
+\end_layout
+
+\begin_layout Standard
+asf 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "han2001dmc"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+bibfiles "clustersdk"
+options "latex8"
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

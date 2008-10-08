@@ -1,0 +1,30 @@
+% This file was created with JabRef 2.3.1.
+% Encoding: Cp1252
+
+@MISC{eisen1998caa,
+  author = {Eisen, M.B. and Spellman, P.T. and Brown, P.O. and Botstein, D.},
+  title = {{Cluster analysis and display of genome-wide expression patterns}},
+  year = {1998},
+  journal = {Proceedings of the National Academy of Sciences},
+  number = {25},
+  pages = {14863--14868},
+  publisher = {National Acad Sciences},
+  volume = {95}
+}
+
+@BOOK{han2001dmc,
+  title = {{Data Mining: Concepts and Techniques}},
+  publisher = {Morgan Kaufmann},
+  year = {2006},
+  author = {Han, J. and Kamber, M.},
+  edition = {Second}
+}
+
+@comment{jabref-meta: selector_publisher:}
+
+@comment{jabref-meta: selector_author:}
+
+@comment{jabref-meta: selector_journal:}
+
+@comment{jabref-meta: selector_keywords:}
+
