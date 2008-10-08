@@ -1,6 +1,10 @@
 package weka.clusterers;
 
-import weka.clusterers.AbstractClusterer;
+import weka.clusterers.forOPTICSAndDBScan.*;
+import weka.clusterers.forOPTICSAndDBScan.Databases.Database;
+import weka.clusterers.forOPTICSAndDBScan.Databases.SequentialDatabase;
+import weka.clusterers.forOPTICSAndDBScan.DataObjects.EuclidianDataObject;
+
 import weka.core.*;
 
 import java.util.Enumeration;
@@ -13,10 +17,6 @@ import java.util.Vector;
  */
 public class UltraDBScan extends AbstractClusterer implements OptionHandler {
 
-    /**
-     * Counter for the number of available clusters (may refactor into list.size())
-     */
-    private int clusterCounter = 0;
 
     /**
      * Value for the distance to consider around a given data point to find clusters.
@@ -32,6 +32,12 @@ public class UltraDBScan extends AbstractClusterer implements OptionHandler {
      * This value is modifiable by the user because of the JavaBean methods given below.
      */
     private int minimumPointClusterThreshold = 3;
+
+    /**
+     * Value used to store the length of the last clustering operation.  This is used
+     * to output the time taken to the WEKA interface.
+     */
+    private long lastClusteringDuration;
 
     /**
      * Returns tip text for this property (for Explorer/Experimenter GUI)
@@ -85,22 +91,6 @@ public class UltraDBScan extends AbstractClusterer implements OptionHandler {
         return "A customised implementation of the DBScan algorithm, with a few changes to see what effect they have on clusters";
     }
 
-    
-    /**
-     * Generates a clusterer. Has to initialize all fields of the clusterer
-     * that are not being set via options.
-     *
-     * @param data set of instances serving as training data
-     * @throws Exception if the clusterer has not been
-     *                   generated successfully
-     */
-    public void buildClusterer(Instances data) throws Exception {
-
-        //TODO: need to handle the clustering algorithm right here
-        for (int i = 0; i < data.numInstances(); i++) {
-            System.err.println(data.instance(i).toString());
-        }
-    }
 
     /**
      * Returns the number of clusters.
@@ -110,25 +100,7 @@ public class UltraDBScan extends AbstractClusterer implements OptionHandler {
      *                   successfully
      */
     public int numberOfClusters() throws Exception {
-        return clusterCounter;
-    }
-
-    public Capabilities getCapabilities() {
-
-        //TODO check into the capabilities and what we should be offering here
-      Capabilities result = super.getCapabilities();   // returns the object from weka.classifiers.Classifier
-
-      // attributes
-      result.enable(Capabilities.Capability.NOMINAL_ATTRIBUTES);
-      result.enable(Capabilities.Capability.NUMERIC_ATTRIBUTES);
-      //result.enable(Capabilities.Capability.DATE_ATTRIBUTES);
-      //result.enable(Capabilities.Capability.MISSING_VALUES);
-
-      // class
-      result.enable(Capabilities.Capability.NOMINAL_CLASS);
-      //result.enable(Capabilities.Capability.MISSING_CLASS_VALUES);
-
-      return result;
+        return 0;
     }
 
     /**
@@ -202,7 +174,90 @@ public class UltraDBScan extends AbstractClusterer implements OptionHandler {
      */
     public String toString() {
          //TODO Make this print out details of clusters here
-        return "Hello world!" + System.getProperty("java.class.path");
+
+        String outputString = "";
+        outputString += "Time Taken: \t" + Long.toString(lastClusteringDuration) + " ms";
+        outputString += "\n";
+        outputString += System.getProperty("java.class.path");
+        return outputString;
+    }
+
+    /**
+    * Classifies a given instance. Either this or distributionForInstance()
+    * needs to be implemented by subclasses.
+    *
+    * @param instance the instance to be assigned to a cluster
+    * @return the number of the assigned cluster as an integer
+    * @exception Exception if instance could not be clustered
+    * successfully
+    */
+    public int clusterInstance(Instance instance) throws Exception {
+        //TODO Need to return the index of the cluster that this given instance is set as
+        //Best idea is probably to have a dictionary or so forth that can ?
+        return 0;
+    }
+
+    /**
+     * Generates a clusterer. Has to initialize all fields of the clusterer
+     * that are not being set via options.
+     *
+     * @param data set of instances serving as training data
+     * @throws Exception if the clusterer has not been
+     *                   generated successfully
+    */
+    public void buildClusterer(Instances data) throws Exception {
+
+        //weka.clusterers.
+
+        Database currentDatabase = new SequentialDatabase()
+        EuclidianDataObject edo = new EuclidianDataObject(data.firstInstance(), "", );
+
+
+        int clusterIndex = 0;
+
+        long startTime = System.currentTimeMillis();
+
+        /*
+          C = 0
+          for each unvisited point P in dataset D
+             N = getNeighbors (P, epsilon)
+             if (sizeof(N) < minPts)
+                mark P as NOISE
+             else
+                ++C
+                mark P as visited
+                add P to cluster C
+                recurse (N)
+         */
+
+
+
+        //TODO: need to handle the clustering algorithm right here
+        for (int i = 0; i < data.numInstances(); i++) {
+            System.err.println(data.instance(i).toString());
+        }
+
+        this.lastClusteringDuration = (System.currentTimeMillis() - startTime);
+    }
+
+    
+
+    /**
+     * Obtain the capabilities (in terms of data attributes) that this clusterer can handle
+     * @return the capabilities of this clusterer
+     */
+    public Capabilities getCapabilities() {
+
+      Capabilities currentCapabilities = super.getCapabilities();   // returns the object from weka.classifiers.Classifier
+
+      //TODO check into the capabilities and what we should be offering here
+      // Set the attributes that our clusterer can handle
+      currentCapabilities.enable(Capabilities.Capability.NOMINAL_ATTRIBUTES);
+      currentCapabilities.enable(Capabilities.Capability.NUMERIC_ATTRIBUTES);
+      currentCapabilities.enable(Capabilities.Capability.DATE_ATTRIBUTES);
+      currentCapabilities.enable(Capabilities.Capability.MISSING_VALUES);
+
+      return currentCapabilities;
     }
 
     public static void main(String[] args) {
