@@ -1,4 +1,4 @@
-#LyX 1.6.0rc2 created this file. For more info see http://www.lyx.org/
+#LyX 1.6.0rc3 created this file. For more info see http://www.lyx.org/
 \lyxformat 340
 \begin_document
 \begin_header
@@ -80,9 +80,9 @@
 \begin_body
 
 \begin_layout Title
-Clusterers: A Comparison
+Clusterers: a Comparison of Optimisations
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -191,18 +191,29 @@ Kate.Casey@jcu.edu.au
 \end_layout
 
 \begin_layout Abstract
-<Something about clustering goes here>
+Though data mining is a relatively recent innovation, the improvements it
+ offers over traditional data analysis have seen the field expand rapidly.
+ Given the critical requirement for the efficient and accurate delivery
+ of useful information in today's data-rich climate, significant research
+ in the topic continues.
 \end_layout
 
 \begin_layout Abstract
-This paper presents detailed comparison of these widely used clustering
- algorithms against others.
- It also suggests a number of improvements to the DBScan and K-Medoids algorithm
-s that apply to the data set investigated.
- These improvements utilise the given implementations of these algorithms,
- and build upon them accordingly.
- Several key applications for these clustering procedures are detailed,
- and a number of areas of extension for this work are also.
+Clustering is one of the fundamental techniques adopted by data mining tools
+ across a range of applications.
+ It provides several algorithms that can assess large data sets based on
+ specific parameters and group related data points.
+\end_layout
+
+\begin_layout Abstract
+This paper presents detailed comparison of two widely used clustering algorithms
+, K-Medoids and DBSCAN, against others.
+ The initial testing conducted on each technique utilises the standard implement
+ation of the algorithm.
+ Further experimental work goes on to test hybrid versions of the methods
+ for potential efficiency enhancements.
+ Various key applications of clustering methods are detailed, and several
+ areas of future work have been suggested.
 \end_layout
 
 \begin_layout Section
@@ -216,12 +227,194 @@ Introduction
 \end_layout
 
 \begin_layout Standard
-Introduction
+Aggarwal et al define the process of clustering as: 
+\begin_inset Quotes eld
+\end_inset
+
+Given a set of points in multidimensional space, find a partition of the
+ points into 
+\emph on
+clusters
+\emph default
+ so that the points within each cluster are close to one another
+\begin_inset Quotes erd
+\end_inset
+
+.
+\begin_inset CommandInset citation
+LatexCommand cite
+key "aggarwal1999fap"
+
+\end_inset
+
+ Proximity is measured using a variety of algorithm-specific metrics, and
+ the 
+\begin_inset Quotes eld
+\end_inset
+
+closer
+\begin_inset Quotes erd
+\end_inset
+
+ two arbitrary points are to one another, the more strongly they are related.
+ This process results in defined groupings of similar points, where strong
+ inter-cluster and weak intra-cluster relationships exist between points.
+\end_layout
+
+\begin_layout Standard
+[DIAGRAM HERE]
+\end_layout
+
+\begin_layout Standard
+Clustering can be categorised in machine learning terms as a form of 
+\emph on
+unsupervised learning
+\emph default
+; that is, clusters are representative of hidden patterns in the source
+ data set.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "berkhin2002scd"
+
+\end_inset
+
+ Raw information is analysed and relationships are discovered by the algorithm
+ without external direction or interference; learning through observation
+ rather than by the study of examples.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "han2001dmc"
+
+\end_inset
+
+ In addition, this objectivity translates to an effective means of data
+ analysis without the opportunity for subjective human conclusions to be
+ drawn from data.
+\end_layout
+
+\begin_layout Standard
+Clustering has developed as one of the foremost research areas in modern
+ computing given the broad scope for such techniques in processing information
+ from large-scale databases.
+ It already provides numerous algorithms that can assess very large data
+ sets based on a series of domain-specific parameters.
+ These tasks are performed with varying degrees of efficiency depending
+ upon the specific algorithm, and the characteristics of the data set it
+ operates upon.
+ Thus, there is clear grounds for further research into improving the performanc
+e of such algorithms.
+ 
+\end_layout
+
+\begin_layout Standard
+Several clustering methodologies exist including heirarchical, partitioning,
+ density-based (subset of partitioning), constraint-based and grid-based
+ algorithms.
+ A great deal of literature already exists in each of these fields, and
+ while analysis of each is a fascinating, it has been covered more than
+ adequately by numerous authors.
+ This paper focusses only on the density-based and partitioning sectors,
+ specifically the DBSCAN and K-Medoids algorithms respectively, and initiates
+ new research into improving the efficiency of each.
+\end_layout
+
+\begin_layout Subsection
+Partitioning Algorithms
+\end_layout
+
+\begin_layout Standard
+Partitioning methods define clusters by grouping data points into 
+\emph on
+k
+\emph default
+ pre-defined partitions.
+ A point is determined to be 
+\emph on
+similar
+\emph default
+ to other points within its partition, and 
+\emph on
+dissimilar
+\emph default
+ to points that lie outside the boundary of that partition.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "han2001dmc"
+
+\end_inset
+
+ Comparison is based on the characteristics of the data set provided.
+ Thus, the algorithms rely on the conversion of semantic data attributes
+ (width, height, shape, colour, cost etc.) into points that determine physical
+ location on a set of mathematical axes.
+ This provides an objective and computationally acceptable framework for
+ analysis.
+ In the simplest case only two attributes exist, and thus the conversion
+ renders a point on a standard Cartesian plane.
+ This process is greatly complicated when, as often occurs in highly detailed
+ source sets, hundreds of attributes are present.
+ The rendering plane takes on high dimensionality, and the complexity of
+ analysis becomes very computationally expensive.
+ 
+\end_layout
+
+\begin_layout Standard
+[DIAGRAM HERE]
+\end_layout
+
+\begin_layout Subsection
+Distance-Based Algorithms
+\end_layout
+
+\begin_layout Standard
+The distance-based group of algorithms are designed to analyse data sets
+ with arbitrary shapes; a plane representation of the set contains clusters
+ with high internal density and low external density.
+  As a result, analysis can easily isolate noise instances from relevant
+ instances.
+ In the same manner as partitioning algorithms, data is rendered to a plane
+ based on the attributes of the source data.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "han2001dmc"
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+[DIAGRAM HERE]
+\end_layout
+
+\begin_layout Subsection
+Applications
+\end_layout
+
+\begin_layout Standard
+Applications stats, pattern recognition, machine learning benefits of clustering
+ + examples
+\end_layout
+
+\begin_layout Subsection
+Experimental Parameters
 \end_layout
 
 \begin_layout Standard
 Describe what the specific data set we've chosen here, and why our selected
- algorithm(s) are worthwhile to be exectued here
+ algorithm(s) are worthwhile to be 
+\emph on
+exectued
+\emph default
+ here
+\end_layout
+
+\begin_layout Standard
+implementation in WEKA
 \end_layout
 
 \begin_layout Standard
@@ -231,18 +424,26 @@ Why is the data set relevant to some aspect of life on earth (and why should
 \end_layout
 
 \begin_layout Standard
+what's being proposed in the paper + related references
+\end_layout
+
+\begin_layout Standard
 Brief introduction as to the results of the comparison were..
-\end_layout
-
-\begin_layout Standard
----
-\end_layout
-
-\begin_layout Standard
-The improvements this paper suggests to both the DBSCAN and K-medoids algorithms
- show a level of improvement for the data set that is utilised for testing.
+ what the results indicate (overview) The improvements this paper suggests
+ to both the DBSCAN and K-medoids algorithms show a level of improvement
+ for the data set that is utilised for testing.
  This suggests potential for futher improvement given additional levels
  of interest....
+\end_layout
+
+\begin_layout Subsection
+Summary
+\end_layout
+
+\begin_layout Standard
+conclusion Clustering is thus promoted as an extremely powerful means of
+ grouping related data points and efficiently revealing highly relevant
+ trends in the source set.
 \end_layout
 
 \begin_layout Section
@@ -258,6 +459,14 @@ Related Work
 \begin_layout Standard
 Detail about the algorithms themselves, who introduced them (what's been
  done on them before)
+\end_layout
+
+\begin_layout Standard
+the standard methods + drawbacks
+\end_layout
+
+\begin_layout Standard
+alternatives/other improvements suggested
 \end_layout
 
 \begin_layout Standard
@@ -318,6 +527,14 @@ accuracy
  running until completed)
 \end_layout
 
+\begin_layout Standard
+big O stuff??.
+\end_layout
+
+\begin_layout Standard
+need diagrams
+\end_layout
+
 \begin_layout Subsection
 DBSCAN
 \end_layout
@@ -371,7 +588,11 @@ Conclusion
 
 \begin_layout Standard
 Overall: better or worse? Able to satisify or not-possible? It might not
- be given the fact that 
+ be given the complexity and time limitations
+\end_layout
+
+\begin_layout Standard
+summarise topic and close.
 \end_layout
 
 \begin_layout Section
