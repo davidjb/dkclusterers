@@ -6,6 +6,9 @@ import weka.clusterers.forOPTICSAndDBScan.DataObjects.EuclidianDataObject;
 import weka.clusterers.forOPTICSAndDBScan.DataObjects.DataObject;
 
 import weka.core.*;
+import weka.filters.unsupervised.attribute.PotentialClassIgnorer;
+import weka.filters.unsupervised.attribute.ReplaceMissingValues;
+import weka.filters.Filter;
 
 import java.util.*;
 
@@ -33,6 +36,7 @@ public class UltraKMedoids extends RandomizableClusterer implements OptionHandle
      * This value is modifiable by the user because of the JavaBean methods given below.
      */
     private int selectedClusterCount = 3;
+	private int selectedClusterCountOriginal = 3;
 
     /**
      * Value used to store the length of the last clustering operation.  This is used
@@ -50,7 +54,6 @@ public class UltraKMedoids extends RandomizableClusterer implements OptionHandle
 	 * is (as instances get their cluster information returned to WEKA).
 	 */
 	private int processedInstanceIdentifer = 0;
-
 
 	/**
      * Returns tip text for this property (for Explorer/Experimenter GUI)
@@ -171,7 +174,7 @@ public class UltraKMedoids extends RandomizableClusterer implements OptionHandle
         this.useCustomisations = Boolean.valueOf(currentOption);
 
         //Use the Utils method here to get an option string back based upon the input.
-        System.out.println(currentOption);
+        //System.out.println(currentOption);
     }
 
     /**
@@ -285,6 +288,16 @@ public class UltraKMedoids extends RandomizableClusterer implements OptionHandle
 
 		//Check to see if our clusterer can handle the data
 		this.getCapabilities().testWithFail(data);
+
+		this.selectedClusterCount = this.selectedClusterCountOriginal;
+
+		//Handle any instances with missing data by removing them entirely
+		//We don't try and disguise the fact we can't deal with these bad records.
+      	PotentialClassIgnorer missingValuesFilter = new ReplaceMissingValues();
+		//Set the structure according to the inputted data set of isntances
+        missingValuesFilter.setInputFormat(data);
+		//Carry out the filtering and now we have our data set minus any bad values
+        Instances filteredData = Filter.useFilter(data, missingValuesFilter);
 
 		//Create the database to be used for the given instances
         this.clustererDatabase = new DKSequentialDatabase(data);
@@ -432,7 +445,7 @@ public class UltraKMedoids extends RandomizableClusterer implements OptionHandle
       currentCapabilities.enable(Capabilities.Capability.NOMINAL_ATTRIBUTES);
       currentCapabilities.enable(Capabilities.Capability.NUMERIC_ATTRIBUTES);
       currentCapabilities.enable(Capabilities.Capability.DATE_ATTRIBUTES);
-      //currentCapabilities.enable(Capabilities.Capability.MISSING_VALUES); //Can't handle
+      currentCapabilities.enable(Capabilities.Capability.MISSING_VALUES);
 
       return currentCapabilities;
     }
