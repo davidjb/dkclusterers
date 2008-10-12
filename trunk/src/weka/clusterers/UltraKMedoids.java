@@ -10,32 +10,17 @@ import weka.core.*;
 import java.util.*;
 
 /**
- * UltraDBScan algorithm - to infinity and beyond!
+ * UltraKMedoids algorithm - to infinity and beyond!
  */
-public class UltraDBScan extends AbstractClusterer implements OptionHandler {
+public class UltraKMedoids extends RandomizableClusterer implements OptionHandler {
+
+
 
 
 	/**
-	 * Keep track of the number of points within the current cluster to manipulate the
-	 * epsilon value to check for different distances.
+	 * Maintain the medoids of clusters that have been found
 	 */
-	private int currentClusterCounter = 0;
-
-	/**
-	 * Maintain a counter for watching what the current instance of data
-	 * is (as instances get their cluster information returned to WEKA). 
-	 */
-	private int processedInstanceIdentifer = 0;
-
-	/**
-	 * Specify the identifier for the clusters, incremented as new clusters are found
-	 */
-	private int clusterIdentifier = 0;
-
-	/**
-	 * Maintain the total number of clusters that have been found
-	 */
-	private int totalClusters = 0;
+	private List<Integer> medoidList;
 
 	/**
 	 * Storage for the database of instances, used for clustering
@@ -43,21 +28,11 @@ public class UltraDBScan extends AbstractClusterer implements OptionHandler {
     private Database clustererDatabase;
 
     /**
-     * Value for the distance to consider around a given data point to find clusters.
-     *
-     * This value is modifiable by the user because of the JavaBean methods given below.
-	 * The 'original' value is used as a backup, for when we need to replace the changed value.
-     */
-    private double epsilonDistance = 0.9;
-	private double epsilonDistanceOriginal = 0.9;
-
-    /**
-     * Value for the minimum number of points that need to be found for data to be
-     * considered a cluster.
+     * Value for the number of clusters that should be located.
      *
      * This value is modifiable by the user because of the JavaBean methods given below.
      */
-    private int minimumPointClusterThreshold = 6;
+    private int selectedClusterCount = 3;
 
     /**
      * Value used to store the length of the last clustering operation.  This is used
@@ -69,6 +44,37 @@ public class UltraDBScan extends AbstractClusterer implements OptionHandler {
 	 * Value used to determine if algorithm customisations should be used
 	 */
 	private boolean useCustomisations = false;
+
+	/**
+	 * Maintain a counter for watching what the current instance of data
+	 * is (as instances get their cluster information returned to WEKA).
+	 */
+	private int processedInstanceIdentifer = 0;
+
+
+	/**
+     * Returns tip text for this property (for Explorer/Experimenter GUI)
+     * @return tooltip text for the minimumPointClusterThreshold property
+     */
+    public String selectedClusterCountTipText() {
+        return "Number of clusters to consider (k-medoids)";
+    }
+
+    /**
+     * Return the selected number of clusters to obtain from data set
+     * @return the minimum number of points needed for a cluster
+     */
+    public int getSelectedClusterCount() {
+        return this.selectedClusterCount;
+    }
+
+    /**
+     * Set the selected number of clusters to obtain from data set
+     * @param selectedClusterCount the number of clusters to examine for
+     */
+    public void setSelectedClusterCount(int selectedClusterCount) {
+        this.selectedClusterCount = selectedClusterCount;
+    }
 
 	/**
 	 * Get the value used to set whether or not to use customisations
@@ -94,57 +100,8 @@ public class UltraDBScan extends AbstractClusterer implements OptionHandler {
         return "Whether or not to invoke algorithm customisations";
     }
 
-	/**
-     * Returns tip text for this property (for Explorer/Experimenter GUI)
-     * @return tooltip text for the epsilonDistance property
-     */
-    public String epsilonDistanceTipText() {
-        return "Distance to consider around data for clusters";
-    }
-
-    /**
-     * Return the distance that needs to be checked around a data node for cluster points
-     * @return the distance to check around a given data node
-     */
-    public double getEpsilonDistance() {
-        return epsilonDistance;
-    }
-
-    /**
-     * Set the distance that needs to be checked around a data node for cluster points
-     * @param epsilonDistance the distance to check around a given data node
-     */
-    public void setEpsilonDistance(double epsilonDistance) {
-        this.epsilonDistance = epsilonDistance;
-		this.epsilonDistanceOriginal = epsilonDistance;
-    }
-
-    /**
-     * Returns tip text for this property (for Explorer/Experimenter GUI)
-     * @return tooltip text for the minimumPointClusterThreshold property
-     */
-    public String minimumPointClusterThresholdTipText() {
-        return "Minimum number of points to consider cluster";
-    }
-
-    /**
-     * Return the smallest number of points necessary to make a cluster
-     * @return the minimum number of points needed for a cluster
-     */
-    public int getMinimumPointClusterThreshold() {
-        return minimumPointClusterThreshold;
-    }
-
-    /**
-     * Set the minimum number of points necessary to make a cluster
-     * @param minimumPointClusterThreshold the minimum number of points needed for a cluster
-     */
-    public void setMinimumPointClusterThreshold(int minimumPointClusterThreshold) {
-        this.minimumPointClusterThreshold = minimumPointClusterThreshold;
-    }
-
     public String globalInfo() {
-        return "A customised implementation of the DBScan algorithm, with a few changes to see what effect they have on clusters";
+        return "A customised implementation of the K-Medoids algorithm, with a few changes to see what effect they have on clusters";
     }
 
 
@@ -156,7 +113,7 @@ public class UltraDBScan extends AbstractClusterer implements OptionHandler {
      *                   successfully
      */
     public int numberOfClusters() throws Exception {
-        return this.totalClusters;
+        return this.medoidList.size();
     }
 
     /**
@@ -177,16 +134,19 @@ public class UltraDBScan extends AbstractClusterer implements OptionHandler {
         Vector<Option> optionVector = new Vector<Option>();
 
         optionVector.addElement(
-                new Option("Minimum point threshold", "minpoint", 1, "-minpoint <integer>")
-        );
-
-		optionVector.addElement(
-                new Option("Epsilon distance", "epsilon", 1, "-epsilon <double>")
+                new Option("Cluster count to search for", "clusters", 1, "-clusters <integer>")
         );
 
 		optionVector.addElement(
                 new Option("Enable customisations", "custom", 1, "-custom <boolean>")
         );
+
+		//Put the parent's options into our listing
+		Enumeration parentOptions = super.listOptions();
+		while (parentOptions.hasMoreElements()) {
+			Option currentOption = (Option)parentOptions.nextElement();
+			optionVector.addElement(currentOption);
+		}
 
         return optionVector.elements();  //To change body of implemented methods use File | Settings | File Templates.
     }
@@ -200,17 +160,18 @@ public class UltraDBScan extends AbstractClusterer implements OptionHandler {
      * @throws Exception if an option is not supported
      */
     public void setOptions(String[] options) throws Exception {
-        String currentOption = Utils.getOption("minpoint", options);
-        this.minimumPointClusterThreshold = Integer.valueOf(currentOption);
 
-        currentOption = Utils.getOption("epsilon", options);
-        this.epsilonDistance = Double.valueOf(currentOption);
+		//Set the parent's options by passing the same array in
+		super.setOptions(options);
+
+        String currentOption = Utils.getOption("clusters", options);
+        this.selectedClusterCount = Integer.valueOf(currentOption);
 
 		currentOption = Utils.getOption("custom", options);
         this.useCustomisations = Boolean.valueOf(currentOption);
 
         //Use the Utils method here to get an option string back based upon the input.
-        //System.out.println(currentOption);
+        System.out.println(currentOption);
     }
 
     /**
@@ -222,12 +183,17 @@ public class UltraDBScan extends AbstractClusterer implements OptionHandler {
 
         Vector<String> optionsVector = new Vector<String>();
 
-        optionsVector.add("-minpoint");
-        optionsVector.add(Integer.toString(getMinimumPointClusterThreshold()));
-        optionsVector.add("-epsilon");
-        optionsVector.add(Double.toString(getEpsilonDistance()));
+        optionsVector.add("-clusters");
+        optionsVector.add(Integer.toString(getSelectedClusterCount()));
 		optionsVector.add("-custom");
         optionsVector.add(Boolean.toString(getUseCustomisations()));
+
+
+		//Get options for the parent class
+		String[] parentOptions = super.getOptions();
+		for(String currentString: parentOptions) {
+			optionsVector.add(currentString);
+		}
 
         return optionsVector.toArray(new String[optionsVector.size()]);
     }
@@ -240,19 +206,17 @@ public class UltraDBScan extends AbstractClusterer implements OptionHandler {
     public String toString() {
 
         String outputString = "";
-		outputString += ("UltraDBScan Clustering Output" +
+		outputString += ("UltraKMedoids Clustering Output" +
 						 "----------------------------\n");
 		outputString += ("Attributes: \t" + this.clustererDatabase.getInstances().numAttributes() + "\n");
 		outputString += "\n";
-		outputString += ("Epsilon: " + this.epsilonDistance + "\n");
-		outputString += ("Cluster Point Threshold: " + this.minimumPointClusterThreshold + "\n");
-		outputString += ("Use customisations? " + this.useCustomisations + "\n");
-		 outputString += "\n";
+		outputString += ("Clusters to find: " + this.selectedClusterCount + "\n");
+		outputString += "\n";
 
 		outputString += ("Time Taken: \t" + Long.toString(lastClusteringDuration) + " ms ("+ Double.toString(lastClusteringDuration/1000.0) + " secs)\n");
 		outputString += ("Count of Original Instances: \t" + this.clustererDatabase.getInstances().numInstances() + "\n");
 		outputString += ("Count of Clustered Instances: \t" + this.clustererDatabase.size() + "\n");
-		outputString += ("Total Clusters Found: \t" + Integer.toString(totalClusters) + "\n");
+		outputString += ("Total Clusters Found: \t" + Integer.toString(this.medoidList.size()) + "\n");
 		outputString += "\n";
 
 		Iterator currentDataIterator = this.clustererDatabase.dataObjectIterator();
@@ -261,7 +225,6 @@ public class UltraDBScan extends AbstractClusterer implements OptionHandler {
 		//Step through all clusters and write out details
 		while (currentDataIterator.hasNext()) {
 
-			
 			 DataObject currentDataObject = (DataObject)currentDataIterator.next();
 			 outputString += ( "("+currentIndex+++") "+ currentDataObject.toString() + "\t==>\t" );
 
@@ -275,7 +238,7 @@ public class UltraDBScan extends AbstractClusterer implements OptionHandler {
 
 			 outputString += "\n";
         }
-		
+
         return outputString;
     }
 
@@ -306,7 +269,7 @@ public class UltraDBScan extends AbstractClusterer implements OptionHandler {
 			currentClusterIdentifier == DataObject.UNDEFINED) {
 			throw new Exception("Can't cluster this instance");
 		}
-		
+
         return currentClusterIdentifier;
     }
 
@@ -319,10 +282,12 @@ public class UltraDBScan extends AbstractClusterer implements OptionHandler {
      *                   generated successfully
     */
     public void buildClusterer(Instances data) throws Exception {
+
 		//Check to see if our clusterer can handle the data
 		this.getCapabilities().testWithFail(data);
 
-        this.clustererDatabase = new SequentialDatabase(data);
+		//Create the database to be used for the given instances
+        this.clustererDatabase = new DKSequentialDatabase(data);
 
 		//Add all instances into the database
 		for(int i = 0; i < data.numInstances(); i++) {
@@ -330,76 +295,130 @@ public class UltraDBScan extends AbstractClusterer implements OptionHandler {
 			this.clustererDatabase.insert(createdDataObject);
 		}
 
-		//Walk through the instances in the database and set up their values
+		//Step through the database and calculate distances between objects
 		this.clustererDatabase.setMinMaxValues();
 
-		Iterator dataObjectIterator = this.clustererDatabase.dataObjectIterator();
+		//Create randomiser object and seed with user-provided seed number
+		Random clustererRandomiser = new Random(this.getSeed());
+
+		//Create k-length list for the medoids indices to be placed in
+		this.medoidList = new ArrayList<Integer>(this.selectedClusterCount);
 
 		//Start timing the algorithm
         long startTime = System.currentTimeMillis();
 
-        while (dataObjectIterator.hasNext()) {
+		//Select k many objects as aritrary medoid objects
+		while (this.medoidList.size() < this.selectedClusterCount) {
+			//Loop until we have enough items to satisfy the medoid count
+			int randomisedInteger = clustererRandomiser.nextInt(this.clustererDatabase.size());
 
-			DataObject currentDataObject = (DataObject)dataObjectIterator.next();
+			//If the medoid list doesn't contain our randomly indexed data object, insert it
+			if (!this.medoidList.contains(randomisedInteger)) {
+				this.medoidList.add(randomisedInteger);
+			}
+		}
 
-			//Need to check if point already visited
-			if (currentDataObject.getClusterLabel() == DataObject.UNCLASSIFIED) {
-				
-				List currentRangeSearch = this.clustererDatabase.epsilonRangeQuery(this.epsilonDistance, currentDataObject);
-				if (currentRangeSearch.size() >= this.minimumPointClusterThreshold) {
+		//Continue looping until there is no change in the medoid assignments
+		boolean hasChanged = true;
+		while (hasChanged) {
 
-					currentDataObject.setClusterLabel(this.clusterIdentifier);
+			Iterator dataObjectIterator = this.clustererDatabase.dataObjectIterator();
 
-					//need to recurse to all elements in the list
-					this.recurseToNeighbours(currentRangeSearch, clusterIdentifier);
+			int currentIndex = 0;
+			while (dataObjectIterator.hasNext()) {
+				DataObject currentDataObject = (DataObject)dataObjectIterator.next();
 
-					this.clusterIdentifier++; //Increment for next data object's cluster
+				//Assign each remaining object to the cluster with nearest medoid
+				//Note: if the object is a medoid, the distance should be 0 (hence allocated to itself)
+				currentDataObject.setClusterLabel( this.nearestMedoidSearch(currentIndex) );
 
-					//If customising the process, reset the cluster counter as we are moving on
-					if (this.useCustomisations) {
-						this.currentClusterCounter = 0;
-					}
+				//Move to the next index from the database
+				currentIndex++;
+			}
 
-				} else {
-					currentDataObject.setClusterLabel(DataObject.NOISE);
+			//Randomly select an object that is not a medoid to check for a change
+			boolean isNonMedoidSelected = false;
+			int selectedNonMedoidIndex = 0;
+			while (isNonMedoidSelected == false) {
+				int randomisedInteger = clustererRandomiser.nextInt(this.clustererDatabase.size());
+
+				//If the medoid list doesn't contain our randomly indexed data object, choose it!
+				if (!this.medoidList.contains(randomisedInteger)) {
+					selectedNonMedoidIndex = randomisedInteger;
+					isNonMedoidSelected = true;
 				}
+			}
+
+			//Compute the total of distances for both original and modified cluster assignments
+			//So, change the medoid over temporarily, when appropriate
+			double originalTotalCost = 0;
+			double modifiedTotalCost = 0;
+			int closestMedoidToNonMedoid = this.nearestMedoidSearch(selectedNonMedoidIndex);
+
+			Iterator objectIterator = this.clustererDatabase.dataObjectIterator();
+			while (objectIterator.hasNext()) {
+				DataObject currentDataObject = (DataObject)objectIterator.next();
+
+				//Get the cluster assignment of current object, use that as an index for the medoidList
+				//From that index, get the value for the key in the database, and then get the data object
+				DataObject associatedMedoid = this.clustererDatabase.getDataObject(Integer.toString(this.medoidList.get(currentDataObject.getClusterLabel())));
+
+				double calculatedDistance = currentDataObject.distance(associatedMedoid);
+				originalTotalCost += calculatedDistance;
+
+				if (currentDataObject.getClusterLabel() == closestMedoidToNonMedoid) {
+					DataObject alternateMedoid = this.clustererDatabase.getDataObject(Integer.toString(selectedNonMedoidIndex));
+					modifiedTotalCost += currentDataObject.distance(alternateMedoid);
+				}
+			}
+
+			//If the total distances of the modified set are less than the total of the original clusters
+			if (modifiedTotalCost < originalTotalCost) {
+				//Commit the change to the medoid, and repeat
+				this.medoidList.set(closestMedoidToNonMedoid, selectedNonMedoidIndex);
+			} else {
+				//Otherwise, set the flag to show no change was made, and stop processing
+				hasChanged = false;
 			}
 		}
 
         this.lastClusteringDuration = (System.currentTimeMillis() - startTime);
-
-		this.totalClusters = clusterIdentifier;
     }
 
+
 	/**
-	 * Rescursively progresses through the list of data objects to find other cluster members
-	 * @param inputRangeSearch the list of data objects being searched through
-	 * @param clusterIdentifier the current cluster identification integer
+	 * Calculate the nearest medoid for a given data object using the clusterer database's distances.
+	 * @param inputDataObjectIndex the index/key for the given data object in the clusterer database
+	 * @return the index in the <b>medoidList</b> for the closest medoid
 	 */
-	private void recurseToNeighbours(List inputRangeSearch, int clusterIdentifier) {
+	public int nearestMedoidSearch(int inputDataObjectIndex) {
 
-		Iterator currentIterator = inputRangeSearch.iterator();
+		//Get our current data object to check from the inputted index
+		DataObject currentDataObject = this.clustererDatabase.getDataObject(Integer.toString(inputDataObjectIndex));
 		
-		while (currentIterator.hasNext()) {
+		double smallestDistance = -1;
+		int closestMedoidIndex = -1;
 
-			DataObject currentDataObject = (DataObject)currentIterator.next();
+		//Walk through all medoids in the current listing
+		int medoidCounter = 0;
+		for (Integer currentMedoidIndex: this.medoidList) {
+			//Obtain the medoid object back to compare its distance to the current object
+			DataObject currentMedoidObject = this.clustererDatabase.getDataObject(Integer.toString(currentMedoidIndex));
 
-			//Need to check if point already visited
-			if (currentDataObject.getClusterLabel() == DataObject.UNCLASSIFIED) {
+			//Calculate the distance to the current object from the medoid
+			double currentDistance = currentMedoidObject.distance(currentDataObject);
 
-				//Set the cluster label as provided
-				currentDataObject.setClusterLabel(clusterIdentifier);
-
-				this.currentClusterCounter++;
-
-				//Need to recurse to all of this object's nearest neighbours
-				List currentRangeSearch = this.clustererDatabase.epsilonRangeQuery(this.epsilonDistance, currentDataObject);
-				this.recurseToNeighbours(currentRangeSearch, clusterIdentifier);
-
+			//If uninitialised or the current distance is closer, then set this as the closest
+			if (smallestDistance == -1 || currentDistance < smallestDistance) {
+				smallestDistance = currentDistance;
+				closestMedoidIndex = medoidCounter;
 			}
-		}
-	}
 
+			medoidCounter++;
+		}
+		
+		return closestMedoidIndex;
+	}
 
 	/**
      * Obtain the capabilities (in terms of data attributes) that this clusterer can handle
@@ -409,7 +428,6 @@ public class UltraDBScan extends AbstractClusterer implements OptionHandler {
 
       Capabilities currentCapabilities = super.getCapabilities();   // returns the object from weka.classifiers.Classifier
 
-      //TODO check into the capabilities and what we should be offering here
       // Set the attributes that our clusterer can handle
       currentCapabilities.enable(Capabilities.Capability.NOMINAL_ATTRIBUTES);
       currentCapabilities.enable(Capabilities.Capability.NUMERIC_ATTRIBUTES);
