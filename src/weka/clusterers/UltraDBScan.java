@@ -6,6 +6,9 @@ import weka.clusterers.forOPTICSAndDBScan.DataObjects.EuclidianDataObject;
 import weka.clusterers.forOPTICSAndDBScan.DataObjects.DataObject;
 
 import weka.core.*;
+import weka.filters.unsupervised.attribute.ReplaceMissingValues;
+import weka.filters.unsupervised.attribute.PotentialClassIgnorer;
+import weka.filters.Filter;
 
 import java.util.*;
 
@@ -58,6 +61,7 @@ public class UltraDBScan extends AbstractClusterer implements OptionHandler {
      * This value is modifiable by the user because of the JavaBean methods given below.
      */
     private int minimumPointClusterThreshold = 6;
+	private int minimumPointClusterThresholdOriginal = 6;
 
     /**
      * Value used to store the length of the last clustering operation.  This is used
@@ -141,6 +145,7 @@ public class UltraDBScan extends AbstractClusterer implements OptionHandler {
      */
     public void setMinimumPointClusterThreshold(int minimumPointClusterThreshold) {
         this.minimumPointClusterThreshold = minimumPointClusterThreshold;
+		this.minimumPointClusterThresholdOriginal = minimumPointClusterThreshold;
     }
 
     public String globalInfo() {
@@ -322,11 +327,24 @@ public class UltraDBScan extends AbstractClusterer implements OptionHandler {
 		//Check to see if our clusterer can handle the data
 		this.getCapabilities().testWithFail(data);
 
-        this.clustererDatabase = new SequentialDatabase(data);
+		this.currentClusterCounter = 0;
+		this.clusterIdentifier = 0;
+		this.epsilonDistance = this.epsilonDistanceOriginal;
+		this.minimumPointClusterThreshold = this.minimumPointClusterThresholdOriginal;
+
+		//Handle any instances with missing data by removing them entirely
+		//We don't try and disguise the fact we can't deal with these bad records.
+      	PotentialClassIgnorer missingValuesFilter = new ReplaceMissingValues();
+		//Set the structure according to the inputted data set of isntances
+        missingValuesFilter.setInputFormat(data);
+		//Carry out the filtering and now we have our data set minus any bad values
+        Instances filteredData = Filter.useFilter(data, missingValuesFilter);
+
+        this.clustererDatabase = new SequentialDatabase(filteredData);
 
 		//Add all instances into the database
-		for(int i = 0; i < data.numInstances(); i++) {
-			DataObject createdDataObject = new EuclidianDataObject(data.instance(i), Integer.toString(i), this.clustererDatabase);
+		for(int i = 0; i < filteredData.numInstances(); i++) {
+			DataObject createdDataObject = new EuclidianDataObject(filteredData.instance(i), Integer.toString(i), this.clustererDatabase);
 			this.clustererDatabase.insert(createdDataObject);
 		}
 
@@ -349,15 +367,19 @@ public class UltraDBScan extends AbstractClusterer implements OptionHandler {
 				if (currentRangeSearch.size() >= this.minimumPointClusterThreshold) {
 
 					currentDataObject.setClusterLabel(this.clusterIdentifier);
+					this.currentClusterCounter++;
 
 					//need to recurse to all elements in the list
 					this.recurseToNeighbours(currentRangeSearch, clusterIdentifier);
 
-					this.clusterIdentifier++; //Increment for next data object's cluster
+					if (this.currentClusterCounter >= this.minimumPointClusterThreshold)
+						this.clusterIdentifier++; //Increment for next data object's cluster
+
+					this.currentClusterCounter = 0;
 
 					//If customising the process, reset the cluster counter as we are moving on
 					if (this.useCustomisations) {
-						this.currentClusterCounter = 0;
+						this.epsilonDistance = this.epsilonDistanceOriginal;
 					}
 
 				} else {
@@ -385,7 +407,7 @@ public class UltraDBScan extends AbstractClusterer implements OptionHandler {
 			DataObject currentDataObject = (DataObject)currentIterator.next();
 
 			//Need to check if point already visited
-			if (currentDataObject.getClusterLabel() == DataObject.UNCLASSIFIED) {
+			if (currentDataObject.getClusterLabel() != clusterIdentifier) {
 
 				//Set the cluster label as provided
 				currentDataObject.setClusterLabel(clusterIdentifier);
@@ -409,12 +431,11 @@ public class UltraDBScan extends AbstractClusterer implements OptionHandler {
 
       Capabilities currentCapabilities = super.getCapabilities();   // returns the object from weka.classifiers.Classifier
 
-      //TODO check into the capabilities and what we should be offering here
       // Set the attributes that our clusterer can handle
       currentCapabilities.enable(Capabilities.Capability.NOMINAL_ATTRIBUTES);
       currentCapabilities.enable(Capabilities.Capability.NUMERIC_ATTRIBUTES);
       currentCapabilities.enable(Capabilities.Capability.DATE_ATTRIBUTES);
-      //currentCapabilities.enable(Capabilities.Capability.MISSING_VALUES); //Can't handle
+      currentCapabilities.enable(Capabilities.Capability.MISSING_VALUES); //Can't handle
 
       return currentCapabilities;
     }
