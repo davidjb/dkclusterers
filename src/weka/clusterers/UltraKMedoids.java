@@ -335,19 +335,8 @@ public class UltraKMedoids extends RandomizableClusterer implements OptionHandle
 		boolean hasChanged = true;
 		while (hasChanged) {
 
-			Iterator dataObjectIterator = this.clustererDatabase.dataObjectIterator();
-
-			int currentIndex = 0;
-			while (dataObjectIterator.hasNext()) {
-				DataObject currentDataObject = (DataObject)dataObjectIterator.next();
-
-				//Assign each remaining object to the cluster with nearest medoid
-				//Note: if the object is a medoid, the distance should be 0 (hence allocated to itself)
-				currentDataObject.setClusterLabel( this.nearestMedoidSearch(currentIndex) );
-
-				//Move to the next index from the database
-				currentIndex++;
-			}
+			List<Integer> modifiedMedoidList = null;
+			int closestMedoidToNonMedoid = 0;
 
 			//Randomly select an object that is not a medoid to check for a change
 			boolean isNonMedoidSelected = false;
@@ -359,6 +348,13 @@ public class UltraKMedoids extends RandomizableClusterer implements OptionHandle
 				if (!this.medoidList.contains(randomisedInteger)) {
 					selectedNonMedoidIndex = randomisedInteger;
 					isNonMedoidSelected = true;
+
+					//Create the modified listing of medoids
+					modifiedMedoidList = new ArrayList<Integer>(this.medoidList);
+					//Calculate the originally closest medoid to the non-medoid object selected
+					closestMedoidToNonMedoid = this.nearestMedoidSearch(selectedNonMedoidIndex, this.medoidList);
+					//Make the change - change the medoid over in the temporary list
+					modifiedMedoidList.set(closestMedoidToNonMedoid, selectedNonMedoidIndex);
 				}
 			}
 
@@ -366,11 +362,16 @@ public class UltraKMedoids extends RandomizableClusterer implements OptionHandle
 			//So, change the medoid over temporarily, when appropriate
 			double originalTotalCost = 0;
 			double modifiedTotalCost = 0;
-			int closestMedoidToNonMedoid = this.nearestMedoidSearch(selectedNonMedoidIndex);
 
-			Iterator objectIterator = this.clustererDatabase.dataObjectIterator();
-			while (objectIterator.hasNext()) {
-				DataObject currentDataObject = (DataObject)objectIterator.next();
+			Iterator dataObjectIterator = this.clustererDatabase.dataObjectIterator();
+
+			int currentIndex = 0;
+			while (dataObjectIterator.hasNext()) {
+				DataObject currentDataObject = (DataObject)dataObjectIterator.next();
+
+				//Assign each remaining object to the cluster with nearest medoid
+				//Note: if the object is a medoid, the distance should be 0 (hence allocated to itself)
+				currentDataObject.setClusterLabel( this.nearestMedoidSearch(currentIndex, this.medoidList) );
 
 				//Get the cluster assignment of current object, use that as an index for the medoidList
 				//From that index, get the value for the key in the database, and then get the data object
@@ -379,16 +380,37 @@ public class UltraKMedoids extends RandomizableClusterer implements OptionHandle
 				double calculatedDistance = currentDataObject.distance(associatedMedoid);
 				originalTotalCost += calculatedDistance;
 
-				if (currentDataObject.getClusterLabel() == closestMedoidToNonMedoid) {
-					DataObject alternateMedoid = this.clustererDatabase.getDataObject(Integer.toString(selectedNonMedoidIndex));
+				if (!useCustomisations) {
+					//Recompute clustering assignments for this point
+					//The point may find its assignment stays the same, but we need to check for all points just in case
+					int alternateMedoidIndex = this.nearestMedoidSearch(currentIndex, modifiedMedoidList);
+					DataObject alternateMedoid = this.clustererDatabase.getDataObject(Integer.toString(modifiedMedoidList.get(alternateMedoidIndex)));
 					modifiedTotalCost += currentDataObject.distance(alternateMedoid);
+
+				} else if (useCustomisations) {
+					if (currentDataObject.getClusterLabel() == closestMedoidToNonMedoid) {
+						DataObject alternateMedoid = this.clustererDatabase.getDataObject(Integer.toString(selectedNonMedoidIndex));
+						modifiedTotalCost += currentDataObject.distance(alternateMedoid);
+					} else {
+						modifiedTotalCost += calculatedDistance;
+					}
 				}
+
+				//Move to the next index from the database
+				currentIndex++;
 			}
 
 			//If the total distances of the modified set are less than the total of the original clusters
 			if (modifiedTotalCost < originalTotalCost) {
 				//Commit the change to the medoid, and repeat
 				this.medoidList.set(closestMedoidToNonMedoid, selectedNonMedoidIndex);
+
+				//System.err.println("Swap! " + closestMedoidToNonMedoid + " -> " + selectedNonMedoidIndex);
+
+				//If the change is sufficiently suitable, then we can stop
+				if (this.useCustomisations && true) {
+					hasChanged = false;
+				}
 			} else {
 				//Otherwise, set the flag to show no change was made, and stop processing
 				hasChanged = false;
@@ -404,7 +426,7 @@ public class UltraKMedoids extends RandomizableClusterer implements OptionHandle
 	 * @param inputDataObjectIndex the index/key for the given data object in the clusterer database
 	 * @return the index in the <b>medoidList</b> for the closest medoid
 	 */
-	public int nearestMedoidSearch(int inputDataObjectIndex) {
+	public int nearestMedoidSearch(int inputDataObjectIndex, List<Integer> inputMedoidList) {
 
 		//Get our current data object to check from the inputted index
 		DataObject currentDataObject = this.clustererDatabase.getDataObject(Integer.toString(inputDataObjectIndex));
@@ -414,7 +436,7 @@ public class UltraKMedoids extends RandomizableClusterer implements OptionHandle
 
 		//Walk through all medoids in the current listing
 		int medoidCounter = 0;
-		for (Integer currentMedoidIndex: this.medoidList) {
+		for (Integer currentMedoidIndex: inputMedoidList) {
 			//Obtain the medoid object back to compare its distance to the current object
 			DataObject currentMedoidObject = this.clustererDatabase.getDataObject(Integer.toString(currentMedoidIndex));
 
