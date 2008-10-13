@@ -414,6 +414,12 @@ public class UltraDBScan extends AbstractClusterer implements OptionHandler {
 
 				this.currentClusterCounter++;
 
+				//If we are using the customised DBScan algorithm, then alter the epsilon distance now
+				if (this.useCustomisations) {
+					this.epsilonDistance = (this.epsilonDistanceOriginal * (1.0 - this.currentClusterCounter/(1.0*this.clustererDatabase.size()) ));
+					//System.err.println("Epsilon distance now: " + this.epsilonDistance);
+				}
+
 				//Need to recurse to all of this object's nearest neighbours
 				List currentRangeSearch = this.clustererDatabase.epsilonRangeQuery(this.epsilonDistance, currentDataObject);
 				this.recurseToNeighbours(currentRangeSearch, clusterIdentifier);
