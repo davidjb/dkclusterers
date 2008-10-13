@@ -80,9 +80,10 @@
 \begin_body
 
 \begin_layout Title
-Clusterers: a Comparison of Optimisations
+Clusterers: A Comparison of Partitioning and Distance-Based Algorithms and
+ A Discussion of Optimisations
 \begin_inset ERT
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -101,7 +102,7 @@ author{David Breitkreutz
 \backslash
 textit{School of Mathematics, Physics 
 \backslash
-& IT } 
+& Information Technology } 
 \backslash
 
 \backslash
@@ -149,7 +150,7 @@ Kate Casey
 \backslash
 textit{School of Mathematics, Physics 
 \backslash
-& IT} 
+& Information Technology} 
 \backslash
 
 \backslash
@@ -292,14 +293,21 @@ key "han2001dmc"
  In addition, this objectivity translates to an effective means of data
  analysis without the opportunity for subjective human conclusions to be
  drawn from data.
+ 
 \end_layout
 
 \begin_layout Standard
-Clustering has developed as one of the foremost research areas in modern
- computing given the broad scope for such techniques in processing information
- from large-scale databases.
- It already provides numerous algorithms that can assess very large data
- sets based on a series of domain-specific parameters.
+Clustering is promoted as an extremely powerful means of grouping related
+ data points and efficiently revealing highly relevant trends in the source
+ set.
+ These capabilities extend to very large data sets, and are applicable to
+ the masses of information stored by scientists, medicos and businesses
+ (to name a few) every day.
+ As a result, the field has developed into one of the foremost research
+ areas in modern computing given the broad scope for such techniques in
+ analysing large-scale databases and data warehouses.
+ It already provides numerous algorithms that can perform such analysis
+ based on a series of domain-specific parameters.
  These tasks are performed with varying degrees of efficiency depending
  upon the specific algorithm, and the characteristics of the data set it
  operates upon.
@@ -329,7 +337,7 @@ Partitioning methods define clusters by grouping data points into
 \emph on
 k
 \emph default
- pre-defined partitions.
+ partitions (defined at runtime).
  A point is determined to be 
 \emph on
 similar
@@ -362,21 +370,132 @@ key "han2001dmc"
 \end_layout
 
 \begin_layout Standard
+This paper studies the K-Medoids algorithm from the partitioning analysis
+ family.
+ The method seeks to reduce the impact of noisy data experienced in more
+ simple partitioning algorithms.
+ Instead of converting data attributes to simple points, it retains all
+ the information from each record and represents the points as objects on
+ a detailed axes.
+ It initally chooses 
+\emph on
+k
+\emph default
+ arbitrary points as representative medoids (
+\emph on
+O
+\begin_inset Formula $\mathcal{_{\text{r}}}$
+\end_inset
+
+
+\emph default
+), then iteratively compares each chosen point with every other point (O
+\begin_inset Formula $_{\text{j}}$
+\end_inset
+
+) to determine if swapping the medoid is useful.
+ This decision is based on a cost function; the average value of some dissimilar
+ity metric between any object and the medoid of its cluster.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "berkhin2002scd"
+
+\end_inset
+
+ The algorithm terminates when every point has been assigned to a cluster
+ and swapping medoids and objects no longer has any optimising effect on
+ the clustering outcome.
+\end_layout
+
+\begin_layout Standard
+[positives and negatives]
+\end_layout
+
+\begin_layout Standard
 [DIAGRAM HERE]
 \end_layout
 
 \begin_layout Subsection
-Distance-Based Algorithms
+Density-Based Algorithms
 \end_layout
 
 \begin_layout Standard
-The distance-based group of algorithms are designed to analyse data sets
- with arbitrary shapes; a plane representation of the set contains clusters
- with high internal density and low external density.
+The density-based group of algorithms represent a data set in the same manner
+ as partitioning methods; converting an instance to a point using the data
+ attributes of the source set.
+ The plane contains clusters with high internal density and low external
+ density in a similar manner to its partitioning ancestor.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Kolatch01clusteringalgorithms"
+
+\end_inset
+
   As a result, analysis can easily isolate noise instances from relevant
  instances.
- In the same manner as partitioning algorithms, data is rendered to a plane
- based on the attributes of the source data.
+ 
+\end_layout
+
+\begin_layout Standard
+This paper studies the DBSCAN algorithm from the density-based algorithm
+ collection.
+ The technique relies upon an epsilon [
+\begin_inset Formula $\varepsilon$
+\end_inset
+
+] value (defined as the radius of the neighbourhood of a point based on
+ some distance metric), and a minimum points [MinPts] value (defined as
+ the minimum number of points required to exist in a neighbourhood to be
+ declared a cluster).
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ester1996dba"
+
+\end_inset
+
+ The method examines the 
+\begin_inset Formula $\varepsilon$
+\end_inset
+
+-neighbourhood of every point in the set, and if the region contains more
+ points than the MinPts threshold a new cluster is defined.
+ The examined point is declared the centre point, and the algorithm then
+ iteratively collects surrounding density-reachable objects and attaches
+ them to this new cluster.
+ Such behaviour may trigger cluster merging depending upon point proximity
+ and, of course, the runtime parameters 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\noun off
+\color none
+
+\begin_inset Formula $\varepsilon$
+\end_inset
+
+
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\noun default
+\color inherit
+ and MinPts.
+ The algorithm terminates when all defined clusters are finalised; no further
+ points can be added to any cluster and any unclustered points are declared
+ as 
+\emph on
+noise
+\emph default
+.
  
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -384,7 +503,13 @@ key "han2001dmc"
 
 \end_inset
 
+ Due to this method of analysis, DBSCAN is designed to analyse data sets
+ with arbitrary shapes, and can cluster sets that include hollow formations.
  
+\end_layout
+
+\begin_layout Standard
+[positives and negatives]
 \end_layout
 
 \begin_layout Standard
@@ -396,8 +521,44 @@ Applications
 \end_layout
 
 \begin_layout Standard
-Applications stats, pattern recognition, machine learning benefits of clustering
- + examples
+Data mining in general has a multitude of applications across a wide variety
+ of fields.
+ Pattern recognition for image analysis, medical diagnostics, sales forcasting
+ and weather prediction are a recognised as a few of the more traditional
+ usages.
+ However, due to extensive development in the field and the recent explosion
+ in data recording the capabilities extend far beyond these basic functions.
+ Onboard computer analysis in vehicles, product quality analysis, targeted
+ advertising campaigns, spam email filtration, fraud detection, and online
+ crime analysis are but a few of the fields into which data mining now extends.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "john1999bsd"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Clustering applies to all of the aforementioned applications as a subset
+ of data mining.
+ Partitioning techniques are effective for mining data sets when computation
+ of a dendrogram (clustering tree) representation is infeasable.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "jain1999dcr"
+
+\end_inset
+
+ In pariticular, K-Medoids is highly efficient for small data sets.
+ However, due to the inherent swapping of medoids to optimise the clustered
+ solution, the algorithm suffers greatly as large data sets are introduced.
+ Density-based algorithms provide benefits when analysing data sets that
+ contain high levels of noise or when clusters are arbitrarily shaped (eg.
+ a torus or other non-convex formation).
 \end_layout
 
 \begin_layout Subsection
@@ -408,7 +569,7 @@ Experimental Parameters
 Describe what the specific data set we've chosen here, and why our selected
  algorithm(s) are worthwhile to be 
 \emph on
-exectued
+executed
 \emph default
  here
 \end_layout
@@ -432,18 +593,8 @@ Brief introduction as to the results of the comparison were..
  what the results indicate (overview) The improvements this paper suggests
  to both the DBSCAN and K-medoids algorithms show a level of improvement
  for the data set that is utilised for testing.
- This suggests potential for futher improvement given additional levels
+ This suggests potential for further improvement given additional levels
  of interest....
-\end_layout
-
-\begin_layout Subsection
-Summary
-\end_layout
-
-\begin_layout Standard
-conclusion Clustering is thus promoted as an extremely powerful means of
- grouping related data points and efficiently revealing highly relevant
- trends in the source set.
 \end_layout
 
 \begin_layout Section
@@ -497,8 +648,8 @@ Usefulness and detriments of each algorithm, best types of data set (if
 \end_layout
 
 \begin_layout Standard
-Generalised overview - who's done surverys like this before, what did they
- find out, what we set out to do bettert than them
+Generalised overview - who's done surveys like this before, what did they
+ find out, what we set out to do better than them
 \end_layout
 
 \begin_layout Section
@@ -513,7 +664,7 @@ Comparison
 
 \begin_layout Standard
 Need to run a comparison (on our sample data set) of our two algorithms
- we've implemented, and several others that already exist within Weka.
+ we've implemented, and several others that already exist within WEKA.
  How does their 1) 
 \emph on
 performance
@@ -587,7 +738,7 @@ Conclusion
 \end_layout
 
 \begin_layout Standard
-Overall: better or worse? Able to satisify or not-possible? It might not
+Overall: better or worse? Able to satisfy or not-possible? It might not
  be given the complexity and time limitations
 \end_layout
 
@@ -610,7 +761,7 @@ Describe potential improvements to the methodologies we've presented within
  this paper.
  Others can extend our work by seeking other ways of improving the semantics
  of the algorithm, rather than attempting to improve its operation itself.
- Given that these algorithms this paper discusses have been in existance
+ Given that these algorithms this paper discusses have been in existence
  for <X> years, and that there have been many various papers and theses
  produced regarding these issues, this appears the logical path for improvements
  to take.
@@ -620,7 +771,7 @@ Describe potential improvements to the methodologies we've presented within
 \end_layout
 
 \begin_layout Standard
-As the topic of data minining, and more specifically, clustering, becomes
+As the topic of data mining, and more specifically, clustering, becomes
  more of a part of every-day business and organisational operation, the
  necessity for faster and equally accurate algorithms rises.
  This paper has shown this, and several other applications do exist, and
