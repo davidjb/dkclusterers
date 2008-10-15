@@ -321,17 +321,62 @@ key "john1999bsd"
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
-Clustering applies to all of the aforementioned applications as a subset
+ Clustering applies to all of the aforementioned applications as a subset
  of data mining.
  
 \end_layout
 
 \begin_layout Standard
-Partitioning techniques are effective for mining data sets when computation
+A prominent example of this functionality is the application of emergency
+ situation data analysis; for example, data recorded by authorities during
+ forest fires.
+ This paper will investigate that specific scenario in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "Sub:Experimental-Details"
+
+\end_inset
+
+, with the test sets utilised containing fire data from northeastern Portugal
+\emph on
+.
+\end_layout
+
+\begin_layout Subsection
+Other Details
+\end_layout
+
+\begin_layout Standard
+There are a wide variety of clustering methodologies that exist within this
+ field.
+ These include, but are not limited to, grid-based categorisation, density-based
+ grouping, hierarchical segmentation, and constraint-based analysis.
+ As these techniques have been already widely researched, there are many
+ existing works that compare and constrast each.
+ 
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+[NEED REFS HERE]
+\end_layout
+
+\begin_layout Standard
+The research outlined in this paper is concerned with the application of
+ two of the most widely used methods; 
+\emph on
+partitioning-based 
+\emph default
+and 
+\emph on
+density-based
+\emph default
+ clustering.
+\end_layout
+
+\begin_layout Standard
+Partitioning algorithms are effective for mining data sets when computation
  of a dendrogram (clustering tree) representation is infeasible.
  
 \begin_inset CommandInset citation
@@ -353,59 +398,23 @@ Density-based algorithms perform optimally when operating upon spatially-indexed
  The methods provide benefits when analysing data sets that contain high
  levels of noise or when clusters are arbitrarily shaped.
  Specifically, DBSCAN is able to grow clusters whilst the MinPts threshold
- is not satisfied within the 
-\begin_inset Formula $\varepsilon$
-\end_inset
-
- neighbourhood, thus efficiently dividing real data and noise in a variety
- of shapes.
+ is not satisfied within the a specified neighbourhood, thus efficiently
+ dividing real data and noise in a variety of shapes.
 \end_layout
 
 \begin_layout Standard
------
-\end_layout
-
-\begin_layout Standard
-Other modifications to the methods that others have tried + what they found
- out + lit review + why what we're doing is different and better
-\end_layout
-
-\begin_layout Subsection
-Other Details
-\end_layout
-
-\begin_layout Standard
-There are a wide variety of clustering methodologies that exist within this
- field.
- These include, but are not limited to, grid-based partitioning, density-based
- grouping, hierarchical segmentation, and constraint-based analysis.
- As these techniques have been already widely researched, there are many
- existing works that compare and constrast each.
- 
-\end_layout
-
-\begin_layout Standard
-----
-\end_layout
-
-\begin_layout Standard
-This paper presents a comparison of two of the most widely used techniques:
- density-based and partition-based clustering.
-\end_layout
-
-\begin_layout Standard
-In terms of algorithms, this paper focuses upon DBSCAN and K-Medoids
-\end_layout
-
-\begin_layout Standard
-This paper focusses only on the density-based and partitioning sectors,
- specifically the DBSCAN and K-Medoids algorithms respectively, and initiates
- new research into improving the efficiency of each.
+In terms of algorithms, this paper focuses upon the DBSCAN and K-Medoids
+ algorithms from the density-based and partitioning families respectively,
+ and initiates new research into improving the efficiency of each.
 \end_layout
 
 \begin_layout Standard
 The data set chosen for the comparison of and ammendments to K-medoids and
- DBSCAN is ________bla_______.
+ DBSCAN is 
+\emph on
+forest fires
+\emph default
+.
  
 \end_layout
 
@@ -435,12 +444,6 @@ reference "Sec:Related-Work"
 \end_inset
 
 .
-\end_layout
-
-\begin_layout Standard
-The research outlined in this paper describes potential methods to fabricate
- a basic implementation of the aforementioned methods, in addition to suggesting
- methods of improving efficiency.
 \end_layout
 
 \begin_layout Standard
@@ -1291,6 +1294,12 @@ Results and Discussion
 \end_layout
 
 \begin_layout Subsection
+\begin_inset CommandInset label
+LatexCommand label
+name "Sub:Experimental-Details"
+
+\end_inset
+
 Experimental Details
 \end_layout
 
