@@ -74,6 +74,17 @@
   file = {:C\:\\Documents and Settings\\User\\Desktop\\5030checkout\\papers\\DensiteBasedAlgorithmClustersWithNoise.pdf:PDF}
 }
 
+@ARTICLE{fayyad1996dma,
+  author = {Fayyad, U. and Uthurusamy, R. and others},
+  title = {{Data mining and knowledge discovery in databases}},
+  journal = {Communications of the ACM},
+  year = {1996},
+  volume = {39},
+  pages = {24--26},
+  number = {11},
+  file = {:C\:\\Documents and Settings\\User\\Desktop\\5030checkout\\papers\\DataMiningOverview.pdf:PDF}
+}
+
 @MISC{frank2004dmb,
   author = {Frank, E. and Hall, M. and Trigg, L. and Holmes, G. and Witten, I.H.},
   title = {{Data mining in bioinformatics using Weka}},
@@ -135,6 +146,26 @@
   file = {:C\:\\Documents and Settings\\User\\Desktop\\5030checkout\\papers\\DataClusteringReview.pdf:PDF}
 }
 
+@ARTICLE{john1999bsd,
+  author = {John, G.H.},
+  title = {{Behind-the-scenes data mining: a report on the KDD-98 panel}},
+  journal = {ACM SIGKDD Explorations Newsletter},
+  year = {1999},
+  volume = {1},
+  pages = {6--8},
+  number = {1},
+  file = {:C\:\\Documents and Settings\\User\\Desktop\\5030checkout\\papers\\BehindTheScenes.pdf:PDF},
+  publisher = {ACM Press New York, NY, USA}
+}
+
+@ARTICLE{kaufman1987cmm,
+  author = {Kaufman, L. and Rousseeuw, PJ},
+  title = {{Clustering by means of medoids, 405--416}},
+  journal = {Statistical Data Analysis Based on the L1-Norm and Related Methods},
+  year = {1987},
+  volume = {1}
+}
+
 @ARTICLE{keogh:tpf,
   author = {Keogh, E. and Lonardi, S. and Ratanamahatana, C.A.},
   title = {{Towards Parameter-Free Data Mining}},
@@ -179,6 +210,12 @@
   pages = {82--92},
   organization = {ACM New York, NY, USA},
   file = {:C\:\\Documents and Settings\\User\\Desktop\\5030checkout\\papers\\DensityBasedSampling.pdf:PDF}
+}
+
+@ARTICLE{park:kml,
+  author = {Park, H.S. and Lee, J.S. and Jun, C.H.},
+  title = {{A K-means-like Algorithm for K-medoids Clustering and Its Performance}},
+  file = {:C\:\\Documents and Settings\\User\\Desktop\\5030checkout\\papers\\KMeansLikeAlgorithm.pdf:PDF}
 }
 
 @comment{jabref-meta: selector_publisher:}

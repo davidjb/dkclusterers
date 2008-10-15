@@ -80,7 +80,7 @@
 \begin_body
 
 \begin_layout Title
-Clusterers: A Comparison of Partitioning and Distance-Based Algorithms and
+Clusterers: A Comparison of Partitioning and Density-Based Algorithms and
  A Discussion of Optimisations
 \begin_inset ERT
 status open
@@ -100,9 +100,20 @@ author{David Breitkreutz
 
 
 \backslash
-textit{School of Mathematics, Physics 
+textit{School of Mathematics, Physics} 
 \backslash
-& Information Technology } 
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+textit{
+\backslash
+& Information Technology} 
 \backslash
 
 \backslash
@@ -148,7 +159,18 @@ Kate Casey
 
 
 \backslash
-textit{School of Mathematics, Physics 
+textit{School of Mathematics, Physics} 
+\backslash
+
+\backslash
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+textit {
 \backslash
 & Information Technology} 
 \backslash
@@ -228,6 +250,98 @@ Introduction
 \end_layout
 
 \begin_layout Standard
+Clustering is promoted as an extremely powerful means of grouping related
+ data points and efficiently revealing highly relevant trends in the source
+ set.
+ These capabilities extend to very large data sets, and are applicable to
+ the masses of information stored by scientists, medicos and businesses
+ (to name a few) every day.
+ As a result, the field has developed into one of the foremost research
+ areas in modern computing given the broad scope for such techniques in
+ analysing large-scale databases and data warehouses.
+ It already provides numerous algorithms that can perform such analysis
+ based on a series of domain-specific parameters.
+ These tasks are performed with varying degrees of efficiency depending
+ upon the specific algorithm, and the characteristics of the data set it
+ operates upon.
+ Thus, there is clear grounds for further research into improving the performanc
+e of such algorithms.
+\end_layout
+
+\begin_layout Standard
+Several clustering methodologies exist including heirarchical, partitioning,
+ density-based (subset of partitioning), constraint-based and grid-based
+ algorithms.
+ A great deal of literature already exists in each of these fields, and
+ while analysis of each is a fascinating, it has been covered more than
+ adequately by numerous authors.
+ This paper focusses only on the density-based and partitioning sectors,
+ specifically the DBSCAN and K-Medoids algorithms respectively, and initiates
+ new research into improving the efficiency of each.
+\end_layout
+
+\begin_layout Standard
+The data set chosen for the comparison of and ammendments to K-medoids and
+ DBSCAN is ________bla_______.
+ 
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+[Describe what the specific data set we've chosen here, and why our selected
+ algorithm(s) are worthwhile to be 
+\emph default
+executed
+\emph on
+ here.
+ Why is the data set relevant to some aspect of life on earth (and why should
+ we care)? - this makes the problem important to tackle, and should make
+ people interested]
+\end_layout
+
+\begin_layout Standard
+This paper proposes both implementations and improvements to the K-Medoids
+ and DBSCAN clustering algorithms.
+ A great deal of literature already exists regarding these techniques, and
+ a review of these documents can be found in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "Sec:Related-Work"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The research outlined in this paper describes potential methods to fabricate
+ a basic implementation of the aforementioned methods, in addition to suggesting
+ methods of improving efficiency.
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+[Brief introduction as to the results of the comparison were..
+ what the results indicate (overview) The improvements this paper suggests
+ to both the DBSCAN and K-medoids algorithms show a level of improvement
+ for the data set that is utilised for testing.
+ This suggests potential for further improvement given additional levels
+ of interest....]
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "Sec:Related-Work"
+
+\end_inset
+
+Related Work
+\end_layout
+
+\begin_layout Standard
 Aggarwal et al define the process of clustering as: 
 \begin_inset Quotes eld
 \end_inset
@@ -293,43 +407,93 @@ key "han2001dmc"
  In addition, this objectivity translates to an effective means of data
  analysis without the opportunity for subjective human conclusions to be
  drawn from data.
- 
-\end_layout
-
-\begin_layout Standard
-Clustering is promoted as an extremely powerful means of grouping related
- data points and efficiently revealing highly relevant trends in the source
- set.
- These capabilities extend to very large data sets, and are applicable to
- the masses of information stored by scientists, medicos and businesses
- (to name a few) every day.
- As a result, the field has developed into one of the foremost research
- areas in modern computing given the broad scope for such techniques in
- analysing large-scale databases and data warehouses.
- It already provides numerous algorithms that can perform such analysis
- based on a series of domain-specific parameters.
- These tasks are performed with varying degrees of efficiency depending
- upon the specific algorithm, and the characteristics of the data set it
- operates upon.
- Thus, there is clear grounds for further research into improving the performanc
-e of such algorithms.
- 
-\end_layout
-
-\begin_layout Standard
-Several clustering methodologies exist including heirarchical, partitioning,
- density-based (subset of partitioning), constraint-based and grid-based
- algorithms.
- A great deal of literature already exists in each of these fields, and
- while analysis of each is a fascinating, it has been covered more than
- adequately by numerous authors.
- This paper focusses only on the density-based and partitioning sectors,
- specifically the DBSCAN and K-Medoids algorithms respectively, and initiates
- new research into improving the efficiency of each.
 \end_layout
 
 \begin_layout Subsection
-Partitioning Algorithms
+Clustering Versus Other Techniques
+\end_layout
+
+\begin_layout Standard
+Clustering differs from other classical data mining methodologies in a variety
+ of ways and extensive listerature already exists explaining this.
+ For the purpose of conciseness, this paper will compare and contrast clustering
+ only with the techniques of 
+\emph on
+classification
+\emph default
+ and 
+\emph on
+prediction
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+Classification is the process of constructing a learning model, or 
+\emph on
+classifier
+\emph default
+, that assigns points in a dataset to predefined classes.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "fayyad1996dma"
+
+\end_inset
+
+ Whilst this definition initially appears similar to that of clustering,
+ the technique utilises 
+\emph on
+supervised learning 
+\emph default
+as opposed to the unsupervised learning environment of clustering.
+ The model is compiled by studying provided data (known as a training set)
+ containing class labels; hence the technique is 
+\begin_inset Quotes eld
+\end_inset
+
+supervised
+\begin_inset Quotes erd
+\end_inset
+
+ due to example data exposure.
+ Once the model is complete it can be applied to real, unlabelled data and
+ assign each new tuple to its respective class.
+\begin_inset CommandInset citation
+LatexCommand cite
+key "han2001dmc"
+
+\end_inset
+
+ Classification is used in the categorisation of discrete or unordered data
+ sets; for example, determining the level of risk (high/medium/low) associated
+ with a certain financial investment given pre-existing market data.
+ 
+\end_layout
+
+\begin_layout Standard
+Prediction is similar to classification, in that the process of learning
+ from existing data is supervised, and a model is constructed.
+ However, prediction techniques are used when assessing continuous data
+ sets 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "han2001dmc"
+
+\end_inset
+
+; for example, determining the price of a stock market share at some point
+ in the future given previous performance trends.
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+[MORE COMPARISON NEEDED HERE]
+\end_layout
+
+\begin_layout Subsection
+Partitioning Clustering Algorithms
 \end_layout
 
 \begin_layout Standard
@@ -372,12 +536,20 @@ key "han2001dmc"
 \begin_layout Standard
 This paper studies the K-Medoids algorithm from the partitioning analysis
  family.
- The method seeks to reduce the impact of noisy data experienced in more
- simple partitioning algorithms.
+ The technique was first developed in 1987 by Kaufman & Rousseeuw and seeks
+ to reduce the impact of noisy data experienced in more simple partitioning
+ algorithms.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "kaufman1987cmm"
+
+\end_inset
+
  Instead of converting data attributes to simple points, it retains all
  the information from each record and represents the points as objects on
  a detailed axes.
- It initally chooses 
+ It initially chooses 
 \emph on
 k
 \emph default
@@ -409,7 +581,16 @@ key "berkhin2002scd"
 \end_layout
 
 \begin_layout Standard
-[positives and negatives]
+Partitioning offers several features, including efficiency in processing
+ spherical clusters in small to medium data sets, and scalability across
+ smaller applications.
+ However, the algorithms suffer from extreme complexity and computational
+ cost at higher dimensions in large sets, require the user to specify the
+ number of clusters to be determined (
+\emph on
+k
+\emph default
+) and experience problems defining arbitrarily shaped clusters.
 \end_layout
 
 \begin_layout Standard
@@ -417,7 +598,7 @@ key "berkhin2002scd"
 \end_layout
 
 \begin_layout Subsection
-Density-Based Algorithms
+Density-Based Clustering Algorithms
 \end_layout
 
 \begin_layout Standard
@@ -440,15 +621,7 @@ key "Kolatch01clusteringalgorithms"
 
 \begin_layout Standard
 This paper studies the DBSCAN algorithm from the density-based algorithm
- collection.
- The technique relies upon an epsilon [
-\begin_inset Formula $\varepsilon$
-\end_inset
-
-] value (defined as the radius of the neighbourhood of a point based on
- some distance metric), and a minimum points [MinPts] value (defined as
- the minimum number of points required to exist in a neighbourhood to be
- declared a cluster).
+ collection, first proposed in 1996 by Ester et al.
  
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -456,6 +629,17 @@ key "ester1996dba"
 
 \end_inset
 
+ The technique relies upon an epsilon value (
+\begin_inset Formula $\mathcal{\varepsilon}$
+\end_inset
+
+ - defined as the radius of the neighbourhood of a point based on some distance
+ metric), and a minimum points value (
+\emph on
+MinPts
+\emph default
+ - defined as the minimum number of points required to exist in a neighbourhood
+ to be declared a cluster).
  The method examines the 
 \begin_inset Formula $\varepsilon$
 \end_inset
@@ -509,7 +693,14 @@ key "han2001dmc"
 \end_layout
 
 \begin_layout Standard
-[positives and negatives]
+Density-based algorithms provide advantages over other methods through their
+ noise handling capabilities and ability to determine clusters with arbitrary
+ shapes (eg.
+ a circle, torus or other non-convex formation).
+ As with partitioning techniques, computational cost is a disadvantage when
+ the technique is used with large amounts of source data and sets containing
+ excessive noise.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -517,7 +708,7 @@ key "han2001dmc"
 \end_layout
 
 \begin_layout Subsection
-Applications
+Applications of Clustering
 \end_layout
 
 \begin_layout Standard
@@ -544,8 +735,12 @@ key "john1999bsd"
 \begin_layout Standard
 Clustering applies to all of the aforementioned applications as a subset
  of data mining.
- Partitioning techniques are effective for mining data sets when computation
- of a dendrogram (clustering tree) representation is infeasable.
+ 
+\end_layout
+
+\begin_layout Standard
+Partitioning techniques are effective for mining data sets when computation
+ of a dendrogram (clustering tree) representation is infeasible.
  
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -553,103 +748,39 @@ key "jain1999dcr"
 
 \end_inset
 
- In pariticular, K-Medoids is highly efficient for small data sets.
+ In particular, K-Medoids is highly efficient for moderately sized data
+ sets with spherical-type clusters.
  However, due to the inherent swapping of medoids to optimise the clustered
  solution, the algorithm suffers greatly as large data sets are introduced.
- Density-based algorithms provide benefits when analysing data sets that
- contain high levels of noise or when clusters are arbitrarily shaped (eg.
- a torus or other non-convex formation).
-\end_layout
-
-\begin_layout Subsection
-Experimental Parameters
+ 
 \end_layout
 
 \begin_layout Standard
-Describe what the specific data set we've chosen here, and why our selected
- algorithm(s) are worthwhile to be 
-\emph on
-executed
-\emph default
- here
-\end_layout
-
-\begin_layout Standard
-implementation in WEKA
-\end_layout
-
-\begin_layout Standard
-Why is the data set relevant to some aspect of life on earth (and why should
- we care)? - this makes the problem important to tackle, and should make
- people interested
-\end_layout
-
-\begin_layout Standard
-what's being proposed in the paper + related references
-\end_layout
-
-\begin_layout Standard
-Brief introduction as to the results of the comparison were..
- what the results indicate (overview) The improvements this paper suggests
- to both the DBSCAN and K-medoids algorithms show a level of improvement
- for the data set that is utilised for testing.
- This suggests potential for further improvement given additional levels
- of interest....
-\end_layout
-
-\begin_layout Section
-\begin_inset CommandInset label
-LatexCommand label
-name "Sec:Related-Work"
-
+Density-based algorithms perform optimally when operating upon spatially-indexed
+ data.
+ The methods provide benefits when analysing data sets that contain high
+ levels of noise or when clusters are arbitrarily shaped.
+ Specifically, DBSCAN is able to grow clusters whilst the MinPts threshold
+ is not satisfied within the 
+\begin_inset Formula $\varepsilon$
 \end_inset
 
-Related Work
+ neighbourhood, thus efficiently dividing real data and noise in a variety
+ of shapes.
 \end_layout
 
 \begin_layout Standard
-Detail about the algorithms themselves, who introduced them (what's been
- done on them before)
+-----
 \end_layout
 
 \begin_layout Standard
-the standard methods + drawbacks
+Other modifications to the methods that others have tried + what they found
+ out + lit review + why what we're doing is different and better
 \end_layout
 
 \begin_layout Standard
-alternatives/other improvements suggested
-\end_layout
-
-\begin_layout Standard
-Literature review of related works (highlight past examples of papers) that
- have done similar comparisons before
-\end_layout
-
-\begin_layout Standard
-What is clustering?
-\end_layout
-
-\begin_layout Standard
-How close is it to things like association or classification?
-\end_layout
-
-\begin_layout Standard
-Why use clustering over these others?
-\end_layout
-
-\begin_layout Standard
-Algorithms: what do we have available, who developed them originally, improvemen
-ts?
-\end_layout
-
-\begin_layout Standard
-Usefulness and detriments of each algorithm, best types of data set (if
- any)?
-\end_layout
-
-\begin_layout Standard
-Generalised overview - who's done surveys like this before, what did they
- find out, what we set out to do better than them
+How close is it to things like association or classification and why use
+ clustering over these others?
 \end_layout
 
 \begin_layout Section
@@ -660,6 +791,13 @@ name "Sec:Comparison"
 \end_inset
 
 Comparison
+\end_layout
+
+\begin_layout Standard
+The implementation for both algorithms has been designed for and completed
+ in Java and all operations have been tested under the WEKA data mining
+ framework.
+ 
 \end_layout
 
 \begin_layout Standard
