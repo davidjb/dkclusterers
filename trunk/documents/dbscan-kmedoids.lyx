@@ -441,8 +441,10 @@ key "fayyad1996dma"
 
 \end_inset
 
- Whilst this definition initially appears similar to that of clustering,
- the technique utilises 
+ Whilst this definition initially appears similar to that of clustering
+ in that points are grouped based on attributes, any similarities are thus
+ exhausted.
+ The technique utilises 
 \emph on
 supervised learning 
 \emph default
@@ -484,12 +486,17 @@ key "han2001dmc"
 
 ; for example, determining the price of a stock market share at some point
  in the future given previous performance trends.
+ Unlike prediction, clustering is not exclusively used for forcasting future
+ values, rather grouping like points for immediate assessment.
 \end_layout
 
 \begin_layout Standard
-
-\emph on
-[MORE COMPARISON NEEDED HERE]
+Whether to utilise clustering in analysis is a decision based on the purpose
+ of the data mining task.
+ If future predictions are required, an alternative technique should be
+ employed, but if like points in the set are to be grouped, clustering is
+ an appropriate choice.
+ 
 \end_layout
 
 \begin_layout Subsection
@@ -602,9 +609,9 @@ Density-Based Clustering Algorithms
 \end_layout
 
 \begin_layout Standard
-The density-based group of algorithms represent a data set in the same manner
- as partitioning methods; converting an instance to a point using the data
- attributes of the source set.
+The density-based group of clustering algorithms represent a data set in
+ the same manner as partitioning methods; converting an instance to a point
+ using the data attributes of the source set.
  The plane contains clusters with high internal density and low external
  density in a similar manner to its partitioning ancestor.
  
@@ -778,11 +785,6 @@ Other modifications to the methods that others have tried + what they found
  out + lit review + why what we're doing is different and better
 \end_layout
 
-\begin_layout Standard
-How close is it to things like association or classification and why use
- clustering over these others?
-\end_layout
-
 \begin_layout Section
 \begin_inset CommandInset label
 LatexCommand label
@@ -821,7 +823,7 @@ big O stuff??.
 \end_layout
 
 \begin_layout Standard
-need diagrams
+will write algorithms out
 \end_layout
 
 \begin_layout Subsection
@@ -914,17 +916,6 @@ As the topic of data mining, and more specifically, clustering, becomes
  necessity for faster and equally accurate algorithms rises.
  This paper has shown this, and several other applications do exist, and
  it can only be assumed that 
-\end_layout
-
-\begin_layout Standard
-asf 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "han2001dmc"
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
