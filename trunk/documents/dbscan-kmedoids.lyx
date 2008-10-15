@@ -80,8 +80,8 @@
 \begin_body
 
 \begin_layout Title
-Clusterers: A Comparison of Partitioning and Density-Based Algorithms and
- A Discussion of Optimisations
+Clusterers: a Comparison of Partitioning and Density-Based Algorithms and
+ a Discussion of Optimisations
 \begin_inset ERT
 status open
 
@@ -229,12 +229,12 @@ Clustering is one of the fundamental techniques adopted by data mining tools
 \end_layout
 
 \begin_layout Abstract
-This paper presents detailed comparison of two widely used clustering algorithms
-, K-Medoids and DBSCAN, against others.
+This paper compares two widely used clustering algorithms, K-Medoids and
+ DBSCAN, against other well-known techniques.
  The initial testing conducted on each technique utilises the standard implement
-ation of the algorithm.
- Further experimental work goes on to test hybrid versions of the methods
- for potential efficiency enhancements.
+ation of each algorithm.
+ Further experimental work tests modifications to these methods in order
+ to investigate potential improvements of results or efficiency.
  Various key applications of clustering methods are detailed, and several
  areas of future work have been suggested.
 \end_layout
@@ -250,32 +250,155 @@ Introduction
 \end_layout
 
 \begin_layout Standard
-Clustering is promoted as an extremely powerful means of grouping related
- data points and efficiently revealing highly relevant trends in the source
- set.
- These capabilities extend to very large data sets, and are applicable to
- the masses of information stored by scientists, medicos and businesses
- (to name a few) every day.
- As a result, the field has developed into one of the foremost research
- areas in modern computing given the broad scope for such techniques in
- analysing large-scale databases and data warehouses.
- It already provides numerous algorithms that can perform such analysis
- based on a series of domain-specific parameters.
- These tasks are performed with varying degrees of efficiency depending
- upon the specific algorithm, and the characteristics of the data set it
- operates upon.
- Thus, there is clear grounds for further research into improving the performanc
-e of such algorithms.
+Detail why clustering is powerful, why are we using it, what applications
+ it applies to the most
 \end_layout
 
 \begin_layout Standard
-Several clustering methodologies exist including heirarchical, partitioning,
- density-based (subset of partitioning), constraint-based and grid-based
- algorithms.
- A great deal of literature already exists in each of these fields, and
- while analysis of each is a fascinating, it has been covered more than
- adequately by numerous authors.
- This paper focusses only on the density-based and partitioning sectors,
+Detail brief outline of clustering techniques (partitioning, density etc)
+ and what they are most suited for (respectively)
+\end_layout
+
+\begin_layout Standard
+Highlight what this paper's purpose is (to compare and contrast dbscan and
+ k-medoids), and how it aims to achieve this (experimentation using WEKA
+ to compare efficiency and accuracy of results)
+\end_layout
+
+\begin_layout Standard
+Highlight that this paper will also attempt to suggest improvements to these
+ algorithms (in order to try and obtain better results), and demonstrates
+ its findings in this area
+\end_layout
+
+\begin_layout Standard
+Lead into the related work section (eg many papers that already exist, and
+ we talk about them now in Section 2)
+\end_layout
+
+\begin_layout Subsection
+Importance
+\end_layout
+
+\begin_layout Standard
+Clustering is promoted as an extremely powerful means of grouping related
+ data points, and can efficiently reveal highly relevant trends in a source
+ data set.
+ These capabilities extend to large sets of data, and are applicable to
+ stores of information used by scientists, researchers, and businesses.
+ As a result, the field has developed into one of the foremost research
+ areas in modern computing.
+ These data mining techniques can analyse both large-scale databases and
+ data warehouses.
+ There exist numerous algorithms for performing such analysis, and each
+ may be more suitable to certain circumstances, depending entirely upon
+ domain-specific parameters.
+ As such, the efficiency and accuracy of results from these data mining
+ tasks relies directly upon the choice of a suitable algorithms.
+ Thus, for as many different types of data set that exist, there is the
+ requirement for further research into the improvements of these techniques.
+\end_layout
+
+\begin_layout Subsection
+Applications
+\end_layout
+
+\begin_layout Standard
+Data mining in general has a multitude of applications across a wide variety
+ of fields.
+ Pattern recognition for image analysis, medical diagnostics, sales forcasting
+ and weather prediction are a recognised as a few of the more traditional
+ usages.
+ However, due to extensive development in the field and the recent explosion
+ in data recording the capabilities extend far beyond these basic functions.
+ Onboard computer analysis in vehicles, product quality analysis, targeted
+ advertising campaigns, spam email filtration, fraud detection, and online
+ crime analysis are but a few of the fields into which data mining now extends.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "john1999bsd"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Clustering applies to all of the aforementioned applications as a subset
+ of data mining.
+ 
+\end_layout
+
+\begin_layout Standard
+Partitioning techniques are effective for mining data sets when computation
+ of a dendrogram (clustering tree) representation is infeasible.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "jain1999dcr"
+
+\end_inset
+
+ In particular, K-Medoids is highly efficient for moderately sized data
+ sets with spherical-type clusters.
+ However, due to the inherent swapping of medoids to optimise the clustered
+ solution, the algorithm suffers greatly as large data sets are introduced.
+ 
+\end_layout
+
+\begin_layout Standard
+Density-based algorithms perform optimally when operating upon spatially-indexed
+ data.
+ The methods provide benefits when analysing data sets that contain high
+ levels of noise or when clusters are arbitrarily shaped.
+ Specifically, DBSCAN is able to grow clusters whilst the MinPts threshold
+ is not satisfied within the 
+\begin_inset Formula $\varepsilon$
+\end_inset
+
+ neighbourhood, thus efficiently dividing real data and noise in a variety
+ of shapes.
+\end_layout
+
+\begin_layout Standard
+-----
+\end_layout
+
+\begin_layout Standard
+Other modifications to the methods that others have tried + what they found
+ out + lit review + why what we're doing is different and better
+\end_layout
+
+\begin_layout Subsection
+Other Details
+\end_layout
+
+\begin_layout Standard
+There are a wide variety of clustering methodologies that exist within this
+ field.
+ These include, but are not limited to, grid-based partitioning, density-based
+ grouping, hierarchical segmentation, and constraint-based analysis.
+ As these techniques have been already widely researched, there are many
+ existing works that compare and constrast each.
+ 
+\end_layout
+
+\begin_layout Standard
+----
+\end_layout
+
+\begin_layout Standard
+This paper presents a comparison of two of the most widely used techniques:
+ density-based and partition-based clustering.
+\end_layout
+
+\begin_layout Standard
+In terms of algorithms, this paper focuses upon DBSCAN and K-Medoids
+\end_layout
+
+\begin_layout Standard
+This paper focusses only on the density-based and partitioning sectors,
  specifically the DBSCAN and K-Medoids algorithms respectively, and initiates
  new research into improving the efficiency of each.
 \end_layout
@@ -304,7 +427,7 @@ executed
 This paper proposes both implementations and improvements to the K-Medoids
  and DBSCAN clustering algorithms.
  A great deal of literature already exists regarding these techniques, and
- a review of these documents can be found in 
+ a review of these documents can be found in Section 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "Sec:Related-Work"
@@ -342,42 +465,122 @@ Related Work
 \end_layout
 
 \begin_layout Standard
-Aggarwal et al define the process of clustering as: 
-\begin_inset Quotes eld
-\end_inset
+Detail the specific areas that we are looking at (density and partitioning),
+ and what each is most useful for (shape of data, noise, features etc)
+\end_layout
 
-Given a set of points in multidimensional space, find a partition of the
- points into 
-\emph on
-clusters
-\emph default
- so that the points within each cluster are close to one another
-\begin_inset Quotes erd
-\end_inset
+\begin_layout Standard
+Provide a paragraph of two for hierarchical etc techniques that the we don't
+ cover, and direct the user elsewhere
+\end_layout
 
-.
+\begin_layout Standard
+Detail a section for alternative data analysis methods to clustering (and
+ why they might be useful elsewhere, but not here)
+\end_layout
+
+\begin_layout Subsection
+Data Analysis
+\end_layout
+
+\begin_layout Standard
+The process of data analysis involves considering all elements within a
+ given source data set in order to deduce interesting patterns and trends.
+ 
+\end_layout
+
+\begin_layout Standard
+What is data analysis first (used to obtain patterns and trends from a source
+ set of data, with the information used to improve the decision making process
+ (people can be more informed)
+\end_layout
+
+\begin_layout Subsection
+Clustering
+\end_layout
+
+\begin_layout Standard
+Detail what is clustering (own heading for this)
+\end_layout
+
+\begin_layout Standard
+Aggarwal et al.
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "aggarwal1999fap"
 
 \end_inset
 
- Proximity is measured using a variety of algorithm-specific metrics, and
- the 
+ define the process of clustering as:
+\emph on
+ 
 \begin_inset Quotes eld
 \end_inset
 
-closer
+Given a set of points in multidimensional space, find a partition of the
+ points into clusters so that the points within each cluster are close to
+ one another
 \begin_inset Quotes erd
 \end_inset
 
- two arbitrary points are to one another, the more strongly they are related.
+
+\emph default
+.
+ Proximity is measured using a variety of algorithm-specific metrics, such
+ that the closer two arbitrary points are to one another, the more strongly
+ they are considered to be related.
  This process results in defined groupings of similar points, where strong
- inter-cluster and weak intra-cluster relationships exist between points.
+ inter-cluster and weak intra-cluster relationships exist between points,
+ and example of which is detailed in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Example-of-clustered"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
-[DIAGRAM HERE]
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename clustering.png
+	lyxscale 50
+	width 90col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Example-of-clustered"
+
+\end_inset
+
+Example of clustered points
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -386,117 +589,27 @@ Clustering can be categorised in machine learning terms as a form of
 unsupervised learning
 \emph default
 ; that is, clusters are representative of hidden patterns in the source
- data set.
- 
+ data set
 \begin_inset CommandInset citation
 LatexCommand cite
 key "berkhin2002scd"
 
 \end_inset
 
+.
  Raw information is analysed and relationships are discovered by the algorithm
  without external direction or interference; learning through observation
- rather than by the study of examples.
- 
+ rather than by the study of examples
 \begin_inset CommandInset citation
 LatexCommand cite
 key "han2001dmc"
 
 \end_inset
 
+.
  In addition, this objectivity translates to an effective means of data
  analysis without the opportunity for subjective human conclusions to be
  drawn from data.
-\end_layout
-
-\begin_layout Subsection
-Clustering Versus Other Techniques
-\end_layout
-
-\begin_layout Standard
-Clustering differs from other classical data mining methodologies in a variety
- of ways and extensive listerature already exists explaining this.
- For the purpose of conciseness, this paper will compare and contrast clustering
- only with the techniques of 
-\emph on
-classification
-\emph default
- and 
-\emph on
-prediction
-\emph default
-.
-\end_layout
-
-\begin_layout Standard
-Classification is the process of constructing a learning model, or 
-\emph on
-classifier
-\emph default
-, that assigns points in a dataset to predefined classes.
- 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "fayyad1996dma"
-
-\end_inset
-
- Whilst this definition initially appears similar to that of clustering
- in that points are grouped based on attributes, any similarities are thus
- exhausted.
- The technique utilises 
-\emph on
-supervised learning 
-\emph default
-as opposed to the unsupervised learning environment of clustering.
- The model is compiled by studying provided data (known as a training set)
- containing class labels; hence the technique is 
-\begin_inset Quotes eld
-\end_inset
-
-supervised
-\begin_inset Quotes erd
-\end_inset
-
- due to example data exposure.
- Once the model is complete it can be applied to real, unlabelled data and
- assign each new tuple to its respective class.
-\begin_inset CommandInset citation
-LatexCommand cite
-key "han2001dmc"
-
-\end_inset
-
- Classification is used in the categorisation of discrete or unordered data
- sets; for example, determining the level of risk (high/medium/low) associated
- with a certain financial investment given pre-existing market data.
- 
-\end_layout
-
-\begin_layout Standard
-Prediction is similar to classification, in that the process of learning
- from existing data is supervised, and a model is constructed.
- However, prediction techniques are used when assessing continuous data
- sets 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "han2001dmc"
-
-\end_inset
-
-; for example, determining the price of a stock market share at some point
- in the future given previous performance trends.
- Unlike prediction, clustering is not exclusively used for forcasting future
- values, rather grouping like points for immediate assessment.
-\end_layout
-
-\begin_layout Standard
-Whether to utilise clustering in analysis is a decision based on the purpose
- of the data mining task.
- If future predictions are required, an alternative technique should be
- employed, but if like points in the set are to be grouped, clustering is
- an appropriate choice.
- 
 \end_layout
 
 \begin_layout Subsection
@@ -621,7 +734,7 @@ key "Kolatch01clusteringalgorithms"
 
 \end_inset
 
-  As a result, analysis can easily isolate noise instances from relevant
+ As a result, analysis can easily isolate noise instances from relevant
  instances.
  
 \end_layout
@@ -715,74 +828,94 @@ Density-based algorithms provide advantages over other methods through their
 \end_layout
 
 \begin_layout Subsection
-Applications of Clustering
+Other Techniques
 \end_layout
 
 \begin_layout Standard
-Data mining in general has a multitude of applications across a wide variety
- of fields.
- Pattern recognition for image analysis, medical diagnostics, sales forcasting
- and weather prediction are a recognised as a few of the more traditional
- usages.
- However, due to extensive development in the field and the recent explosion
- in data recording the capabilities extend far beyond these basic functions.
- Onboard computer analysis in vehicles, product quality analysis, targeted
- advertising campaigns, spam email filtration, fraud detection, and online
- crime analysis are but a few of the fields into which data mining now extends.
- 
+Clustering differs from other classical data mining methodologies in a variety
+ of ways and extensive listerature already exists explaining this.
+ For the purpose of conciseness, this paper will compare and contrast clustering
+ only with the techniques of 
+\emph on
+classification
+\emph default
+ and 
+\emph on
+prediction
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+Classification is the process of constructing a learning model, or 
+\emph on
+classifier
+\emph default
+, that assigns points in a dataset to predefined classes
 \begin_inset CommandInset citation
 LatexCommand cite
-key "john1999bsd"
+key "fayyad1996dma"
 
 \end_inset
 
+.
+ Whilst this definition initially appears similar to that of clustering
+ in that points are grouped based on attributes, any similarities are thus
+ exhausted.
+ The technique utilises 
+\emph on
+supervised learning 
+\emph default
+as opposed to the unsupervised learning environment of clustering.
+ The model is compiled by studying provided data (known as a training set)
+ containing class labels; hence the technique is 
+\begin_inset Quotes eld
+\end_inset
 
-\end_layout
+supervised
+\begin_inset Quotes erd
+\end_inset
 
-\begin_layout Standard
-Clustering applies to all of the aforementioned applications as a subset
- of data mining.
- 
-\end_layout
-
-\begin_layout Standard
-Partitioning techniques are effective for mining data sets when computation
- of a dendrogram (clustering tree) representation is infeasible.
- 
+ due to example data exposure.
+ Once the model is complete it can be applied to real, unlabelled data and
+ assign each new tuple to its respective class
 \begin_inset CommandInset citation
 LatexCommand cite
-key "jain1999dcr"
+key "han2001dmc"
 
 \end_inset
 
- In particular, K-Medoids is highly efficient for moderately sized data
- sets with spherical-type clusters.
- However, due to the inherent swapping of medoids to optimise the clustered
- solution, the algorithm suffers greatly as large data sets are introduced.
+.
+ Classification is used in the categorisation of discrete or unordered data
+ sets; for example, determining the level of risk (high/medium/low) associated
+ with a certain financial investment given pre-existing market data.
  
 \end_layout
 
 \begin_layout Standard
-Density-based algorithms perform optimally when operating upon spatially-indexed
- data.
- The methods provide benefits when analysing data sets that contain high
- levels of noise or when clusters are arbitrarily shaped.
- Specifically, DBSCAN is able to grow clusters whilst the MinPts threshold
- is not satisfied within the 
-\begin_inset Formula $\varepsilon$
+Prediction is similar to classification, in that the process of learning
+ from existing data is supervised, and a model is constructed.
+ However, prediction techniques are used when assessing continuous data
+ sets 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "han2001dmc"
+
 \end_inset
 
- neighbourhood, thus efficiently dividing real data and noise in a variety
- of shapes.
+; for example, determining the price of a stock market share at some point
+ in the future given previous performance trends.
+ Unlike prediction, clustering is not exclusively used for forcasting future
+ values, rather grouping like points for immediate assessment.
 \end_layout
 
 \begin_layout Standard
------
-\end_layout
-
-\begin_layout Standard
-Other modifications to the methods that others have tried + what they found
- out + lit review + why what we're doing is different and better
+Whether to utilise clustering in analysis is a decision based on the purpose
+ of the data mining task.
+ If future predictions are required, an alternative technique should be
+ employed, but if like points in the set are to be grouped, clustering is
+ an appropriate choice.
+ 
 \end_layout
 
 \begin_layout Section
@@ -793,6 +926,12 @@ name "Sec:Comparison"
 \end_inset
 
 Comparison
+\end_layout
+
+\begin_layout Standard
+Comparing the specific techniques themselves (so we've detailed what the
+ types of clustering are in section 2, here we talk about what the technique
+ of DBSCAN etc does
 \end_layout
 
 \begin_layout Standard
@@ -830,22 +969,343 @@ will write algorithms out
 DBSCAN
 \end_layout
 
+\begin_layout Standard
+\begin_inset Float algorithm
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+DBSCAN
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+For each unvisited point 
+\begin_inset Formula $P$
+\end_inset
+
+ within the data set 
+\begin_inset Formula $D$
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Get the neighbours of the 
+\begin_inset Formula $P$
+\end_inset
+
+, according to the given epsilon distance
+\end_layout
+
+\begin_layout Enumerate
+If the number of neighbours is equal or greater than the user-specified
+ cluster threshold
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Increment cluster identifier counter
+\end_layout
+
+\begin_layout Enumerate
+Add the given point to the current cluster
+\end_layout
+
+\begin_layout Enumerate
+Recursively process all neighbours 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Else if the point has fewer neighbours than the threshold value,
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Mark 
+\begin_inset Formula $P$
+\end_inset
+
+ as noise
+\end_layout
+
+\end_deeper
+\end_deeper
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+OPTICS
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+OPTICS
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Arbitrarily select 
+\begin_inset Formula $k$
+\end_inset
+
+ objects as initial medoid points from given data set
+\end_layout
+
+\begin_layout Enumerate
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
 K-Medoids
 \end_layout
 
-\begin_layout Subsection
-K-Means etc
-\end_layout
+\begin_layout Standard
+\begin_inset Float algorithm
+wide false
+sideways false
+status collapsed
 
-\begin_layout Section
-\begin_inset CommandInset label
-LatexCommand label
-name "Sec:Discussion"
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+K-Medoids
+\end_layout
 
 \end_inset
 
-Discussion
+
+\end_layout
+
+\begin_layout Enumerate
+Arbitrarily select 
+\begin_inset Formula $k$
+\end_inset
+
+ objects as initial medoid points from given data set
+\end_layout
+
+\begin_layout Enumerate
+Whilst swaps are occuring 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Associate each data object in the data set with its closest medoid
+\end_layout
+
+\begin_layout Enumerate
+Randomly select a non-medoid object, 
+\begin_inset Formula $O$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Compute the total cost of swapping initial medoid object with 
+\begin_inset Formula $O$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+If the total cost of swapping is less than the total cost of the current
+ system then
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Swap the inital medoid with 
+\begin_inset Formula $O$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Continue until there is no change
+\end_layout
+
+\end_deeper
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+K-Means
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+K-Means
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Arbitrarily or heuristically select 
+\begin_inset Formula $k$
+\end_inset
+
+ objects as initial centroids for the given data set
+\end_layout
+
+\begin_layout Enumerate
+Whilst centroid changes are occuring 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Associate each data point 
+\begin_inset Formula $P$
+\end_inset
+
+ in the data set to its closest centroid
+\end_layout
+
+\begin_layout Enumerate
+For each centroid 
+\begin_inset Formula $C$
+\end_inset
+
+,
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Recompute location according to data points associated with it
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Continue until stopping criteria met
+\end_layout
+
+\end_deeper
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Customisations
+\end_layout
+
+\begin_layout Standard
+Detail here what we did to modify the algorithms that we implemented
+\end_layout
+
+\begin_layout Subsection
+UltraDBSCAN
+\end_layout
+
+\begin_layout Subsection
+UltraK-Medoids
+\end_layout
+
+\begin_layout Section
+Results and Discussion
+\end_layout
+
+\begin_layout Subsection
+Experimental Details
+\end_layout
+
+\begin_layout Standard
+Detail how the experiements were carried out, (using WEKA, using the given
+ data set of forest fires, and reference this)
+\end_layout
+
+\begin_layout Standard
+Mention the computiing hardware it was run upon (one sentance or so), implemente
+d in Java, uses the algorithms detailed in both Section 3 and section 4,
+ and compares and contrasts them.
+\end_layout
+
+\begin_layout Standard
+Testing performed with varying input parameters to determine their effect
+ on the results, and to see if the customisations offer any improvement
+ in speed or results produced over their original counterparts
+\end_layout
+
+\begin_layout Subsection
+Comparison Results
+\end_layout
+
+\begin_layout Standard
+Discuss what the results were here, so detail the graphs and tables for
+ efficiency and numbers etc.
+\end_layout
+
+\begin_layout Subsection
+Conclusions
+\end_layout
+
+\begin_layout Standard
+As we detail the results, we should offer a discussion as to what they are,
+ and why they are like that.
+\end_layout
+
+\begin_layout Standard
+Eg draw conclusions here and offer explanations
+\end_layout
+
+\begin_layout Section
+Issues
+\end_layout
+
+\begin_layout Standard
+Discuss the results in this section
 \end_layout
 
 \begin_layout Standard
@@ -853,18 +1313,8 @@ Is there sufficient evidence here to show that our algorithms are worthy
  of use?
 \end_layout
 
-\begin_layout Section
-\begin_inset CommandInset label
-LatexCommand label
-name "Sec:Issues"
-
-\end_inset
-
-Issues
-\end_layout
-
 \begin_layout Standard
-What drawbacks do we see with our various sets of data and algorithms
+Issues - What drawbacks do we see with our various sets of data and algorithms
 \end_layout
 
 \begin_layout Section
