@@ -337,13 +337,13 @@ reference "Sub:Experimental-Details"
 
 \end_inset
 
-, with the test sets utilised containing fire data from northeastern Portugal
+, with the test sets utilised containing fire data from Portugal
 \emph on
 .
 \end_layout
 
 \begin_layout Subsection
-Other Details
+Other Methods
 \end_layout
 
 \begin_layout Standard
@@ -353,13 +353,14 @@ There are a wide variety of clustering methodologies that exist within this
  grouping, hierarchical segmentation, and constraint-based analysis.
  As these techniques have been already widely researched, there are many
  existing works that compare and constrast each.
- 
-\end_layout
+ The interested reader is directed to 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "han2001dmc"
 
-\begin_layout Standard
+\end_inset
 
-\emph on
-[NEED REFS HERE]
+ for further information regarding these topics.
 \end_layout
 
 \begin_layout Standard
@@ -402,10 +403,31 @@ Density-based algorithms perform optimally when operating upon spatially-indexed
  dividing real data and noise in a variety of shapes.
 \end_layout
 
+\begin_layout Subsection
+Purpose of Paper
+\end_layout
+
 \begin_layout Standard
-In terms of algorithms, this paper focuses upon the DBSCAN and K-Medoids
- algorithms from the density-based and partitioning families respectively,
- and initiates new research into improving the efficiency of each.
+This paper focuses upon the DBSCAN and K-Medoids algorithms from the density-bas
+ed and partitioning families respectively.
+ It outlines the design, advantages and disadvantages of each method, and
+ studies similar methodologies.
+ The work contained goes on to propose both basic implementations of the
+ techniques, as well as initiating new research into improving the efficiency
+ of the methods.
+ A great deal of literature already exists regarding these techniques, and
+ a review of these documents can be found in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "Sec:Related-Work"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Experimental Data Set
 \end_layout
 
 \begin_layout Standard
@@ -414,8 +436,30 @@ The data set chosen for the comparison of and ammendments to K-medoids and
 \emph on
 forest fires
 \emph default
-.
  
+\begin_inset CommandInset citation
+LatexCommand cite
+key "cortez:dma"
+
+\end_inset
+
+.
+ The set contains environmental data from fire instances in northeastern
+ Portugal, including location, date, temperature, humidity, wind conditions,
+ rain information and burned area.
+\end_layout
+
+\begin_layout Standard
+Every year, forest fires cause millions of dollars of damage to property
+ as well as claiming numerous lives.
+ If clustering techniques can be used to more accurately determine the patterns
+ of such fires given provailing environmental conditions, scientists and
+ researchers will be able to achieve further understand of the phenomenon.
+ This knowledge will reap enormous benefits; predictive techniques can be
+ updated, analysis centres local to fires can more accurately forcast fire
+ behaviour, government agencies can be informed of these conclusions earlier,
+ and, ultimately, residents and business owners can be warned earlier.
+ [SAVE MONEY AND LIVES]
 \end_layout
 
 \begin_layout Standard
@@ -432,18 +476,8 @@ executed
  people interested]
 \end_layout
 
-\begin_layout Standard
-This paper proposes both implementations and improvements to the K-Medoids
- and DBSCAN clustering algorithms.
- A great deal of literature already exists regarding these techniques, and
- a review of these documents can be found in Section 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "Sec:Related-Work"
-
-\end_inset
-
-.
+\begin_layout Subsection
+Results Overview
 \end_layout
 
 \begin_layout Standard
@@ -554,7 +588,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename clustering.png
+	filename ../../../../Documents and Settings/User/Desktop/5030checkout/documents/clustering.png
 	lyxscale 50
 	width 90col%
 

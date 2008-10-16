@@ -200,6 +200,16 @@
   file = {:C\:\\Documents and Settings\\User\\Desktop\\5030checkout\\papers\\FuzzyRelativeOfKMedoids.ps:PostScript}
 }
 
+@CONFERENCE{ng1994eae,
+  author = {Ng, R.T. and Han, J.},
+  title = {{Efficient and Effective Clustering Methods for Spatial Data Mining}},
+  booktitle = {PROCEEDINGS OF THE INTERNATIONAL CONFERENCE ON VERY LARGE DATA BASES},
+  year = {1994},
+  pages = {144--144},
+  organization = {INSTITUTE OF ELECTRICAL \& ELECTRONICS ENGINEERS (IEEE)},
+  file = {:C\:\\Documents and Settings\\User\\Desktop\\5030checkout\\papers\\clarans.pdf:PDF}
+}
+
 @CONFERENCE{palmer2000dbs,
   author = {Palmer, C.R. and Faloutsos, C.},
   title = {{Density biased sampling: an improved method for data mining and
