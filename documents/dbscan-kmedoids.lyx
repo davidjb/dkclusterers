@@ -1055,6 +1055,16 @@ OPTICS
 \end_layout
 
 \begin_layout Standard
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ankerst1999oop"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float algorithm
 wide false
 sideways false
@@ -1073,13 +1083,27 @@ OPTICS
 \end_layout
 
 \begin_layout Enumerate
-Arbitrarily select 
-\begin_inset Formula $k$
+For each unvisited point 
+\begin_inset Formula $P$
 \end_inset
 
- objects as initial medoid points from given data set
+ within the data set 
+\begin_inset Formula $D$
+\end_inset
+
+
 \end_layout
 
+\begin_deeper
+\begin_layout Enumerate
+Get the neighbours of the 
+\begin_inset Formula $P$
+\end_inset
+
+, according to the given epsilon distance
+\end_layout
+
+\end_deeper
 \end_inset
 
 
@@ -1327,6 +1351,200 @@ Comparison Results
 \begin_layout Standard
 Discuss what the results were here, so detail the graphs and tables for
  efficiency and numbers etc.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename dbscanspeed.png
+	lyxscale 50
+	width 85col%
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:DBSCAN-Performance-Results"
+
+\end_inset
+
+Density-based performance by epsilon
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename dbscanspeedattrib.png
+	lyxscale 50
+	width 85col%
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:DBSCAN-performance-attrib"
+
+\end_inset
+
+Density-based performance by attributes
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename dbscannoise.png
+	lyxscale 50
+	width 85col%
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:DBSCAN-performance-noise"
+
+\end_inset
+
+Density-based performance by resulting noise
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename kmedoidsspeed.png
+	lyxscale 50
+	width 85col%
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Partitioning-performance-k"
+
+\end_inset
+
+Partitioning performance by 
+\begin_inset Formula $k$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename kmedoidspeedattrib.png
+	lyxscale 50
+	width 85col%
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Partitioning-performance-attrib"
+
+\end_inset
+
+Partitioning performance by attributes
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
