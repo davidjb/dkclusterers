@@ -77,6 +77,7 @@ public class UltraKMedoids extends RandomizableClusterer implements OptionHandle
      */
     public void setSelectedClusterCount(int selectedClusterCount) {
         this.selectedClusterCount = selectedClusterCount;
+		this.selectedClusterCountOriginal = selectedClusterCount;
     }
 
 	/**
@@ -169,6 +170,7 @@ public class UltraKMedoids extends RandomizableClusterer implements OptionHandle
 
         String currentOption = Utils.getOption("clusters", options);
         this.selectedClusterCount = Integer.valueOf(currentOption);
+		this.selectedClusterCountOriginal = Integer.valueOf(currentOption);
 
 		currentOption = Utils.getOption("custom", options);
         this.useCustomisations = Boolean.valueOf(currentOption);

@@ -51,8 +51,8 @@ public class UltraDBScan extends AbstractClusterer implements OptionHandler {
      * This value is modifiable by the user because of the JavaBean methods given below.
 	 * The 'original' value is used as a backup, for when we need to replace the changed value.
      */
-    private double epsilonDistance = 0.9;
-	private double epsilonDistanceOriginal = 0.9;
+    private double epsilonDistance;
+	private double epsilonDistanceOriginal;
 
     /**
      * Value for the minimum number of points that need to be found for data to be
@@ -60,8 +60,8 @@ public class UltraDBScan extends AbstractClusterer implements OptionHandler {
      *
      * This value is modifiable by the user because of the JavaBean methods given below.
      */
-    private int minimumPointClusterThreshold = 6;
-	private int minimumPointClusterThresholdOriginal = 6;
+    private int minimumPointClusterThreshold;
+	private int minimumPointClusterThresholdOriginal;
 
     /**
      * Value used to store the length of the last clustering operation.  This is used
@@ -210,6 +210,7 @@ public class UltraDBScan extends AbstractClusterer implements OptionHandler {
 
         currentOption = Utils.getOption("epsilon", options);
         this.epsilonDistance = Double.valueOf(currentOption);
+		this.epsilonDistanceOriginal = Double.valueOf(currentOption);
 
 		currentOption = Utils.getOption("custom", options);
         this.useCustomisations = Boolean.valueOf(currentOption);
