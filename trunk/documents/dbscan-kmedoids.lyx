@@ -513,9 +513,12 @@ Results Overview
 
 \begin_layout Standard
 The results explained in section 
-\emph on
-[need link here]
-\emph default
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "Sec:Results-and-Discussion"
+
+\end_inset
+
  show that...
 \end_layout
 
@@ -555,21 +558,43 @@ Data Analysis
 \end_layout
 
 \begin_layout Standard
-The process of data analysis involves considering all elements within a
- given source data set in order to deduce interesting patterns and trends.
- 
-\end_layout
+A formal definition by Moore 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "moore1998pas"
 
-\begin_layout Standard
-What is data analysis first (used to obtain patterns and trends from a source
- set of data, with the information used to improve the decision making process
- (people can be more informed)
+\end_inset
+
+ states that data analysis is 
+\emph on
+
+\begin_inset Quotes eld
+\end_inset
+
+the examination of data for interesting patterns and striking deviations
+ from those patterns
+\begin_inset Quotes erd
+\end_inset
+
+
+\emph default
+ and this description, for the most part, translates well to that of data
+ mining.
+ Such analysis can lead to conclusions which assist a variety of processes
+ and people; from medical diagnostics to population growth predictions to
+ forest fire forcasting.
+ The potential developments in these research areas due to quality data
+ analysis are not only beneficial in terms of further knowledge and understandin
+g, but will inevitably benefit ordinary people in a multitude of ways far
+ beyond the scope of this paper.
 \end_layout
 
 \begin_layout Standard
 
 \emph on
-[NEED REFS HERE]
+What is data analysis first (used to obtain patterns and trends from a source
+ set of data, with the information used to improve the decision making process
+ (people can be more informed)
 \end_layout
 
 \begin_layout Subsection
@@ -967,16 +992,22 @@ This paper aims to draw a detailed comparison between two general clustering
 \end_layout
 
 \begin_layout Standard
+
+\emph on
 Comparing the specific techniques themselves (so we've detailed what the
  types of clustering are in section 2, here we talk about what the technique
  of DBSCAN etc does
 \end_layout
 
 \begin_layout Standard
+
+\emph on
 big O stuff??.
 \end_layout
 
 \begin_layout Standard
+
+\emph on
 will write algorithms out
 \end_layout
 
