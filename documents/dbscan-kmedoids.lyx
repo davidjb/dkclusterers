@@ -251,28 +251,38 @@ Introduction
 \end_layout
 
 \begin_layout Standard
+
+\emph on
 Detail why clustering is powerful, why are we using it, what applications
  it applies to the most
 \end_layout
 
 \begin_layout Standard
+
+\emph on
 Detail brief outline of clustering techniques (partitioning, density etc)
  and what they are most suited for (respectively)
 \end_layout
 
 \begin_layout Standard
+
+\emph on
 Highlight what this paper's purpose is (to compare and contrast dbscan and
  k-medoids), and how it aims to achieve this (experimentation using WEKA
  to compare efficiency and accuracy of results)
 \end_layout
 
 \begin_layout Standard
+
+\emph on
 Highlight that this paper will also attempt to suggest improvements to these
  algorithms (in order to try and obtain better results), and demonstrates
  its findings in this area
 \end_layout
 
 \begin_layout Standard
+
+\emph on
 Lead into the related work section (eg many papers that already exist, and
  we talk about them now in Section 2)
 \end_layout
@@ -463,18 +473,19 @@ Analysing this data set is necessary because forest fires cause millions
  of dollars damage to property and claim many lives each year.
  If clustering techniques can be used to more accurately determine the patterns
  of such fires given provailing environmental conditions, scientists and
- researchers will be able to achieve further understand of the phenomenon.
+ researchers will be able to achieve further understanding of the phenomenon.
  This knowledge will reap enormous benefits; predictive techniques can be
  updated, analysis centres local to fires can more accurately forcast fire
- behaviour, government agencies can be informed of these conclusions earlier,
- and, ultimately, residents and business owners can be warned earlier.
- [SAVE MONEY AND LIVES]
+ behaviour, government agencies can be continuously informed of these conclusion
+s, and residents and business owners can be warned earlier.
+ This improved system will result in reduced property damage, lower resoration
+ costs and, ultimately, fewer lives lost.
 \end_layout
 
 \begin_layout Standard
 
 \emph on
-[Describe what the specific data set we've chosen here, and why our selected
+[Describe what specific data set we've chosen here, and why our selected
  algorithm(s) are worthwhile to be 
 \emph default
 executed
@@ -500,6 +511,14 @@ Results Overview
  of interest....]
 \end_layout
 
+\begin_layout Standard
+The results explained in section 
+\emph on
+[need link here]
+\emph default
+ show that...
+\end_layout
+
 \begin_layout Section
 \begin_inset CommandInset label
 LatexCommand label
@@ -511,16 +530,22 @@ Related Work
 \end_layout
 
 \begin_layout Standard
+
+\emph on
 Detail the specific areas that we are looking at (density and partitioning),
  and what each is most useful for (shape of data, noise, features etc)
 \end_layout
 
 \begin_layout Standard
+
+\emph on
 Provide a paragraph of two for hierarchical etc techniques that the we don't
  cover, and direct the user elsewhere
 \end_layout
 
 \begin_layout Standard
+
+\emph on
 Detail a section for alternative data analysis methods to clustering (and
  why they might be useful elsewhere, but not here)
 \end_layout
@@ -541,11 +566,19 @@ What is data analysis first (used to obtain patterns and trends from a source
  (people can be more informed)
 \end_layout
 
+\begin_layout Standard
+
+\emph on
+[NEED REFS HERE]
+\end_layout
+
 \begin_layout Subsection
 Clustering
 \end_layout
 
 \begin_layout Standard
+
+\emph on
 Detail what is clustering (own heading for this)
 \end_layout
 
