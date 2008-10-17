@@ -230,7 +230,8 @@ Clustering is one of the fundamental techniques adopted by data mining tools
 
 \begin_layout Abstract
 This paper compares two widely used clustering algorithms, K-Medoids and
- DBSCAN, against other well-known techniques.
+ Density-Based Spatial Clustering of Applications with Noise (DBSCAN), against
+ other well-known techniques.
  The initial testing conducted on each technique utilises the standard implement
 ation of each algorithm.
  Further experimental work tests modifications to these methods in order
@@ -427,12 +428,18 @@ reference "Sec:Related-Work"
 \end_layout
 
 \begin_layout Subsection
+\begin_inset CommandInset label
+LatexCommand label
+name "Sub:Experimental-Data-Set"
+
+\end_inset
+
 Experimental Data Set
 \end_layout
 
 \begin_layout Standard
-The data set chosen for the comparison of and ammendments to K-medoids and
- DBSCAN is 
+The data set chosen for the comparison of and ammendments to the K-Medoids
+ and DBSCAN techniques is 
 \emph on
 forest fires
 \emph default
@@ -445,13 +452,15 @@ key "cortez:dma"
 
 .
  The set contains environmental data from fire instances in northeastern
- Portugal, including location, date, temperature, humidity, wind conditions,
- rain information and burned area.
+ Portugal, and represents instances within space, and includes attributes
+ such as the date, temperature, humidity, wind conditions, rain information
+ and burned area.
+ 
 \end_layout
 
 \begin_layout Standard
-Every year, forest fires cause millions of dollars of damage to property
- as well as claiming numerous lives.
+Analysing this data set is necessary because forest fires cause millions
+ of dollars damage to property and claim many lives each year.
  If clustering techniques can be used to more accurately determine the patterns
  of such fires given provailing environmental conditions, scientists and
  researchers will be able to achieve further understand of the phenomenon.
@@ -588,7 +597,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename ../../../../Documents and Settings/User/Desktop/5030checkout/documents/clustering.png
+	filename clustering.png
 	lyxscale 50
 	width 90col%
 
@@ -966,32 +975,15 @@ Comparison
 \end_layout
 
 \begin_layout Standard
+This paper aims to draw a detailed comparison between two general clustering
+ designations - density-based clustering and paritioning, and to do so,
+ examines the differences between several specific techniques.
+\end_layout
+
+\begin_layout Standard
 Comparing the specific techniques themselves (so we've detailed what the
  types of clustering are in section 2, here we talk about what the technique
  of DBSCAN etc does
-\end_layout
-
-\begin_layout Standard
-The implementation for both algorithms has been designed for and completed
- in Java and all operations have been tested under the WEKA data mining
- framework.
- 
-\end_layout
-
-\begin_layout Standard
-Need to run a comparison (on our sample data set) of our two algorithms
- we've implemented, and several others that already exist within WEKA.
- How does their 1) 
-\emph on
-performance
-\emph default
- and 2) 
-\emph on
-accuracy
-\emph default
- stand up to one another? May need to look at how many clusters (on average)
- each method produces and them perform the same function like this (keep
- running until completed)
 \end_layout
 
 \begin_layout Standard
@@ -1007,15 +999,41 @@ DBSCAN
 \end_layout
 
 \begin_layout Standard
+The DBSCAN clustering technique requires two user-inputted parameters: a
+ minimum number of points, 
+\emph on
+minPoints
+\emph default
+, and an epsilon distance, 
+\begin_inset Formula $\epsilon$
+\end_inset
+
+.
+ The minimum number of points is used to determine if a collection of points
+ found should be considered a cluster, and the inputted 
+\begin_inset Formula $\epsilon$
+\end_inset
+
+ value controls how far, whether it be in Euclidean, Manhattan or Minkowski
+ distance, to consider for neighbours from a given data object.
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float algorithm
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Caption
 
 \begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "alg:DBSCAN"
+
+\end_inset
+
 DBSCAN
 \end_layout
 
@@ -1084,18 +1102,195 @@ Mark
 
 \end_layout
 
+\begin_layout Standard
+The process, as detailed in Algorithm 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:DBSCAN"
+
+\end_inset
+
+, begins by considering an arbitrary data object that has not already been
+ assigned to a cluster.
+ The neighbours of this data point 
+\begin_inset Formula $P$
+\end_inset
+
+ are then located, according to the user-specified 
+\begin_inset Formula $\epsilon$
+\end_inset
+
+ value.
+ If the number of neighbours found is greater than the specified 
+\emph on
+minPoints
+\emph default
+ values, then the current data object should be added to the current cluster,
+ and all neighbours should be processed recursively.
+ Otherwise, if the number of near-by points is less than 
+\emph on
+minPoints
+\emph default
+, then the data object is considered noise.
+ This process then continues for all of the neighbours, processing them
+ accordingly.
+ At such time that a given cluster has been fully explored, the process
+ begins again, until all points have been visisted.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename dbscan.png
+	lyxscale 50
+	width 50col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Initial-stage-of"
+
+\end_inset
+
+Initial stage of DBSCAN technique
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+An initial processing stage for the DBSCAN procedure is shown in a simplifed
+ data set within Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Initial-stage-of"
+
+\end_inset
+
+, where the dashed line represents a two-dimensional 
+\begin_inset Formula $\epsilon$
+\end_inset
+
+ distance radius and the minimum points threshold is 1.
+\end_layout
+
 \begin_layout Subsection
 OPTICS
 \end_layout
 
 \begin_layout Standard
+The Ordering Points to Identify the Clustering Structure (OPTICS) algorithm
+ is structurally identitical to that of the previously mentioned DBSCAN
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "ankerst1999oop"
 
 \end_inset
 
+.
+ Thus its algorithm is similar to that shown in Algorithm 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:DBSCAN"
 
+\end_inset
+
+, and likewise, its time complexity is the same also.
+ 
+\end_layout
+
+\begin_layout Standard
+The OPTICS technique builds upon DBSCAN by attempting to overcome the issue
+ of needing to input different parameters by introducing new values that
+ need to be stored with each data object.
+ Specifically, these are referred to as the 
+\emph on
+core-distance
+\emph default
+, the smallest epsilon value that makes a data object a core object, and
+ the 
+\emph on
+reachability-distance, 
+\emph default
+which is a measure of distance between a given object and another.
+ The 
+\emph on
+reachability-distance 
+\emph default
+is calculated as the greater of either the 
+\emph on
+core-distance
+\emph default
+ of the data object or the Euclidean distance between the data object and
+ another 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "han2001dmc"
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+These newly introduced distances are used to order the objects within a
+ given set of data.
+ Clusters become extracted based upon the reachability information and core
+ distances associated with each object.
+ From this, clusters are then able to be modelled according to reachability
+ and cluster assignments, thus potentially revealing more relevant information
+ about the attributes for each cluster.
+\end_layout
+
+\begin_layout Subsection
+K-Medoids
+\end_layout
+
+\begin_layout Standard
+The K-Medoids clustering technique utilises an inputted value, 
+\begin_inset Formula $k$
+\end_inset
+
+, to segment a given database of objects into 
+\begin_inset Formula $k$
+\end_inset
+
+ clusters.
+ Each cluster exists such that all contained data objects are most closely
+ associated with the medoid of the cluster.
+\end_layout
+
+\begin_layout Standard
+The minimum number of points is used to determine if a collection of points
+ found should be considered a cluster, and the inputted 
+\begin_inset Formula $\epsilon$
+\end_inset
+
+ value controls how far, whether it be in Euclidean, Manhattan or Minkowski
+ distance, to consider for neighbours from a given data object.
 \end_layout
 
 \begin_layout Standard
@@ -1108,55 +1303,12 @@ status open
 \begin_inset Caption
 
 \begin_layout Plain Layout
-OPTICS
-\end_layout
+\begin_inset CommandInset label
+LatexCommand label
+name "alg:K-Medoids"
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Enumerate
-For each unvisited point 
-\begin_inset Formula $P$
-\end_inset
-
- within the data set 
-\begin_inset Formula $D$
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Enumerate
-Get the neighbours of the 
-\begin_inset Formula $P$
-\end_inset
-
-, according to the given epsilon distance
-\end_layout
-
-\end_deeper
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsection
-K-Medoids
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float algorithm
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\begin_inset Caption
-
-\begin_layout Plain Layout
 K-Medoids
 \end_layout
 
@@ -1232,6 +1384,10 @@ K-Means
 \end_layout
 
 \begin_layout Standard
+The K-Means technique is 
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float algorithm
 wide false
 sideways false
@@ -1241,6 +1397,12 @@ status open
 \begin_inset Caption
 
 \begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "alg:K-Means"
+
+\end_inset
+
 K-Means
 \end_layout
 
@@ -1294,12 +1456,61 @@ Continue until stopping criteria met
 
 \end_layout
 
+\begin_layout Subsection
+Comparison
+\end_layout
+
+\begin_layout Standard
+What's the result of comparing these individual algorithms:
+\end_layout
+
+\begin_layout Itemize
+Need to select input values -> Can arbitrary numbers of clusters be found
+ or not?
+\end_layout
+
+\begin_layout Itemize
+Different sizes and shapes of clusters - can handle them or not?
+\end_layout
+
+\begin_layout Itemize
+Sensitivity to noise?
+\end_layout
+
+\begin_layout Itemize
+Scalability, efficiency, time complexity, attribute dimensionality
+\end_layout
+
+\begin_layout Itemize
+Draw conclusions about the types of data that each technique is most suited
+ for
+\end_layout
+
+\begin_layout Standard
+The DBSCAN algorithm, like other density-based techniques, is most suited
+ to data sets where the presence of noise would otherwise affect results,
+ and also when the number, shape, or size of clusters present are not known.
+ These are two benefits which are not available from the partitoning techniques
+ - K-Medoids or K-Means - under review.
+ Both of these algorithms are sensitive to noise 
+\end_layout
+
 \begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "Sec:Customisations"
+
+\end_inset
+
 Customisations
 \end_layout
 
 \begin_layout Standard
 Detail here what we did to modify the algorithms that we implemented
+\end_layout
+
+\begin_layout Standard
+Why were DBSCAN and K-Medoids 
 \end_layout
 
 \begin_layout Subsection
@@ -1319,6 +1530,17 @@ Dynamically modify the value of epsilon such that it becomes adjusted according
  found under such a value, then epsilon can be decreased to reduce the effect
  of noise.
  See Figure X for details.
+\end_layout
+
+\begin_layout Standard
+Assumption: clusters that are dense will have all members of a similar proximity.
+ Assuming the starting Epsilon value locates many points, we consider that
+ this is a dense cluster.
+ The epsilon value is thereby decreased accordingly, and following neighbours
+ are checked for other related points.
+ As more points are added, the epsilon value decreases accordingly, thus
+ preventing the possibility of locating bridges and bringing these types
+ of points into the current cluster.
 \end_layout
 
 \begin_layout Subsection
@@ -1348,6 +1570,12 @@ The result is that the time complexity reduces from approximately
 \end_layout
 
 \begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "Sec:Results-and-Discussion"
+
+\end_inset
+
 Results and Discussion
 \end_layout
 
@@ -1362,20 +1590,63 @@ Experimental Details
 \end_layout
 
 \begin_layout Standard
-Detail how the experiements were carried out, (using WEKA, using the given
- data set of forest fires, and reference this)
+The experimentation detailed in this section was carried out within the
+ Waikato Environment for Knowledge Analysis (WEKA) suite for machine learning.
+ This software, developed in the Java programming language, offers a powerful
+ testing harness for analysis of various data mining concepts and implementation
+s.
+ In addition, it offers the ability to extend the suite with additional
+ modules, and in the case of the presented work, clustering methods.
+ 
 \end_layout
 
 \begin_layout Standard
-Mention the computiing hardware it was run upon (one sentance or so), implemente
-d in Java, uses the algorithms detailed in both Section 3 and section 4,
- and compares and contrasts them.
+Building upon the functionality that already exists within WEKA, several
+ existing techniques - specifically, DBSCAN and K-Medoids - were implemented,
+ as were the customisations, as detailed in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "Sec:Customisations"
+
+\end_inset
+
+.
+ Once developed, these clustering algorithms were applied the specified
+ test data set of forest fire data to determine their effectiveness and
+ efficiency.
+ 
 \end_layout
 
 \begin_layout Standard
-Testing performed with varying input parameters to determine their effect
- on the results, and to see if the customisations offer any improvement
- in speed or results produced over their original counterparts
+The tests were performed on the same computing hardware in order to ensure
+ objectivity - a recent-model desktop computer with a 2.5GHz Intel Centrino
+ dual-core processor, 3GB of RAM, and running the latest stable release
+ of the Java Virtual Machine (JVM), version 1.6.
+ These experiments examined a range of varying input parameters to determine
+ their effect on an algorithm's results, and to determine any changes in
+ speed.
+ For each different input and clustering technique, 
+\end_layout
+
+\begin_layout Standard
+Need to run a comparison (on our sample data set) of our two algorithms
+ we've implemented, and several others that already exist within WEKA.
+ How does their 1) 
+\emph on
+performance
+\emph default
+ and 2) 
+\emph on
+accuracy
+\emph default
+ stand up to one another? May need to look at how many clusters (on average)
+ each method produces and them perform the same function like this (keep
+ running until completed)
+\end_layout
+
+\begin_layout Standard
+and to see if the customisations offer any improvement in speed or results
+ produced over their original counterparts
 \end_layout
 
 \begin_layout Subsection
@@ -1385,6 +1656,10 @@ Comparison Results
 \begin_layout Standard
 Discuss what the results were here, so detail the graphs and tables for
  efficiency and numbers etc.
+\end_layout
+
+\begin_layout Subparagraph*
+Density Based
 \end_layout
 
 \begin_layout Standard
@@ -1422,7 +1697,29 @@ Density-based performance by epsilon
 
 \end_inset
 
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:DBSCAN-Performance-Results"
 
+\end_inset
+
+ shows a detailed comparison of performance of various density-based clustering
+ algorithms, and demonstrates the speed of clustering, based upon a differing
+ epsilon distance value.
+ The epsilon value is varied to determine its effect upon each technique,
+ given that it could be expected that a larger epsilon value would see generally
+ larger clusters with greater quantities of members in each cluster.
+ 
+\end_layout
+
+\begin_layout Standard
+As detailed in the figure, each of these algorithms operates in a similar
+ time complexity.
+ What is evident, however, is that generally, as epsilon increases, there
+ will be a marginal increase in the amount of time necessary to complete
+ the clustering operation.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -1505,7 +1802,7 @@ Density-based performance by resulting noise
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -1596,6 +1893,63 @@ Eg draw conclusions here and offer explanations
 
 \begin_layout Section
 Issues
+\end_layout
+
+\begin_layout Standard
+As is to be expected of any data mining procedure, the best results from
+ a clustering operation depend entirely upon many different factors.
+ These include, but are not limited to the actual data set being processed,
+ the clustering technique selected, and the input parameters provided to
+ such technique.
+ In some situations, a certain algorithm may determine suitable clusters
+ within one data set, but may be completely ineffective with another.
+ Likewise, using unsuitable input parameters for a given clustering process
+ may result in similarly unsuitable cluster assignments for data instances.
+ All of these aspects of data mining thereby need to be reviewed before
+ being used, and perferably by a person involved who has sufficient domain
+ knowledge to make correct descisions that will reveal suitable output.
+\end_layout
+
+\begin_layout Standard
+Furthermore, as detailed in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "Sec:Related-Work"
+
+\end_inset
+
+, the most suitable types of data are detailed for the given subsets of
+ clustering techniques.
+ It should be noted that the results demonstrated in this paper describe
+ tests executed within the given testing environment, and only represent
+ results associated with the one data set of forest fire information being
+ used.
+ Refer to Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "Sub:Experimental-Data-Set"
+
+\end_inset
+
+ for details regarding this test data set.
+ As mentioned previously, using a different set of data may, and most likely
+ will, reveal different patterns and see a change in processing time complexity.
+ That said, the results detailed in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "Sec:Results-and-Discussion"
+
+\end_inset
+
+ indicate for the data set under consideration, the DBSCAN and K-Medoids
+ algorithms, and their customised counterparts, reveal useful clusters.
+ From this, it can be generally inferred that for similar types of data,
+ these same algorithms should result in similar types of clusters being
+ found and similar durations of processing required.
+\end_layout
+
+\begin_layout Standard
+In summary, 
 \end_layout
 
 \begin_layout Standard
