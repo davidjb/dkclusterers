@@ -989,26 +989,9 @@ Comparison
 This paper aims to draw a detailed comparison between two general clustering
  designations - density-based clustering and paritioning, and to do so,
  examines the differences between several specific techniques.
-\end_layout
-
-\begin_layout Standard
-
-\emph on
-Comparing the specific techniques themselves (so we've detailed what the
- types of clustering are in section 2, here we talk about what the technique
- of DBSCAN etc does
-\end_layout
-
-\begin_layout Standard
-
-\emph on
-big O stuff??.
-\end_layout
-
-\begin_layout Standard
-
-\emph on
-will write algorithms out
+ By examining the differences in how each technique operates, the fundamental
+ differences in their capabilities, and likewise to what circumstances are
+ they most applicable, will be revealed.
 \end_layout
 
 \begin_layout Subsection
@@ -1458,14 +1441,22 @@ K-Means
 \end_layout
 
 \begin_layout Standard
-The K-Means technique is 
+The K-Means technique is similar to that of K-Medoids in that both methods
+ use the same designations of input variables, and both attempt to cluster
+ data objects in related manners.
+ Whilst K-Medoids is concerned with using data objects themselves as focus
+ points for a cluster, K-Means, however, utilises the centroid, or 
+\emph on
+mean
+\emph default
+, of a cluster for its computations.
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float algorithm
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Caption
@@ -1530,8 +1521,43 @@ Continue until stopping criteria met
 
 \end_layout
 
+\begin_layout Standard
+The method, as described in Algorithm 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:K-Means"
+
+\end_inset
+
+, begins much the same way that K-Medoids does - by using some process to
+ select 
+\emph on
+k
+\emph default
+-many objects as initial mean objects from the data set.
+ From this, each data object is iteratively assigned to its respective cluster,
+ according to its nearest centroid point.
+ Once this has been completed, then the centroid for each cluster is recomputed
+ accordingly.
+ This process will continue until the data set has reached a state of convergenc
+e.
+ That is to say that some stopping condition has been reached, and that
+ the clustering results have thereby been sufficiently optimised 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Hartigan1979"
+
+\end_inset
+
+.
+\end_layout
+
 \begin_layout Subsection
 Comparison
+\end_layout
+
+\begin_layout Standard
+Each of the clustering algorithms mentioned previously 
 \end_layout
 
 \begin_layout Standard
@@ -1586,19 +1612,22 @@ ted and re-investigated many times over its lifetime.
  can be optimised and made otherwise more resilient.
  This paper attemps to add to already voluminous amount of work by introducing
  two different techniques to approaching the DBSCAN and K-Medoids algorithms.
+ These two techniques were chosen for analysis as they both can operate
+ successfully, in terms of the results produced, and are well established
+ and known, in terms of past quantities of research.
 \end_layout
 
 \begin_layout Standard
-These two techniques were chosen for analysis as they are both extremely
- useful, in terms of the results produced, and also 
-\end_layout
-
-\begin_layout Standard
-It should be noted that these customisations are 
-\end_layout
-
-\begin_layout Standard
-Why were DBSCAN and K-Medoids 
+It should be noted that these customisations aim only to modify the techniques
+ specified, rather than to construct extended methodologies.
+ The reasoning for this is that any significantly complex modification to
+ an existing clustering technique would ultimately affect its speed and
+ performance, whilst leaving core functionality the same.
+ As this paper focuses upon performance as a key aspect of a clustering
+ algorithm, it would take research beyond the scope of this work to investigate
+ further performance enhancements.
+ Thus, whilst this paper does not suggest entirely new clustering techniques,
+ the modifications suggested do appear to have their respective uses.
 \end_layout
 
 \begin_layout Subsection
