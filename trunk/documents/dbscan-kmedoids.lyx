@@ -700,53 +700,6 @@ key "han2001dmc"
 \end_layout
 
 \begin_layout Standard
-This paper studies the K-Medoids algorithm from the partitioning analysis
- family.
- The technique was first developed in 1987 by Kaufman & Rousseeuw and seeks
- to reduce the impact of noisy data experienced in more simple partitioning
- algorithms.
- 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "kaufman1987cmm"
-
-\end_inset
-
- Instead of converting data attributes to simple points, it retains all
- the information from each record and represents the points as objects on
- a detailed axes.
- It initially chooses 
-\emph on
-k
-\emph default
- arbitrary points as representative medoids (
-\emph on
-O
-\begin_inset Formula $\mathcal{_{\text{r}}}$
-\end_inset
-
-
-\emph default
-), then iteratively compares each chosen point with every other point (O
-\begin_inset Formula $_{\text{j}}$
-\end_inset
-
-) to determine if swapping the medoid is useful.
- This decision is based on a cost function; the average value of some dissimilar
-ity metric between any object and the medoid of its cluster.
- 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "berkhin2002scd"
-
-\end_inset
-
- The algorithm terminates when every point has been assigned to a cluster
- and swapping medoids and objects no longer has any optimising effect on
- the clustering outcome.
-\end_layout
-
-\begin_layout Standard
 Partitioning offers several features, including efficiency in processing
  spherical clusters in small to medium data sets, and scalability across
  smaller applications.
@@ -1270,34 +1223,29 @@ K-Medoids
 \end_layout
 
 \begin_layout Standard
-The K-Medoids clustering technique utilises an inputted value, 
-\begin_inset Formula $k$
+The K-Medoids clustering technique is concerned with the concept of paritioning
+ data objects.
+ The technique was first developed in 1987 by Kaufman & Rousseeuw and seeks
+ to reduce the impact of noisy data experienced in simpler partitioning
+ algorithms, such as K-Means 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "kaufman1987cmm"
+
 \end_inset
 
-, to segment a given database of objects into 
-\begin_inset Formula $k$
-\end_inset
-
- clusters.
- Each cluster exists such that all contained data objects are most closely
- associated with the medoid of the cluster.
-\end_layout
-
-\begin_layout Standard
-The minimum number of points is used to determine if a collection of points
- found should be considered a cluster, and the inputted 
-\begin_inset Formula $\epsilon$
-\end_inset
-
- value controls how far, whether it be in Euclidean, Manhattan or Minkowski
- distance, to consider for neighbours from a given data object.
+.
+ Instead of converting data attributes to simple points, it retains all
+ the information from each record and represents the points as objects on
+ a detailed axes.
+ 
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float algorithm
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Caption
@@ -1370,13 +1318,75 @@ Continue until there is no change
 \end_layout
 
 \end_deeper
-\begin_layout Plain Layout
-
-\end_layout
-
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+This method, as detailed in Algorithm 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:K-Medoids"
+
+\end_inset
+
+, utilises an inputted value, 
+\begin_inset Formula $k$
+\end_inset
+
+, to segment a given database of objects into 
+\begin_inset Formula $k$
+\end_inset
+
+ clusters.
+ Each cluster exists such that all contained data objects are most closely
+ associated with the medoid of the cluster.
+ The process begins with the initial selection of 
+\emph on
+k
+\emph default
+ arbitrary points as representative medoids, and then computes cluster assignmen
+ts for each of the data objects.
+ Thus, at this stage, each point will be thereby associated with a medoid
+ from the 
+\emph on
+k
+\emph default
+ medoids available.
+\end_layout
+
+\begin_layout Standard
+The algorithm then continues by selecting a random non-medoid data object,
+ O
+\begin_inset Formula $_{r}$
+\end_inset
+
+, and recalculating what the potential benefit, if any, would be if it were
+ to swapped with its current medoid.
+ If there is a benefit, that is to say that the cost of having the medoid
+ swapped, then the system should make the change and continue.
+ This process continues until the system in such a state that every data
+ object has been assigned to a cluster, and that the swapping process no
+ longer optimises the clustering outcome 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "berkhin2002scd"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The decision to swap a medoid in this technique is based on a cost function;
+ that is, the total distance between all points and their respective medoids.
+ Similarly to DBSCAN, the term 
+\emph on
+distance
+\emph default
+ defined here may refer, depending on the implementation, to a Euclidean,
+ Manhattan or Minkowski metric.
 \end_layout
 
 \begin_layout Subsection
@@ -1506,7 +1516,21 @@ Customisations
 \end_layout
 
 \begin_layout Standard
-Detail here what we did to modify the algorithms that we implemented
+As previously mentioned, the subject area under consideration has been investiga
+ted and re-investigated many times over its lifetime.
+ As such, many previous works have discussed ways in which clustering algorithms
+ can be optimised and made otherwise more resilient.
+ This paper attemps to add to already voluminous amount of work by introducing
+ two different techniques to approaching the DBSCAN and K-Medoids algorithms.
+\end_layout
+
+\begin_layout Standard
+These two techniques were chosen for analysis as they are both extremely
+ useful, in terms of the results produced, and also 
+\end_layout
+
+\begin_layout Standard
+It should be noted that these customisations are 
 \end_layout
 
 \begin_layout Standard
@@ -1612,9 +1636,14 @@ reference "Sec:Customisations"
 
 .
  Once developed, these clustering algorithms were applied the specified
- test data set of forest fire data to determine their effectiveness and
- efficiency.
- 
+ test data set of forest fire data to determine their effectiveness, in
+ terms of the number of clusters found and noise points classified, and
+ efficiency, in terms of running time complexity.
+ For each different input and clustering technique, the effects of the previousl
+y-mentioned customisations were also noted, and corresponding results recorded.
+ Analysis of these results aimed to demonstrate if these modifications were
+ able to offer any degree of improvement in the results produced over their
+ original algorithmic counterparts.
 \end_layout
 
 \begin_layout Standard
@@ -1625,37 +1654,11 @@ The tests were performed on the same computing hardware in order to ensure
  These experiments examined a range of varying input parameters to determine
  their effect on an algorithm's results, and to determine any changes in
  speed.
- For each different input and clustering technique, 
-\end_layout
-
-\begin_layout Standard
-Need to run a comparison (on our sample data set) of our two algorithms
- we've implemented, and several others that already exist within WEKA.
- How does their 1) 
-\emph on
-performance
-\emph default
- and 2) 
-\emph on
-accuracy
-\emph default
- stand up to one another? May need to look at how many clusters (on average)
- each method produces and them perform the same function like this (keep
- running until completed)
-\end_layout
-
-\begin_layout Standard
-and to see if the customisations offer any improvement in speed or results
- produced over their original counterparts
+ 
 \end_layout
 
 \begin_layout Subsection
 Comparison Results
-\end_layout
-
-\begin_layout Standard
-Discuss what the results were here, so detail the graphs and tables for
- efficiency and numbers etc.
 \end_layout
 
 \begin_layout Subparagraph*
