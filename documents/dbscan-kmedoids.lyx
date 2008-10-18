@@ -916,6 +916,12 @@ This paper aims to draw a detailed comparison between two general clustering
 \end_layout
 
 \begin_layout Subsection
+\begin_inset CommandInset label
+LatexCommand label
+name "Sub:DBSCAN"
+
+\end_inset
+
 DBSCAN
 \end_layout
 
@@ -1187,6 +1193,12 @@ These newly introduced distances are used to order the objects within a
 \end_layout
 
 \begin_layout Subsection
+\begin_inset CommandInset label
+LatexCommand label
+name "Sub:K-Medoids"
+
+\end_inset
+
 K-Medoids
 \end_layout
 
@@ -1474,7 +1486,7 @@ key "Hartigan1979"
 \end_layout
 
 \begin_layout Subsection
-Capability Comparison 
+Capability comparison
 \end_layout
 
 \begin_layout Standard
@@ -1552,37 +1564,129 @@ It should be noted that these customisations aim only to modify the techniques
 \end_layout
 
 \begin_layout Subsection
-UltraDBSCAN
+DBSCAN
 \end_layout
 
 \begin_layout Standard
-Dynamically modify the value of epsilon such that it becomes adjusted according
- to how many points are present within the current cluster.
- This modification was considered for use within data sets that a constant
- distance value would be ineffective.
- By reducing the epsilon value according to current cluster size, the clusters
- found aim to be denser, and the potential for the 'bridging effect' is
- attempted to be minimised.
+Some authors 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "han2001dmc"
+
+\end_inset
+
+ highlight that one issue with DBSCAN, and similarly, many other clustering
+ techniques, is the necessity to correctly select input parameters.
+ In the case of DBSCAN, these values are the minimum number of points needed
+ to form a cluster, 
+\emph on
+minPoints,
+\emph default
+ and the distance value, 
+\begin_inset Formula $\epsilon$
+\end_inset
+
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "Sub:DBSCAN"
+
+\end_inset
+
+ .
+ As can be expected, if a set of input variables are incorrectly selected
+ - whereby the margin between correct and incorrect may vary greatly, depending
+ on the data set - then the results may be completely unexpected, and thus
+ rendered useless.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+asfdas
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Customised-DBSCAN-procedure"
+
+\end_inset
+
+Customised DBSCAN procedure example
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This paper suggests that the DBSCAN algorithm offer the ability to dynamically
+ modify the 
+\begin_inset Formula $\epsilon$
+\end_inset
+
+ distance value as necessary, rather than relying upon a static, potentially
+ unsuitable, distance across all data objects within a collection.
+ To achieve this change, the distance value is adjusted according to how
+ many points are present within the current cluster.
+ This modification aims to result in a decrease in the distance checked
+ surrounding each subsequent point within a cluster, in an attempt to reduce
+ the potential for data instances being assigned to a cluster when they
+ should otherwise not belong.
+ Consider a dense cluster of objects, such as that in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Customised-DBSCAN-procedure"
+
+\end_inset
+
+, and that this cluster also has a number of other noise objects surrounding
+ it.
+ Using a constant distance value in this situation would be ineffective
+ and would result in the objects that are not as closely related to others
+ in the set being assigned to this cluster.
  The consideration here is that a very dense cluster will see its members
- similarly spaced, and for any given epislon value, if many clusters are
- found under such a value, then epsilon can be decreased to reduce the effect
- of noise.
- See Figure X for details.
-\end_layout
+ similarly spaced.
+ For any given 
+\begin_inset Formula $\epsilon$
+\end_inset
 
-\begin_layout Standard
-Assumption: clusters that are dense will have all members of a similar proximity.
- Assuming the starting Epsilon value locates many points, we consider that
- this is a dense cluster.
- The epsilon value is thereby decreased accordingly, and following neighbours
- are checked for other related points.
- As more points are added, the epsilon value decreases accordingly, thus
- preventing the possibility of locating bridges and bringing these types
- of points into the current cluster.
+, if many data objects are found using such a value, then 
+\begin_inset Formula $\epsilon$
+\end_inset
+
+ can be decreased to reduce the effect of noise, and also lessen the potential
+ for the 
+\emph on
+bridging effect
+\emph default
+, whereby two clusters are inadvertedly joined.
 \end_layout
 
 \begin_layout Subsection
-UltraK-Medoids
+K-Medoids
 \end_layout
 
 \begin_layout Standard
