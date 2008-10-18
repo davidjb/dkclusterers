@@ -251,47 +251,6 @@ Introduction
 \end_layout
 
 \begin_layout Standard
-
-\emph on
-Detail why clustering is powerful, why are we using it, what applications
- it applies to the most
-\end_layout
-
-\begin_layout Standard
-
-\emph on
-Detail brief outline of clustering techniques (partitioning, density etc)
- and what they are most suited for (respectively)
-\end_layout
-
-\begin_layout Standard
-
-\emph on
-Highlight what this paper's purpose is (to compare and contrast dbscan and
- k-medoids), and how it aims to achieve this (experimentation using WEKA
- to compare efficiency and accuracy of results)
-\end_layout
-
-\begin_layout Standard
-
-\emph on
-Highlight that this paper will also attempt to suggest improvements to these
- algorithms (in order to try and obtain better results), and demonstrates
- its findings in this area
-\end_layout
-
-\begin_layout Standard
-
-\emph on
-Lead into the related work section (eg many papers that already exist, and
- we talk about them now in Section 2)
-\end_layout
-
-\begin_layout Subsection
-Importance
-\end_layout
-
-\begin_layout Standard
 Clustering is promoted as an extremely powerful means of grouping related
  data points, and can efficiently reveal highly relevant trends in a source
  data set.
@@ -482,30 +441,8 @@ s, and residents and business owners can be warned earlier.
  costs and, ultimately, fewer lives lost.
 \end_layout
 
-\begin_layout Standard
-
-\emph on
-[Describe what specific data set we've chosen here, and why our selected
- algorithm(s) are worthwhile to be 
-\emph default
-executed
-\emph on
- here.
- Why is the data set relevant to some aspect of life on earth (and why should
- we care)? - this makes the problem important to tackle, and should make
- people interested]
-\end_layout
-
 \begin_layout Subsection
 Results Overview
-\end_layout
-
-\begin_layout Standard
-
-\emph on
-[Brief introduction as to the results of the comparison were..
- what the results indicate (overview) This suggests potential for further
- improvement given additional levels of interest....]
 \end_layout
 
 \begin_layout Standard
@@ -549,22 +486,8 @@ Related Work
 \begin_layout Standard
 
 \emph on
-Detail the specific areas that we are looking at (density and partitioning),
- and what each is most useful for (shape of data, noise, features etc)
-\end_layout
-
-\begin_layout Standard
-
-\emph on
 Provide a paragraph of two for hierarchical etc techniques that the we don't
  cover, and direct the user elsewhere
-\end_layout
-
-\begin_layout Standard
-
-\emph on
-Detail a section for alternative data analysis methods to clustering (and
- why they might be useful elsewhere, but not here)
 \end_layout
 
 \begin_layout Subsection
@@ -592,33 +515,21 @@ the examination of data for interesting patterns and striking deviations
 
 
 \emph default
- and this description, for the most part, translates well to that of data
- mining.
- Such analysis can lead to conclusions which assist a variety of processes
- and people; from medical diagnostics to population growth predictions to
- forest fire forcasting.
+.
+ Such processing can lead to conclusions which assist a multitude of people
+ in varying tasks; from medical diagnostics to population growth predictions
+ to forest fire forcasting.
  The potential developments in these research areas due to quality data
  analysis are not only beneficial in terms of further knowledge and understandin
 g, but will inevitably benefit ordinary people in untold ways far beyond
  the scope of this paper.
-\end_layout
-
-\begin_layout Standard
-
-\emph on
-What is data analysis first (used to obtain patterns and trends from a source
- set of data, with the information used to improve the decision making process
- (people can be more informed)
+ Data mining is a subset of the broader data analysis field, and as such
+ can provide the advantages previously discussed when large data sets require
+ processing.
 \end_layout
 
 \begin_layout Subsection
 Clustering
-\end_layout
-
-\begin_layout Standard
-
-\emph on
-Detail what is clustering (own heading for this)
 \end_layout
 
 \begin_layout Standard
@@ -650,7 +561,7 @@ Given a set of points in multidimensional space, find a partition of the
  they are considered to be related.
  This process results in defined groupings of similar points, where strong
  inter-cluster and weak intra-cluster relationships exist between points,
- and example of which is detailed in Figure 
+ an example of which is detailed in Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Example-of-clustered"
@@ -784,10 +695,6 @@ k
 ) and experience problems defining arbitrarily shaped clusters.
 \end_layout
 
-\begin_layout Standard
-[DIAGRAM HERE]
-\end_layout
-
 \begin_layout Subsection
 Density-Based Clustering Algorithms
 \end_layout
@@ -894,12 +801,12 @@ Density-based algorithms provide advantages over other methods through their
  
 \end_layout
 
-\begin_layout Standard
-[DIAGRAM HERE]
+\begin_layout Subsection
+Alternative Clustering Methods
 \end_layout
 
 \begin_layout Subsection
-Other Techniques
+Alternative Analysis Techniques
 \end_layout
 
 \begin_layout Standard
@@ -1567,7 +1474,7 @@ key "Hartigan1979"
 \end_layout
 
 \begin_layout Subsection
-Comparison
+Capability Comparison 
 \end_layout
 
 \begin_layout Standard
