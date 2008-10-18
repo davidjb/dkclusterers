@@ -61,6 +61,15 @@
   url = {berkhin02survey.ps}
 }
 
+@ARTICLE{bradley1998sca,
+  author = {Bradley, P.S. and Fayyad, U. and Reina, C.},
+  title = {{Scaling clustering algorithms to large databases}},
+  journal = {Knowledge Discovery and Data Mining},
+  year = {1998},
+  pages = {9--15},
+  file = {:C\:\\Documents and Settings\\User\\Desktop\\5030checkout\\papers\\ScalingClusteringToLargeDBs.pdf:PDF}
+}
+
 @ARTICLE{cortez:dma,
   author = {Cortez, P. and Morais, A.},
   title = {{A Data Mining Approach to Predict Forest Fires using Meteorological
@@ -68,7 +77,8 @@
   journal = {{New Trends in Artificial Intelligence, Proceedings of the 13th EPIA
 	2007 - Portuguese Conference on Artificial Intelligence}},
   year = {2007},
-  pages = {pp. 512-523}
+  pages = {pp. 512-523},
+  url = {http://archive.ics.uci.edu/ml/datasets/Forest+Fires}
 }
 
 @MISC{eisen1998caa,
