@@ -483,13 +483,6 @@ name "Sec:Related-Work"
 Related Work
 \end_layout
 
-\begin_layout Standard
-
-\emph on
-Provide a paragraph of two for hierarchical etc techniques that the we don't
- cover, and direct the user elsewhere
-\end_layout
-
 \begin_layout Subsection
 Data Analysis
 \end_layout
@@ -803,6 +796,102 @@ Density-based algorithms provide advantages over other methods through their
 
 \begin_layout Subsection
 Alternative Clustering Methods
+\end_layout
+
+\begin_layout Standard
+Two of the most popular clustering methods in use other than density-based
+ and partitioning
+\emph on
+ 
+\emph default
+are 
+\emph on
+heirarchical 
+\emph default
+and 
+\emph on
+grid-based
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+Heirarchical algorithms can define clusters in two ways; either top-down
+ (divisive) or bottom-up (
+\emph on
+agglomerative
+\emph default
+).
+ Divisive techniques define a broader cluster first which encompasses all
+ points, then split this into more specialised child clusters.
+ These child clusters in turn spawn their own child clusters and the process
+ continues until all points are accounted for.
+ The agglomerative technique is the reverse, defining the smallest and lowest-le
+vel clusters first and working upward until the entire set is contained
+ in one cluster 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "grabmeier2002tca"
+
+\end_inset
+
+.
+ The methods are advantageous in terms of processing time efficiency, but
+ accuracy suffers as they do not allow for incorrect clustering decisions
+ to be reversed (back-traversal).
+ Chameleon 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "karypis1999chc"
+
+\end_inset
+
+ and BIRCH 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "zhang1997bnd"
+
+\end_inset
+
+ are examples of hierarchical methods; Chameleon concerns analysis of interobjec
+t relationships at each hierarchical level and BIRCH utilises iterative
+ relocation.
+\end_layout
+
+\begin_layout Standard
+Grid-based techniques divide the data space into a finite number of cells
+ (hence 
+\emph on
+grid
+\emph default
+) and clustering methods are applied to these segments.
+ Due to this division of study space, such algorithms are dependent in terms
+ of processing only on the quantity of cells at any dimension.
+ Thus the technique has very high computational processing efficiency.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "han2001dmc"
+
+\end_inset
+
+ The WaveCluster 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "sheikholeslami1998wmr"
+
+\end_inset
+
+ and STING 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "wang1997ssi"
+
+\end_inset
+
+ algorithms both employ grid-based clustering techniques; WaveCluster utilises
+ wavelet transformations on source data and STING exhibits typical grid-based
+ analysis behaviour.
 \end_layout
 
 \begin_layout Subsection
