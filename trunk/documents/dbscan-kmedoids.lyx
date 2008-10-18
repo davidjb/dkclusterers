@@ -1225,7 +1225,7 @@ key "kaufman1987cmm"
 \begin_inset Float algorithm
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Caption
@@ -1271,6 +1271,12 @@ Randomly select a non-medoid object,
 \end_layout
 
 \begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:Compute-the-total"
+
+\end_inset
+
 Compute the total cost of swapping initial medoid object with 
 \begin_inset Formula $O$
 \end_inset
@@ -1607,10 +1613,6 @@ sideways false
 status open
 
 \begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
 asfdas
 \end_layout
 
@@ -1624,15 +1626,11 @@ name "fig:Customised-DBSCAN-procedure"
 
 \end_inset
 
-Customised DBSCAN procedure example
+Customised DBSCAN procedure
 \end_layout
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Plain Layout
 
 \end_layout
 
@@ -1690,25 +1688,145 @@ K-Medoids
 \end_layout
 
 \begin_layout Standard
-Only recalculate the medoid associations of points once per swap iteration.
- At present, the algorithm re-calculates the medoid assignments for all
- points in order to determine the total cost of swapping the system.
- In many situations, this would be grossly inefficient as most points should
- remain associated with the same medoid.
- The only data instances that would change are those which have close to
- dual-medoid membership, given the location of the new, potential medoid.
- Thus, the system instead only swaps the medoid out temporarily with the
- other randomly selected medoid, and then computes the total cost without
- recomputing all distances.
+As previously mentioned in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "Sub:K-Medoids"
+
+\end_inset
+
+, one of the biggest issues that exists with the K-Medoids algorithm is
+ the computational time required to determine the suitability of a given
+ random object becoming a new medoid 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "han2001dmc"
+
+\end_inset
+
+.
+ This overhead is larely unnecessary, as a system will frequently be in
+ such a state that the reassignment of a given medoid will not affect a
+ large amount of data objects present.
+ This would especially be the case for a large data set that consists of
+ many clusters; a single medoid change would only affect the small number
+ of objects and clusters nearby to it.
  
 \end_layout
 
 \begin_layout Standard
-The result is that the time complexity reduces from approximately 
-\begin_inset Formula $O(2$
+Within the original algorithm, detailed in Algorithm 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:K-Medoids"
+
+\end_inset
+
+, the step described at 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:Compute-the-total"
+
+\end_inset
+
+ is the one which has been determined to be the most superfluous.
+ At present, calculating the cost of swapping one medoid for another is
+ significant, with the time complexity of this one sub-operation resulting
+ as being 
+\begin_inset Formula $O(n)$
+\end_inset
+
+, where 
+\begin_inset Formula $n$
+\end_inset
+
+ is the number of objects present within the given database.
+ When one considers this operation in context, that the entire set of data
+ objects need to be iterated over each time a swap, or potential swap, occur,
+ the overhead is evident.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+asfdas
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Customised-kmedoids-example"
+
+\end_inset
+
+Customised K-Medoids example
+\end_layout
+
 \end_inset
 
 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A suitable customisation to the K-Medoids procedure is to attempt to limit
+ the number of times the data objects each need to be processed, per iteration
+ of swaps of medoids.
+ This suggested concept requires the clustering associations, and thereby
+ the distances from a given data object to its related medoid, be recalculated
+ at most only once when a medoid object is changed.
+ At present, the algorithm recomputes the cluster and medoid assignments
+ for all points in two instances: intially or after a swap has occurred,
+ and also in order to determine the total cost of swapping a medoid within
+ the system.
+ In many situations, this would be grossly inefficient as most points should
+ and will remain associated with the same medoid.
+ The only data instances that would change are those which have close to
+ dual-medoid membership, given the location of the new, potential medoid.
+ With the suggested customiations, the algorithm only recalculates cluster
+ membership after a change has been made, and rather than recomputing all
+ memberships at the second instance, it instead swaps a given medoid out
+ temporarily with the other randomly selected medoid.
+\end_layout
+
+\begin_layout Standard
+Because the second iteration through the entire data set is made redundant,
+ the total cost of swapping medoids can be made at the same time that clustering
+ assignments are made.
+ The result of this change is a significant improvement in time complexity,
+ reducing the original system from 
+\begin_inset Formula $O(2n)$
+\end_inset
+
+ to 
+\begin_inset Formula $O(n)$
+\end_inset
+
+, whereby 
+\begin_inset Formula $n$
+\end_inset
+
+ is the number of objects within the given set of data.
+ Put into practice, the results of experiements performed on this specialised
+ algorithm are show in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "Sec:Results-and-Discussion"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Section
@@ -1845,6 +1963,7 @@ As detailed in the figure, each of these algorithms operates in a similar
 
 \begin_layout Standard
 \begin_inset Float figure
+placement p
 wide false
 sideways false
 status open
@@ -2135,6 +2254,19 @@ As the topic of data mining, and more specifically, clustering, becomes
  necessity for faster and equally accurate algorithms rises.
  This paper has shown this, and several other applications do exist, and
  it can only be assumed that 
+\end_layout
+
+\begin_layout Standard
+There are many other potential improvements that could be investigated with
+ clustering techniques - extensions to the work presented here are essentially
+ unable to be bounded.
+ Suggestions that come to mind would be to attempt to limit the importance
+ of input variables and their effect on the results of clustering.
+ As methodologies stand at present, incorrect parameters can result in vastly
+ different clustering results being generated.
+ By being able to reduce or eliminate the presence and effects these variables
+ have on results, a system will be able to produce more objective results
+ with greater accuracy.
 \end_layout
 
 \begin_layout Standard
