@@ -188,6 +188,16 @@
   publisher = {ACM Press New York, NY, USA}
 }
 
+@ARTICLE{karypis1999chc,
+  author = {Karypis, G. and Han, E.H.S. and Kumar, V.},
+  title = {{Chameleon: Hierarchical Clustering Using Dynamic Modeling}},
+  journal = {COMPUTER},
+  year = {1999},
+  pages = {68--75},
+  file = {:C\:\\Documents and Settings\\User\\Desktop\\5030checkout\\papers\\chameleon.pdf:PDF},
+  publisher = {IEEE Computer Society}
+}
+
 @ARTICLE{kaufman1987cmm,
   author = {Kaufman, L. and Rousseeuw, PJ},
   title = {{Clustering by means of medoids, 405--416}},
@@ -230,6 +240,16 @@
   file = {:C\:\\Documents and Settings\\User\\Desktop\\5030checkout\\papers\\FuzzyRelativeOfKMedoids.ps:PostScript}
 }
 
+@ARTICLE{moore1998pas,
+  author = {Moore, D.S.},
+  title = {{Probability and Statistics in the Core Curriculum}},
+  journal = {MAA NOTES},
+  year = {1998},
+  pages = {93--98},
+  file = {:C\:\\Documents and Settings\\User\\Desktop\\5030checkout\\papers\\DataAnalysisDef.pdf:PDF},
+  publisher = {MATHEMATICAL ASSOCIATION OF AMERICA}
+}
+
 @CONFERENCE{ng1994eae,
   author = {Ng, R.T. and Han, J.},
   title = {{Efficient and Effective Clustering Methods for Spatial Data Mining}},
@@ -256,6 +276,38 @@
   author = {Park, H.S. and Lee, J.S. and Jun, C.H.},
   title = {{A K-means-like Algorithm for K-medoids Clustering and Its Performance}},
   file = {:C\:\\Documents and Settings\\User\\Desktop\\5030checkout\\papers\\KMeansLikeAlgorithm.pdf:PDF}
+}
+
+@CONFERENCE{sheikholeslami1998wmr,
+  author = {Sheikholeslami, G. and Chatterjee, S. and Zhang, A.},
+  title = {{WaveCluster: A Multi-Resolution Clustering Approach for Very Large
+	Spatial Databases}},
+  booktitle = {PROCEEDINGS OF THE INTERNATIONAL CONFERENCE ON VERY LARGE DATA BASES},
+  year = {1998},
+  pages = {428--439},
+  organization = {INSTITUTE OF ELECTRICAL \& ELECTRONICS ENGINEERS},
+  file = {:C\:\\Documents and Settings\\User\\Desktop\\5030checkout\\papers\\wavecluster.pdf:PDF}
+}
+
+@CONFERENCE{wang1997ssi,
+  author = {Wang, W. and Yang, J. and Muntz, R.},
+  title = {{STING: A Statistical Information Grid Approach to Spatial Data Mining}},
+  booktitle = {Proceedings of the International Conference On Very Large Databases},
+  year = {1997},
+  pages = {186--195},
+  organization = {INSTITUTE OF ELECTRICAL \& ELECTRONICS ENGINEERS (IEEE)},
+  file = {:C\:\\Documents and Settings\\User\\Desktop\\5030checkout\\papers\\STING.pdf:PDF}
+}
+
+@ARTICLE{zhang1997bnd,
+  author = {Zhang, T. and Ramakrishnan, R. and Livny, M.},
+  title = {{BIRCH: A New Data Clustering Algorithm and Its Applications}},
+  journal = {Data Mining and Knowledge Discovery},
+  year = {1997},
+  volume = {1},
+  pages = {141--182},
+  number = {2},
+  publisher = {Springer}
 }
 
 @comment{jabref-meta: selector_publisher:}
