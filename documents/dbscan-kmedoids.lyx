@@ -504,11 +504,8 @@ Results Overview
 
 \emph on
 [Brief introduction as to the results of the comparison were..
- what the results indicate (overview) The improvements this paper suggests
- to both the DBSCAN and K-medoids algorithms show a level of improvement
- for the data set that is utilised for testing.
- This suggests potential for further improvement given additional levels
- of interest....]
+ what the results indicate (overview) This suggests potential for further
+ improvement given additional levels of interest....]
 \end_layout
 
 \begin_layout Standard
@@ -519,7 +516,24 @@ reference "Sec:Results-and-Discussion"
 
 \end_inset
 
- show that...
+ form the basis of the experimental portion of this paper.
+ Based on the forest fires data set, these figures reflect the implementation
+ results of the DBSCAN and K-Medoids algorithms.
+ 
+\end_layout
+
+\begin_layout Standard
+In addition, testing of the improvements that this paper suggests for both
+ the aforementioned techniques has shown a level of computational improvement
+ under both methods for the data set utilised.
+ These findings are detailed and discussed in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "Sec:Results-and-Discussion"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Section
@@ -585,8 +599,8 @@ the examination of data for interesting patterns and striking deviations
  forest fire forcasting.
  The potential developments in these research areas due to quality data
  analysis are not only beneficial in terms of further knowledge and understandin
-g, but will inevitably benefit ordinary people in a multitude of ways far
- beyond the scope of this paper.
+g, but will inevitably benefit ordinary people in untold ways far beyond
+ the scope of this paper.
 \end_layout
 
 \begin_layout Standard
