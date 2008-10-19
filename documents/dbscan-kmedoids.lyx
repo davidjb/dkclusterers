@@ -1401,7 +1401,7 @@ key "kaufman1987cmm"
 \begin_inset Float algorithm
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Caption
@@ -1515,7 +1515,60 @@ ts for each of the data objects.
 \emph on
 k
 \emph default
- medoids available.
+ medoids available, as demonstrated in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Kmedoids-clustering-process"
+
+\end_inset
+
+.
+ In this example, the two marked data objects are considered as medoids
+ of their respective clusters.
+ During this initial stage of the algorithm, the surrounding objects are
+ assigned to their closest respective medoid.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename kmedoids.png
+	lyxscale 50
+	width 50col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Kmedoids-clustering-process"
+
+\end_inset
+
+K-Medoids clustering process
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1789,7 +1842,15 @@ sideways false
 status open
 
 \begin_layout Plain Layout
-asfdas
+\align center
+\begin_inset Graphics
+	filename dbscanultra.png
+	lyxscale 50
+	width 50col%
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Plain Layout
@@ -2036,12 +2097,29 @@ The tests were performed on the same computing hardware in order to ensure
  
 \end_layout
 
+\begin_layout Standard
+It should be noted, however, whilst these experiments may appear conclusive,
+ there are a number of other factors that may have a significant impact
+ upon the results being generated.
+ For example, consider the measurement of the performance of a given clustering
+ technique.
+ In order to perform this process, it needs to be run on a computer which,
+ due to operating system overhead, might otherwise skew results due to other
+ tasks consuming processor load.
+ Similarly, given that the algorithms detailed here are implemented using
+ Java, the JVM or WEKA suite itself, may implement some degree of caching,
+ such that the results of one test may unknowingly become the first pre-processi
+ng step for the next.
+ These issues can be overcome, however, through the consideration of generalised
+ trends and average results over a number of different tests.
+\end_layout
+
 \begin_layout Subsection
 Comparison Results
 \end_layout
 
 \begin_layout Subparagraph*
-Density Based
+Peformance
 \end_layout
 
 \begin_layout Standard
@@ -2054,7 +2132,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename dbscanspeed.png
-	lyxscale 50
+	lyxscale 75
 	width 85col%
 
 \end_inset
@@ -2079,6 +2157,10 @@ Density-based performance by epsilon
 
 \end_inset
 
+
+\end_layout
+
+\begin_layout Standard
 Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -2096,12 +2178,54 @@ reference "fig:DBSCAN-Performance-Results"
 \end_layout
 
 \begin_layout Standard
-As detailed in the figure, each of these algorithms operates in a similar
- time complexity.
- What is evident, however, is that generally, as epsilon increases, there
- will be a marginal increase in the amount of time necessary to complete
- the clustering operation.
+Peformance based upon a modification of epsilon: the minimum number of points
+ is maintained at a constant value, 6, and the value of epsilon is changed
+ accordingly.
  
+\end_layout
+
+\begin_layout Standard
+The four clustering algorithms used in this situation concern density-based
+ techniques: the original DBSCAN algorithm that was implemented within WEKA,
+ the newly implemented DBSCAN algorithm - which is refered hereafter as
+ 
+\emph on
+UltraDBScan
+\emph default
+, its customised counterpart, referred to as 
+\emph on
+UltraDBScan (Custom)
+\emph default
+, and finally, the WEKA implementation of the OPTICS method.
+ 
+\end_layout
+
+\begin_layout Standard
+Followed by the new implementation of UltraDBScan, and then the performance
+ of both OPTICS and the customised UltraDBScan were relatively similar across
+ the change in epsilon.
+\end_layout
+
+\begin_layout Standard
+These tests demonstrate that for the given data set, the processing time
+ is generally the same for each clustering algorithm, irrespective of a
+ change in epsilon.
+ What the tests do demonstratre, however, is that on average, the original
+ DBSCAN algorithm is the worst peforming of each of the algorithms.
+ Notably, the new implementation of UltraDBScan was able to typically perform
+ faster than that of the original implementation that ships within WEKA.
+ On closer inspection of the source code behind the original algorithm,
+ it was clear that a difference in how each traverses to a point's neighbours
+ was the cause of the performance improvement.
+ The two remaining techniques, the customised UltraDBScan and OPTICS, were
+ able to outperform the rest.
+ The reasoning for the customised algorithm performing better than its original
+ counterpart is due to the addition of the dynamic epsilon value.
+ Because this value essentially constricts the allowable spread of clusters,
+ the result is that there are fewer recursive calls made to surrounding
+ objects to for each cluster.
+ Thus, this reduction in complexity of processing produces an algorithm
+ that is typically faster, overall.
 \end_layout
 
 \begin_layout Standard
@@ -2115,7 +2239,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename dbscanspeedattrib.png
-	lyxscale 50
+	lyxscale 75
 	width 85col%
 
 \end_inset
@@ -2152,46 +2276,8 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename dbscannoise.png
-	lyxscale 50
-	width 85col%
-
-\end_inset
-
-
-\begin_inset Caption
-
-\begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:DBSCAN-performance-noise"
-
-\end_inset
-
-Density-based performance by resulting noise
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
 	filename kmedoidsspeed.png
-	lyxscale 50
+	lyxscale 75
 	width 85col%
 
 \end_inset
@@ -2227,13 +2313,13 @@ Partitioning performance by
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename kmedoidspeedattrib.png
-	lyxscale 50
+	lyxscale 75
 	width 85col%
 
 \end_inset
@@ -2259,6 +2345,82 @@ Partitioning performance by attributes
 \end_inset
 
 
+\end_layout
+
+\begin_layout Subparagraph*
+Clustering Results
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename dbscannoise.png
+	lyxscale 75
+	width 85col%
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:DBSCAN-performance-noise"
+
+\end_inset
+
+Density-based performance by resulting noise
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+As detailed in the figure, each of these algorithms operates in a similar
+ time complexity.
+ What is evident, however, is that generally, as epsilon increases, there
+ will be a marginal increase in the amount of time necessary to complete
+ the clustering operation.
+ 
+\end_layout
+
+\begin_layout Standard
+Due to comparable limitations of the K-Medoids and K-Means algorithms, a
+ similar figure cannot be produced.
+ The inherent purpose of these parition-based techniques is to ensure that
+ all elements in a database are assigned to a cluster, and thus, none are
+ ever specified as noise.
+ This is described in the operations in Algorithm 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:K-Medoids"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:K-Means"
+
+\end_inset
+
+, whereby each object present is assigned to its nearest medoid or centroid.
+ Unlike the density-based techniques described here, no degree of analysis
+ occurs to determine if a given point should belong to any cluster.
 \end_layout
 
 \begin_layout Subsection
@@ -2317,6 +2479,8 @@ reference "Sub:Experimental-Data-Set"
  for details regarding this test data set.
  As mentioned previously, using a different set of data may, and most likely
  will, reveal different patterns and see a change in processing time complexity.
+ This would especially be the case, if incorrect input parameters are being
+ used for the given clustering algorithms.
  That said, the results detailed in Section 
 \begin_inset CommandInset ref
 LatexCommand ref
