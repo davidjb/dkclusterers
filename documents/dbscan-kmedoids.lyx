@@ -276,12 +276,12 @@ Applications
 \begin_layout Standard
 Data mining in general has a multitude of applications across a wide variety
  of fields.
- Pattern recognition for image analysis, medical diagnostics, sales forcasting
+ Pattern recognition for image analysis, medical diagnostics, sales forecasting
  and weather prediction are a recognised as a few of the more traditional
  usages.
  However, due to extensive development in the field and the recent explosion
  in data recording the capabilities extend far beyond these basic functions.
- Onboard computer analysis in vehicles, product quality analysis, targeted
+ On-board computer analysis in vehicles, product quality analysis, targeted
  advertising campaigns, spam email filtration, fraud detection, and online
  crime analysis are but a few of the fields into which data mining now extends.
  
@@ -322,7 +322,7 @@ There are a wide variety of clustering methodologies that exist within this
  These include, but are not limited to, grid-based categorisation, density-based
  grouping, hierarchical segmentation, and constraint-based analysis.
  As these techniques have been already widely researched, there are many
- existing works that compare and constrast each.
+ existing works that compare and contrast each.
  The interested reader is directed to 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -348,14 +348,18 @@ density-based
 
 \begin_layout Standard
 Partitioning algorithms are effective for mining data sets when computation
- of a dendrogram (clustering tree) representation is infeasible.
- 
+ of a clustering tree, or 
+\emph on
+dendrogram
+\emph default
+, representation is infeasible 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "jain1999dcr"
 
 \end_inset
 
+.
  In particular, K-Medoids is highly efficient for moderately sized data
  sets with spherical-type clusters.
  However, due to the inherent swapping of medoids to optimise the clustered
@@ -407,7 +411,7 @@ Experimental Data Set
 \end_layout
 
 \begin_layout Standard
-The data set chosen for the comparison of and ammendments to the K-Medoids
+The data set chosen for the comparison of and amendments to the K-Medoids
  and DBSCAN techniques is 
 \emph on
 forest fires
@@ -431,13 +435,13 @@ key "cortez:dma"
 Analysing this data set is necessary because forest fires cause millions
  of dollars damage to property and claim many lives each year.
  If clustering techniques can be used to more accurately determine the patterns
- of such fires given provailing environmental conditions, scientists and
+ of such fires given prevailing environmental conditions, scientists and
  researchers will be able to achieve further understanding of the phenomenon.
  This knowledge will reap enormous benefits; predictive techniques can be
- updated, analysis centres local to fires can more accurately forcast fire
+ updated, analysis centres local to fires can more accurately forecast fire
  behaviour, government agencies can be continuously informed of these conclusion
 s, and residents and business owners can be warned earlier.
- This improved system will result in reduced property damage, lower resoration
+ This improved system will result in reduced property damage, lower restoration
  costs and, ultimately, fewer lives lost.
 \end_layout
 
@@ -486,8 +490,8 @@ Related Work
 \begin_layout Standard
 
 \emph on
-need to write about the other types of density and partiioning that have
- been tried other than dbscan and kmedoids
+need to write about the other types of density and partitioning that have
+ been tried other than DBSCAN and kmedoids
 \end_layout
 
 \begin_layout Subsection
@@ -518,7 +522,7 @@ the examination of data for interesting patterns and striking deviations
 .
  Such processing can lead to conclusions which assist a multitude of people
  in varying tasks; from medical diagnostics to population growth predictions
- to forest fire forcasting.
+ to forest fire forecasting.
  The potential developments in these research areas due to quality data
  analysis are not only beneficial in terms of further knowledge and understandin
 g, but will inevitably benefit ordinary people in untold ways far beyond
@@ -650,7 +654,7 @@ Partitioning methods define clusters by grouping data points into
 \emph on
 k
 \emph default
- partitions (defined at runtime).
+ partitions, defined by the user at the time the process is executed.
  A point is determined to be 
 \emph on
 similar
@@ -731,13 +735,9 @@ key "kaufman1987cmm"
  As K-Medoids provides dramatic improvements in noise immunity a great deal
  of further research has been pursued, including the forthcoming work in
  this paper.
- 
-\emph on
-PAM (Partitioning Around Medoids)
-\emph default
- randomly chooses medoids, then randomly calculates the result of swapping
- these with other random objects in an attempt to improve the clustering
- outcome 
+ Partitioning Around Medoids (PAM) randomly chooses medoids, then randomly
+ calculates the result of swapping these with other random objects in an
+ attempt to improve the clustering outcome 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "kaufman1990pam"
@@ -747,9 +747,9 @@ key "kaufman1990pam"
 .
  This approach works adequately for small source sets, but does not scale
  well as complexity at each iteration is quadratic.
- 
+ Clustering LARge Applications (CLARA)
 \emph on
-CLARA (Clustering LARge Applications) 
+ 
 \emph default
 takes a single random selection of points in the set as representative data
  and then applies PAM to this smaller subset 
@@ -763,9 +763,17 @@ key "kaufman1990fgd"
  Reducing the size of the set for analysis improves scalability as complexity
  at each iterations is linear, but the method suffers depending on the quality
  of sample data chosen.
- 
+
 \emph on
-CLARANS (Clustering Large Applications based on RANdomized Search) 
+ 
+\emph default
+Clustering Large Applications based on RANdomised Search 
+\emph on
+(
+\emph default
+CLARANS)
+\emph on
+ 
 \emph default
 takes a random dynamic selection of data at each step of process – thus
  the same sample set is not used throughout the clustering process 
@@ -961,7 +969,7 @@ Two of the most popular clustering methods in use other than density-based
 \emph default
 are 
 \emph on
-heirarchical 
+hierarchical 
 \emph default
 and 
 \emph on
@@ -971,19 +979,19 @@ grid-based
 \end_layout
 
 \begin_layout Standard
-Heirarchical algorithms can define clusters in two ways; either top-down
+Hierarchical algorithms can define clusters in two ways; either top-down
  (divisive) or bottom-up (
 \emph on
-agglomerative
+agglomerate
 \emph default
 ).
  Divisive techniques define a broader cluster first which encompasses all
  points, then split this into more specialised child clusters.
  These child clusters in turn spawn their own child clusters and the process
  continues until all points are accounted for.
- The agglomerative technique is the reverse, defining the smallest and lowest-le
-vel clusters first and working upward until the entire set is contained
- in one cluster 
+ The agglomerate technique is the reverse, defining the smallest and lowest-leve
+l clusters first and working upward until the entire set is contained in
+ one cluster 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "grabmeier2002tca"
@@ -1008,8 +1016,8 @@ key "zhang1997bnd"
 
 \end_inset
 
- are examples of hierarchical methods; Chameleon concerns analysis of interobjec
-t relationships at each hierarchical level and BIRCH utilises iterative
+ are examples of hierarchical methods; Chameleon concerns analysis of inter-obje
+ct relationships at each hierarchical level and BIRCH utilises iterative
  relocation.
 \end_layout
 
@@ -1055,7 +1063,7 @@ Alternative Analysis Techniques
 
 \begin_layout Standard
 Clustering differs from other classical data mining methodologies in a variety
- of ways and extensive listerature already exists explaining this.
+ of ways and extensive literature already exists explaining this.
  For the purpose of conciseness, this paper will compare and contrast clustering
  only with the techniques of 
 \emph on
@@ -1073,7 +1081,7 @@ Classification is the process of constructing a learning model, or
 \emph on
 classifier
 \emph default
-, that assigns points in a dataset to predefined classes
+, that assigns points in a data set to predefined classes
 \begin_inset CommandInset citation
 LatexCommand cite
 key "fayyad1996dma"
@@ -1099,7 +1107,7 @@ supervised
 \end_inset
 
  due to example data exposure.
- Once the model is complete it can be applied to real, unlabelled data and
+ Once the model is complete it can be applied to real, labelled data and
  assign each new tuple to its respective class
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -1127,7 +1135,7 @@ key "han2001dmc"
 
 ; for example, determining the price of a stock market share at some point
  in the future given previous performance trends.
- Unlike prediction, clustering is not exclusively used for forcasting future
+ Unlike prediction, clustering is not exclusively used for forecasting future
  values, rather grouping like points for immediate assessment.
 \end_layout
 
@@ -1152,7 +1160,7 @@ Comparison
 
 \begin_layout Standard
 This paper aims to draw a detailed comparison between two general clustering
- designations - density-based clustering and paritioning, and to do so,
+ designations - density-based clustering and partitioning, and to do so,
  examines the differences between several specific techniques.
  By examining the differences in how each technique operates, the fundamental
  differences in their capabilities, and likewise to what circumstances are
@@ -1315,7 +1323,7 @@ minPoints
  This process then continues for all of the neighbours, processing them
  accordingly.
  At such time that a given cluster has been fully explored, the process
- begins again, until all points have been visisted.
+ begins again, until all points have been visited.
  At its conclusion, all defined clusters are finalised; no further points
  can be added to any cluster and any unclustered points are declared as
  
@@ -1375,7 +1383,7 @@ Initial stage of DBSCAN technique
 \end_layout
 
 \begin_layout Standard
-An initial processing stage for the DBSCAN procedure is shown in a simplifed
+An initial processing stage for the DBSCAN procedure is shown in a simplified
  data set within Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -1396,8 +1404,7 @@ OPTICS
 
 \begin_layout Standard
 The Ordering Points to Identify the Clustering Structure (OPTICS) algorithm
- is structurally identitical to that of the previously mentioned DBSCAN
- 
+ is structurally identical to that of the previously mentioned DBSCAN 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "ankerst1999oop"
@@ -1471,18 +1478,17 @@ K-Medoids
 \end_layout
 
 \begin_layout Standard
-The K-Medoids clustering technique is concerned with the concept of paritioning
+The K-Medoids clustering technique is concerned with the concept of partitioning
  data objects.
- The technique was first developed in 1987 by Kaufman & Rousseeuw and seeks
- to reduce the impact of noisy data experienced in simpler partitioning
- algorithms, such as K-Means 
+ The technique was first developed in 1987 by Kaufman and Rousseeuw 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "kaufman1987cmm"
 
 \end_inset
 
-.
+ and seeks to reduce the impact of noisy data experienced in simpler partitionin
+g algorithms, such as K-Means.
  Instead of converting data attributes to simple points, it retains all
  the information from each record and represents the points as objects on
  a detailed axes.
@@ -1493,7 +1499,7 @@ key "kaufman1987cmm"
 \begin_inset Float algorithm
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Caption
@@ -1522,7 +1528,7 @@ Arbitrarily select
 \end_layout
 
 \begin_layout Enumerate
-Whilst swaps are occuring 
+Whilst swaps are occurring 
 \end_layout
 
 \begin_deeper
@@ -1559,7 +1565,7 @@ If the total cost of swapping is less than the total cost of the current
 
 \begin_deeper
 \begin_layout Enumerate
-Swap the inital medoid with 
+Swap the initial medoid with 
 \begin_inset Formula $O$
 \end_inset
 
@@ -1745,7 +1751,7 @@ Arbitrarily or heuristically select
 \end_layout
 
 \begin_layout Enumerate
-Whilst centroid changes are occuring 
+Whilst centroid changes are occurring 
 \end_layout
 
 \begin_deeper
@@ -1850,7 +1856,7 @@ Draw conclusions about the types of data that each technique is most suited
 The DBSCAN algorithm, like other density-based techniques, is most suited
  to data sets where the presence of noise would otherwise affect results,
  and also when the number, shape, or size of clusters present are not known.
- These are two benefits which are not available from the partitoning techniques
+ These are two benefits which are not available from the partitioning techniques
  - K-Medoids or K-Means - under review.
  Both of these algorithms are sensitive to noise 
 \end_layout
@@ -1870,7 +1876,7 @@ As previously mentioned, the subject area under consideration has been investiga
 ted and re-investigated many times over its lifetime.
  As such, many previous works have discussed ways in which clustering algorithms
  can be optimised and made otherwise more resilient.
- This paper attemps to add to already voluminous amount of work by introducing
+ This paper attempts to add to already voluminous amount of work by introducing
  two different techniques to approaching the DBSCAN and K-Medoids algorithms.
  These two techniques were chosen for analysis as they both can operate
  successfully, in terms of the results produced, and are well established
@@ -1891,6 +1897,12 @@ It should be noted that these customisations aim only to modify the techniques
 \end_layout
 
 \begin_layout Subsection
+\begin_inset CommandInset label
+LatexCommand label
+name "Sub:Customisations-DBSCAN"
+
+\end_inset
+
 DBSCAN
 \end_layout
 
@@ -1916,7 +1928,7 @@ minPoints,
  
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "Sub:DBSCAN"
+reference "Sub:Customisations-DBSCAN"
 
 \end_inset
 
@@ -1942,7 +1954,7 @@ status open
 
 \end_inset
 
-
+ds
 \end_layout
 
 \begin_layout Plain Layout
@@ -2009,10 +2021,16 @@ reference "fig:Customised-DBSCAN-procedure"
 \emph on
 bridging effect
 \emph default
-, whereby two clusters are inadvertedly joined.
+, whereby two clusters are inadvertently joined.
 \end_layout
 
 \begin_layout Subsection
+\begin_inset CommandInset label
+LatexCommand label
+name "Sub:Customisations-K-Medoids"
+
+\end_inset
+
 K-Medoids
 \end_layout
 
@@ -2034,7 +2052,7 @@ key "han2001dmc"
 \end_inset
 
 .
- This overhead is larely unnecessary, as a system will frequently be in
+ This overhead is largely unnecessary, as a system will frequently be in
  such a state that the reassignment of a given medoid will not affect a
  large amount of data objects present.
  This would especially be the case for a large data set that consists of
@@ -2083,14 +2101,14 @@ A suitable customisation to the K-Medoids procedure is to attempt to limit
  the distances from a given data object to its related medoid, be recalculated
  at most only once when a medoid object is changed.
  At present, the algorithm recomputes the cluster and medoid assignments
- for all points in two instances: intially or after a swap has occurred,
+ for all points in two instances: initially or after a swap has occurred,
  and also in order to determine the total cost of swapping a medoid within
  the system.
  In many situations, this would be grossly inefficient as most points should
  and will remain associated with the same medoid.
  The only data instances that would change are those which have close to
  dual-medoid membership, given the location of the new, potential medoid.
- With the suggested customiations, the algorithm only recalculates cluster
+ With the suggested customisations, the algorithm only recalculates cluster
  membership after a change has been made, and rather than recomputing all
  memberships at the second instance, it instead swaps a given medoid out
  temporarily with the other randomly selected medoid.
@@ -2114,7 +2132,7 @@ Because the second iteration through the entire data set is made redundant,
 \end_inset
 
  is the number of objects within the given set of data.
- Put into practice, the results of experiements performed on this specialised
+ Put into practice, the results of experiments performed on this specialised
  algorithm are show in Section 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -2207,11 +2225,39 @@ ng step for the next.
 \end_layout
 
 \begin_layout Subsection
+\begin_inset CommandInset label
+LatexCommand label
+name "Sub:Comparison-Results"
+
+\end_inset
+
 Comparison Results
 \end_layout
 
 \begin_layout Subparagraph*
-Peformance
+Density-based Performance
+\end_layout
+
+\begin_layout Standard
+The four clustering algorithms used concern density-based techniques: the
+ original DBSCAN algorithm that was implemented within WEKA, the newly implement
+ed DBSCAN algorithm - which is referred hereafter as 
+\emph on
+UltraDBScan
+\emph default
+, its customised counterpart described in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "Sub:Customisations-DBSCAN"
+
+\end_inset
+
+, referred to as 
+\emph on
+UltraDBScan (Custom)
+\emph default
+, and finally, the WEKA implementation of the OPTICS method.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -2253,74 +2299,6 @@ Density-based performance by epsilon
 \end_layout
 
 \begin_layout Standard
-Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:DBSCAN-Performance-Results"
-
-\end_inset
-
- shows a detailed comparison of performance of various density-based clustering
- algorithms, and demonstrates the speed of clustering, based upon a differing
- epsilon distance value.
- The epsilon value is varied to determine its effect upon each technique,
- given that it could be expected that a larger epsilon value would see generally
- larger clusters with greater quantities of members in each cluster.
- 
-\end_layout
-
-\begin_layout Standard
-Peformance based upon a modification of epsilon: the minimum number of points
- is maintained at a constant value, 6, and the value of epsilon is changed
- accordingly.
- 
-\end_layout
-
-\begin_layout Standard
-The four clustering algorithms used in this situation concern density-based
- techniques: the original DBSCAN algorithm that was implemented within WEKA,
- the newly implemented DBSCAN algorithm - which is refered hereafter as
- 
-\emph on
-UltraDBScan
-\emph default
-, its customised counterpart, referred to as 
-\emph on
-UltraDBScan (Custom)
-\emph default
-, and finally, the WEKA implementation of the OPTICS method.
- 
-\end_layout
-
-\begin_layout Standard
-Followed by the new implementation of UltraDBScan, and then the performance
- of both OPTICS and the customised UltraDBScan were relatively similar across
- the change in epsilon.
-\end_layout
-
-\begin_layout Standard
-These tests demonstrate that for the given data set, the processing time
- is generally the same for each clustering algorithm, irrespective of a
- change in epsilon.
- What the tests do demonstratre, however, is that on average, the original
- DBSCAN algorithm is the worst peforming of each of the algorithms.
- Notably, the new implementation of UltraDBScan was able to typically perform
- faster than that of the original implementation that ships within WEKA.
- On closer inspection of the source code behind the original algorithm,
- it was clear that a difference in how each traverses to a point's neighbours
- was the cause of the performance improvement.
- The two remaining techniques, the customised UltraDBScan and OPTICS, were
- able to outperform the rest.
- The reasoning for the customised algorithm performing better than its original
- counterpart is due to the addition of the dynamic epsilon value.
- Because this value essentially constricts the allowable spread of clusters,
- the result is that there are fewer recursive calls made to surrounding
- objects to for each cluster.
- Thus, this reduction in complexity of processing produces an algorithm
- that is typically faster, overall.
-\end_layout
-
-\begin_layout Standard
 \begin_inset Float figure
 placement p
 wide false
@@ -2357,6 +2335,94 @@ Density-based performance by attributes
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:DBSCAN-Performance-Results"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:DBSCAN-performance-attrib"
+
+\end_inset
+
+ show a detailed comparison of performance of these density-based clustering
+ algorithms.
+ The former demonstrates the speed of clustering based upon different 
+\begin_inset Formula $\epsilon$
+\end_inset
+
+ distance values, given that it could be expected that a larger 
+\begin_inset Formula $\epsilon$
+\end_inset
+
+ value would result in generally larger clusters being found.
+ The latter examines the change in speed for each method given an increasing
+ number of attributes that need to be processed.
+\end_layout
+
+\begin_layout Standard
+These first set of tests demonstrate that for the given data set, the processing
+ time is generally the same for each clustering algorithm, irrespective
+ of a change in 
+\begin_inset Formula $\epsilon$
+\end_inset
+
+.
+ Similarly, the second set of testing shows that the processing time for
+ each technique increased at a similar rate as the number of attributes
+ grew.
+ The tests do demonstrate that on average, the original DBSCAN algorithm
+ performs the worst of each of the algorithms, for both increases in 
+\begin_inset Formula $\epsilon$
+\end_inset
+
+ and the number of attributes present.
+ Notably, the new implementation of UltraDBScan was able to typically perform
+ faster than that of the original implementation that ships within WEKA.
+ On closer inspection of the source code behind the original algorithm,
+ it was clear that a difference in how each traverses to a point's neighbours
+ was the cause of the performance improvement.
+ The two remaining techniques, the customised UltraDBScan and OPTICS, were
+ able to outperform the rest.
+ The reasoning for the customised algorithm performing better than its original
+ counterpart is due to the addition of the dynamic 
+\begin_inset Formula $\epsilon$
+\end_inset
+
+ value.
+ Because this value essentially constricts the allowable spread of clusters,
+ the result is that there are fewer recursive calls made to surrounding
+ objects to for each cluster.
+ Thus, this reduction in complexity of processing produces an algorithm
+ that is typically faster, overall.
+ 
+\end_layout
+
+\begin_layout Subparagraph*
+Partitioning-based Performance 
+\end_layout
+
+\begin_layout Standard
+The three clustering algorithms used for these tests focus on partitioning-based
+ techniques: the K-Means algorithm, which ships as a standard algorithm
+ within WEKA, the newly implemented K-Medoids algorithm, and its customised
+ counterpart - described in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "Sub:Customisations-K-Medoids"
+
+\end_inset
+
+, referred to as 
+\emph on
+K-Medoids (Custom).
 \end_layout
 
 \begin_layout Standard
@@ -2405,7 +2471,7 @@ Partitioning performance by
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -2417,6 +2483,10 @@ status collapsed
 \end_inset
 
 
+\end_layout
+
+\begin_layout Plain Layout
+\align center
 \begin_inset Caption
 
 \begin_layout Plain Layout
@@ -2439,8 +2509,115 @@ Partitioning performance by attributes
 
 \end_layout
 
+\begin_layout Standard
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Partitioning-performance-k"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Partitioning-performance-attrib"
+
+\end_inset
+
+ show an analysis of the performance of these partitioning-based clustering
+ algorithms.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Partitioning-performance-k"
+
+\end_inset
+
+ shows how changing the number of clusters searched for, 
+\emph on
+k
+\emph default
+, effects the performance of each method, given that it can be expected
+ that a larger value of 
+\emph on
+k
+\emph default
+ will result in more clustering calculations being performed.
+ In order to test how each clusterer handles a higher level of dimensionality,
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Partitioning-performance-attrib"
+
+\end_inset
+
+ shows the test results from changing the number of attributes of each data
+ object being processed.
+\end_layout
+
+\begin_layout Standard
+The first set of tests highlight that as the value of 
+\emph on
+k
+\emph default
+ increases and more clusters are being calculated, the time needed to process
+ the data set similarly increases.
+ It is evident that the K-Medoids algorithm is the worst-performing of those
+ tested, with the time taken growing extremely quickly for higher values
+ of 
+\emph on
+k.
+
+\emph default
+ This time complexity can be attributed to the number of calculations that
+ need to take place for each given cluster being examined.
+ Thus, these results are to be expected from the standard K-Medoids algorithm.
+ The modified version of K-Meoids was the most robust, however.
+ This demonstrates that the changes suggested are able to have a notable
+ effect on the processing time, given that far fewer recalculations are
+ required for a given data set.
+ Finally, the K-Means algorithm ranked between the other two methods, and
+ showed a gradual increase in processing time needed.
+ Most notably though, this rate change was less than that of K-Medoids,
+ but visibily greater than that of the customised algorithm.
+\end_layout
+
+\begin_layout Standard
+Results for changes in the number of attributes of each data object differed
+ somewhat from that of modifying the value of 
+\emph on
+k
+\emph default
+.
+ In these tests, the two flavours of K-Medoids algorithms performed equally
+ as well, with the customised version, as expected, slightly out-performing
+ that of its original version.
+ The K-Means algorithm was relatively slower, given the change in circumstances.
+ It should be expected that each of these algorithms suffers a decrease
+ in performance as the dimensionality of the given data objects becomes
+ higher, and this is evident from the the results shown.
+ The increase in the time taken for the K-Means algorithm to complete most
+ probably relates to a difference in implementation, rather than a fundamental
+ change in the way each algorithm handles attributes and distances.
+\end_layout
+
 \begin_layout Subparagraph*
 Clustering Results
+\end_layout
+
+\begin_layout Standard
+The ability for each of the density-based algorithms to detect noise was
+ also examined.
+ The results for each of the density algorithms are described within Figure
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:DBSCAN-performance-noise"
+
+\end_inset
+
+.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -2482,18 +2659,44 @@ Density-based performance by resulting noise
 \end_layout
 
 \begin_layout Standard
-As detailed in the figure, each of these algorithms operates in a similar
- time complexity.
- What is evident, however, is that generally, as epsilon increases, there
- will be a marginal increase in the amount of time necessary to complete
- the clustering operation.
+The overall trend described by these tests demonstrate the expected behaviour
+ of any density-based technique: that as the distanced checked for neighbours
+ increases, the number of points classified as noise decreases.
+ This thereby directly affects the size of the clusters being found as well.
+\end_layout
+
+\begin_layout Standard
+The results demonstrate all techniques, with the exception of OPTICS, which
+ considered all points to be noise for all values of 
+\begin_inset Formula $\epsilon$
+\end_inset
+
+, were able to detect similar amounts of noise, and thereby find a similar
+ number of clusters.
+ The exception to this was the customised DBSCAN algorithm, which for most
+ distances tested as 
+\begin_inset Formula $\epsilon$
+\end_inset
+
+, discovered a slightly greater amount of noise.
+ The reasoning for this change is directly associated with the dynamic change
+ of 
+\begin_inset Formula $\epsilon$
+\end_inset
+
+, as the size of clusters grew throughout the processing of the database.
+ The original WEKA implementation of DBSCAN performed precisely the same
+ for all tests as the newly implemented UltraDBSCAN, demonstrating that
+ not only was the implementation able to compute clusters correctly, but
+ that the provided algorithm was, as previously shown, not as efficiently
+ written.
  
 \end_layout
 
 \begin_layout Standard
 Due to comparable limitations of the K-Medoids and K-Means algorithms, a
  similar figure cannot be produced.
- The inherent purpose of these parition-based techniques is to ensure that
+ The inherent purpose of these partition-based techniques is to ensure that
  all elements in a database are assigned to a cluster, and thus, none are
  ever specified as noise.
  This is described in the operations in Algorithm 
@@ -2512,23 +2715,12 @@ reference "alg:K-Means"
 
 , whereby each object present is assigned to its nearest medoid or centroid.
  Unlike the density-based techniques described here, no degree of analysis
- occurs to determine if a given point should belong to any cluster.
+ occurs to determine if a given point should legitimately belong to any
+ cluster.
+ 
 \end_layout
 
 \begin_layout Subsection
-Conclusions
-\end_layout
-
-\begin_layout Standard
-As we detail the results, we should offer a discussion as to what they are,
- and why they are like that.
-\end_layout
-
-\begin_layout Standard
-Eg draw conclusions here and offer explanations
-\end_layout
-
-\begin_layout Section
 Issues
 \end_layout
 
@@ -2543,8 +2735,8 @@ As is to be expected of any data mining procedure, the best results from
  Likewise, using unsuitable input parameters for a given clustering process
  may result in similarly unsuitable cluster assignments for data instances.
  All of these aspects of data mining thereby need to be reviewed before
- being used, and perferably by a person involved who has sufficient domain
- knowledge to make correct descisions that will reveal suitable output.
+ being used, and preferably by a person involved who has sufficient domain
+ knowledge to make correct decisions that will reveal suitable output.
 \end_layout
 
 \begin_layout Standard
@@ -2576,7 +2768,7 @@ reference "Sub:Experimental-Data-Set"
  That said, the results detailed in Section 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "Sec:Results-and-Discussion"
+reference "Sub:Comparison-Results"
 
 \end_inset
 
@@ -2587,21 +2779,97 @@ reference "Sec:Results-and-Discussion"
  found and similar durations of processing required.
 \end_layout
 
-\begin_layout Standard
-In summary, 
+\begin_layout Subsection
+Conclusions
 \end_layout
 
 \begin_layout Standard
-Discuss the results in this section
+The results demonstrate that for density-based algorithms, a change in 
+\begin_inset Formula $\epsilon$
+\end_inset
+
+ distance had very little effect on the performance experienced.
+ The reasoning for this is due to the way in which this type of clusterers
+ progresses through the database.
+ Whilst some algorithms may utilise recursion to examine points, the time
+ complexity essentially results as being 
+\begin_inset Formula $O(n\log n)$
+\end_inset
+
+, where 
+\begin_inset Formula $n$
+\end_inset
+
+ is the number of objects in the database, because each point only needs
+ to be checked once, and only compared to its neighbours.
+ Thus, any effect by either of the input variables, 
+\emph on
+minPoints
+\emph default
+ or 
+\begin_inset Formula $\epsilon$
+\end_inset
+
+, will be negligible.
+ This stands in constrast to the change in performance seen when the value
+ of the 
+\emph on
+k
+\emph default
+ is altered for partitioning-based clustering techniques.
+ As this value directly affects the number of calculations that need be
+ performed on each data object, searching for increasing numbers of clusters
+ has a direct relationship on the time required to process a data set.
 \end_layout
 
 \begin_layout Standard
-Is there sufficient evidence here to show that our algorithms are worthy
- of use?
+A notable conclusion that can be drawn from these results is that an increase
+ in the number of attributes being processed will see a decrease in the
+ processing speed, for all given clustering types tested here.
+ The cause of reduction in performance is related to the time taken to compute
+ distances between each of the objects that need to be compared.
+ In lower dimensions, when only several attributes are present, calculations
+ are simple, as the results have shown.
+ However, as higher dimensions need to be considered, the time complexity
+ increases accordingly.
 \end_layout
 
 \begin_layout Standard
-Issues - What drawbacks do we see with our various sets of data and algorithms
+The given data set demonstrates the potential for both of the customised
+ algorithms.
+ For UltraDBScan, the given data set showed that different quantities of
+ noise could be found.
+ Whilst not strictly applicable to this specific data set, this ability
+ to locate additional noise could greatly affect the clustering results
+ for data from other domains.
+ As an example, consider several clusters with a 
+\emph on
+bridge
+\emph default
+ of objects between them.
+ As the algorithm begins to cross the bridge from an initial cluster, it
+ will decrease the distance it checks for neighours accordingly, essentially
+ severing the link, and declaring each point of the bridge as noise.
+ 
+\end_layout
+
+\begin_layout Standard
+Whilst not quantifiable, due to the difficult of attempting to compare one
+ cluster to another, the improvement suggested in this paper to K-Medoids
+ are similarly useful.
+ As this customised method no longer needs to re-analyse the entire data
+ set twice for each iteration, the time complexity decreases significantly,
+ and results in a technique that is far more robust to an increasing number
+ of clusters being found.
+\end_layout
+
+\begin_layout Standard
+Overall, the different methods of clustering have been shown to produce
+ varying levels of performance and yield different degrees of usefulness
+ from results.
+ Whilst there are similarities between the clustering algorithms and their
+ generalised types, the overall results produced show that a choice of technique
+ is one of the most important decisions to be made in clustering.
 \end_layout
 
 \begin_layout Section
