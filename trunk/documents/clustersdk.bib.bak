@@ -61,6 +61,13 @@
   url = {berkhin02survey.ps}
 }
 
+@BOOK{berry2006lnd,
+  title = {{Lecture Notes in Data Mining}},
+  publisher = {World Scientific},
+  year = {2006},
+  author = {Berry, M.W. and Browne, M.}
+}
+
 @ARTICLE{bradley1998sca,
   author = {Bradley, P.S. and Fayyad, U. and Reina, C.},
   title = {{Scaling clustering algorithms to large databases}},

@@ -746,7 +746,7 @@ key "kaufman1990pam"
 
 .
  This approach works adequately for small source sets, but does not scale
- well as complexity at each iteration is quadratic.
+ well as complexity as each iteration is quadratic.
  Clustering LARge Applications (CLARA)
 \emph on
  
@@ -791,7 +791,11 @@ key "ng1994eae"
 \emph on
 UltraK-Medoids
 \emph default
-, the algorithm proposed in this paper, aims to bla bla bla..............
+, the algorithm proposed in this paper, makes improvements to the basic
+ K-Medoids method by performing reassignment of medoids and not assessing
+ the effect on the data space through recalculation.
+ This provides performance advantages, reducing time complexity to linear,
+ but suffers when data sets are vastly dispersed.
 \end_layout
 
 \begin_layout Subsection
@@ -947,14 +951,17 @@ key "berry2006lnd"
 
 .
  
-\end_layout
-
-\begin_layout Standard
-
 \emph on
 UltraDBSCAN
 \emph default
-, the algorithm proposed in this paper, aims to bla bla bla..............
+, the algorithm proposed in this paper, introduces the concept of a variable
+ cluster radius specification.
+ Changing this value based on the number of points in the cluster under
+ investigation as the algorithm moves through all its points, allows dynamic
+ removal of noise.
+ This is highly advantageous in sets with closely-bound clusters, but may
+ result in declaration of valid points as noise in more dispersed sets.
+ 
 \end_layout
 
 \begin_layout Subsection
@@ -1823,6 +1830,28 @@ Capability comparison
 \end_layout
 
 \begin_layout Standard
+Placing responsiblity for choosing correct input parameters on the user
+ has clear disadvantages.
+ Given different circumstances in terms of data shapes and data set size,
+ markedly different results can be achieved using the same algorithm.
+ K-Medoids requires the user to nominate a desired number of clusters, and
+ an incorrect choice can seriously compromise results.
+ If too high a number is chosen, related points may be clustered apart,
+ whilst too low a choice may result in noise points being allocated to a
+ legitimate cluster.
+ DBSCAN suffers this issue to a higher degree; it requires both a cluster
+ radius and minimum points variable.
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+limitation for k is that they consider all points to be considered to a
+ cluster - can't be left out as noise as in DBSCAN - hence sensitive to
+ noise because of this
+\end_layout
+
+\begin_layout Standard
 Each of the clustering algorithms mentioned previously 
 \end_layout
 
@@ -1858,7 +1887,9 @@ The DBSCAN algorithm, like other density-based techniques, is most suited
  and also when the number, shape, or size of clusters present are not known.
  These are two benefits which are not available from the partitioning techniques
  - K-Medoids or K-Means - under review.
- Both of these algorithms are sensitive to noise 
+ Both of these algorithms are sensitive to noise, though K-medoids has slighly
+ improved tolerance than K-Means.
+ 
 \end_layout
 
 \begin_layout Section
