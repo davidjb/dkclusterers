@@ -652,18 +652,18 @@ similar
 \emph on
 dissimilar
 \emph default
- to points that lie outside the boundary of that partition.
- 
+ to points that lie outside the boundary of that partition 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "han2001dmc"
 
 \end_inset
 
+.
  Comparison is based on the characteristics of the data set provided.
  Thus, the algorithms rely on the conversion of semantic data attributes
- (width, height, shape, colour, cost etc.) into points that determine physical
- location on a set of mathematical axes.
+ (width, height, shape, colour, cost or others) into points that determine
+ physical location on a set of mathematical axes.
  This provides an objective and computationally acceptable framework for
  analysis.
  In the simplest case only two attributes exist, and thus the conversion
@@ -697,89 +697,18 @@ The density-based group of clustering algorithms represent a data set in
  the same manner as partitioning methods; converting an instance to a point
  using the data attributes of the source set.
  The plane contains clusters with high internal density and low external
- density in a similar manner to its partitioning ancestor.
- 
+ density in a similar manner to its partitioning ancestor 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Kolatch01clusteringalgorithms"
 
 \end_inset
 
- As a result, analysis can easily isolate noise instances from relevant
- instances.
- 
-\end_layout
-
-\begin_layout Standard
-This paper studies the DBSCAN algorithm from the density-based algorithm
- collection, first proposed in 1996 by Ester et al.
- 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "ester1996dba"
-
-\end_inset
-
- The technique relies upon an epsilon value (
-\begin_inset Formula $\mathcal{\varepsilon}$
-\end_inset
-
- - defined as the radius of the neighbourhood of a point based on some distance
- metric), and a minimum points value (
-\emph on
-MinPts
-\emph default
- - defined as the minimum number of points required to exist in a neighbourhood
- to be declared a cluster).
- The method examines the 
-\begin_inset Formula $\varepsilon$
-\end_inset
-
--neighbourhood of every point in the set, and if the region contains more
- points than the MinPts threshold a new cluster is defined.
- The examined point is declared the centre point, and the algorithm then
- iteratively collects surrounding density-reachable objects and attaches
- them to this new cluster.
- Such behaviour may trigger cluster merging depending upon point proximity
- and, of course, the runtime parameters 
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\noun off
-\color none
-
-\begin_inset Formula $\varepsilon$
-\end_inset
-
-
-\family default
-\series default
-\shape default
-\size default
-\emph default
-\bar default
-\noun default
-\color inherit
- and MinPts.
- The algorithm terminates when all defined clusters are finalised; no further
- points can be added to any cluster and any unclustered points are declared
- as 
-\emph on
-noise
-\emph default
 .
- 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "han2001dmc"
-
-\end_inset
-
- Due to this method of analysis, DBSCAN is designed to analyse data sets
- with arbitrary shapes, and can cluster sets that include hollow formations.
+ As a result, analysis can easily isolate noise instances from relevant
+ instances, whilst being able to analyse data sets with arbitrary shapes.
+ These types of methods are also able to cluster data object sets that include
+ hollow formations.
  
 \end_layout
 
@@ -867,14 +796,14 @@ grid
 ) and clustering methods are applied to these segments.
  Due to this division of study space, such algorithms are dependent in terms
  of processing only on the quantity of cells at any dimension.
- Thus the technique has very high computational processing efficiency.
- 
+ Thus the technique has very high computational processing efficiency 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "han2001dmc"
 
 \end_inset
 
+.
  The WaveCluster 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -1015,16 +944,25 @@ DBSCAN
 \end_layout
 
 \begin_layout Standard
-The DBSCAN clustering technique requires two user-inputted parameters: a
- minimum number of points, 
+The DBSCAN clustering technique, first proposed in 1996 by Ester et al.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ester1996dba"
+
+\end_inset
+
+, requires two user-inputted parameters: 
 \emph on
 minPoints
 \emph default
-, and an epsilon distance, 
+, defined as the minimum number of points required to exist in a neighbourhood
+ to be declared a cluster, and 
 \begin_inset Formula $\epsilon$
 \end_inset
 
-.
+, defined as the radius of the neighbourhood of a point based on a distance
+ metric.
  The minimum number of points is used to determine if a collection of points
  found should be considered a cluster, and the inputted 
 \begin_inset Formula $\epsilon$
@@ -1152,6 +1090,21 @@ minPoints
  accordingly.
  At such time that a given cluster has been fully explored, the process
  begins again, until all points have been visisted.
+ At its conclusion, all defined clusters are finalised; no further points
+ can be added to any cluster and any unclustered points are declared as
+ 
+\emph on
+noise
+\emph default
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "han2001dmc"
+
+\end_inset
+
+.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -1752,10 +1705,10 @@ reference "fig:Customised-DBSCAN-procedure"
 , and that this cluster also has a number of other noise objects surrounding
  it.
  Using a constant distance value in this situation would be ineffective
- and would result in the objects that are not as closely related to others
- in the set being assigned to this cluster.
- The consideration here is that a very dense cluster will see its members
- similarly spaced.
+ and would result in the objects in the figure that are marked as noise
+ being otherwise assigned to the cluster incorrectly.
+ The consideration in these situations is that a very dense cluster will
+ see its members similarly spaced.
  For any given 
 \begin_inset Formula $\epsilon$
 \end_inset
@@ -1833,39 +1786,6 @@ reference "enu:Compute-the-total"
  When one considers this operation in context, that the entire set of data
  objects need to be iterated over each time a swap, or potential swap, occur,
  the overhead is evident.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-asfdas
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption
-
-\begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:Customised-kmedoids-example"
-
-\end_inset
-
-Customised K-Medoids example
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
