@@ -166,8 +166,56 @@
   file = {:C\:\\Documents and Settings\\User\\Desktop\\5030checkout\\papers\\SpatialMethodsSurvey.pdf:PDF}
 }
 
+@ARTICLE{Hartigan1979,
+  author = {Hartigan, J. A. and Wong, M. A.},
+  title = {{Algorithm AS 136: A K-Means Clustering Algorithm}},
+  journal = {{Applied Statistics}},
+  year = {1979},
+  volume = {28},
+  pages = {100--108},
+  number = {1},
+  copyright = {Copyright © 1979 Royal Statistical Society},
+  issn = {00359254},
+  jstor_articletype = {primary_article},
+  jstor_formatteddate = {1979},
+  publisher = {Blackwell Publishing for the Royal Statistical Society},
+  url = {http://www.jstor.org/stable/2346830}
+}
+
+@ARTICLE{hartigan1979kmc,
+  author = {Hartigan, JA and Wong, MA},
+  title = {{A K-means clustering algorithm}},
+  journal = {JR Stat. Soc. Ser. C-Appl. Stat},
+  year = {1979},
+  volume = {28},
+  pages = {100--108}
+}
+
+@ARTICLE{hinneburg1998eac,
+  author = {Hinneburg, A. and Keim, D.A.},
+  title = {{An efficient approach to clustering in large multimedia databases
+	with noise}},
+  journal = {Knowledge Discovery and Data Mining},
+  year = {1998},
+  volume = {5865},
+  file = {:C\:\\Documents and Settings\\User\\Desktop\\5030checkout\\papers\\denclue.pdf:PDF}
+}
+
+@ARTICLE{huang1998ekm,
+  author = {Huang, Z.},
+  title = {{Extensions to the k-Means Algorithm for Clustering Large Data Sets
+	with Categorical Values}},
+  journal = {Data Mining and Knowledge Discovery},
+  year = {1998},
+  volume = {2},
+  pages = {283--304},
+  number = {3},
+  file = {:C\:\\Documents and Settings\\User\\Desktop\\5030checkout\\papers\\k-modes.pdf:PDF},
+  publisher = {Springer}
+}
+
 @ARTICLE{jain1999dcr,
-  author = {JAIN, AK and MURTY, MN and FLYNN, PJ},
+  author = {Jain, AK and Murty, MN and Flynn, PJ},
   title = {{Data Clustering: A Review}},
   journal = {ACM Computing Surveys},
   year = {1999},
@@ -196,6 +244,22 @@
   pages = {68--75},
   file = {:C\:\\Documents and Settings\\User\\Desktop\\5030checkout\\papers\\chameleon.pdf:PDF},
   publisher = {IEEE Computer Society}
+}
+
+@BOOK{kaufman1990fgd,
+  title = {{Finding Groups in Data: An Introduction to Cluster Analysis}},
+  publisher = {Wiley},
+  year = {1990},
+  author = {Kaufman and Rousseeuw}
+}
+
+@ARTICLE{kaufman1990pam,
+  author = {Kaufman, L. and Rousseeuw, PJ},
+  title = {{Partitioning Around Medoids (Program PAM)}},
+  journal = {Finding Groups in Data: An Introduction to Cluster Analysis. Wiley,
+	NY},
+  year = {1990},
+  pages = {68--127}
 }
 
 @ARTICLE{kaufman1987cmm,
@@ -247,16 +311,16 @@
   year = {1998},
   pages = {93--98},
   file = {:C\:\\Documents and Settings\\User\\Desktop\\5030checkout\\papers\\DataAnalysisDef.pdf:PDF},
-  publisher = {MATHEMATICAL ASSOCIATION OF AMERICA}
+  publisher = {Mathematical Association of America}
 }
 
 @CONFERENCE{ng1994eae,
   author = {Ng, R.T. and Han, J.},
   title = {{Efficient and Effective Clustering Methods for Spatial Data Mining}},
-  booktitle = {PROCEEDINGS OF THE INTERNATIONAL CONFERENCE ON VERY LARGE DATA BASES},
+  booktitle = {Proceedings of the International Conference On Very Large Databases},
   year = {1994},
   pages = {144--144},
-  organization = {INSTITUTE OF ELECTRICAL \& ELECTRONICS ENGINEERS (IEEE)},
+  organization = {Institute of Electrical \& Electronics Engineers (IEEE)},
   file = {:C\:\\Documents and Settings\\User\\Desktop\\5030checkout\\papers\\clarans.pdf:PDF}
 }
 
@@ -282,7 +346,7 @@
   author = {Sheikholeslami, G. and Chatterjee, S. and Zhang, A.},
   title = {{WaveCluster: A Multi-Resolution Clustering Approach for Very Large
 	Spatial Databases}},
-  booktitle = {PROCEEDINGS OF THE INTERNATIONAL CONFERENCE ON VERY LARGE DATA BASES},
+  booktitle = {Proceedings of the International Conference On Very Large Databases},
   year = {1998},
   pages = {428--439},
   organization = {INSTITUTE OF ELECTRICAL \& ELECTRONICS ENGINEERS},
