@@ -313,7 +313,7 @@ reference "Sub:Experimental-Details"
 \end_layout
 
 \begin_layout Subsection
-Other Methods
+Other methods
 \end_layout
 
 \begin_layout Standard
@@ -378,7 +378,7 @@ Density-based algorithms perform optimally when operating upon spatially-indexed
 \end_layout
 
 \begin_layout Subsection
-Purpose of Paper
+Purpose of paper
 \end_layout
 
 \begin_layout Standard
@@ -407,7 +407,7 @@ name "Sub:Experimental-Data-Set"
 
 \end_inset
 
-Experimental Data Set
+Experimental data set
 \end_layout
 
 \begin_layout Standard
@@ -446,7 +446,7 @@ s, and residents and business owners can be warned earlier.
 \end_layout
 
 \begin_layout Subsection
-Results Overview
+Results overview
 \end_layout
 
 \begin_layout Standard
@@ -495,7 +495,7 @@ need to write about the other types of density and partitioning that have
 \end_layout
 
 \begin_layout Subsection
-Data Analysis
+Data analysis
 \end_layout
 
 \begin_layout Standard
@@ -646,7 +646,7 @@ key "han2001dmc"
 \end_layout
 
 \begin_layout Subsection
-Partitioning Clustering Algorithms
+Partitioning clustering algorithms
 \end_layout
 
 \begin_layout Standard
@@ -735,9 +735,13 @@ key "kaufman1987cmm"
  As K-Medoids provides dramatic improvements in noise immunity a great deal
  of further research has been pursued, including the forthcoming work in
  this paper.
- Partitioning Around Medoids (PAM) randomly chooses medoids, then randomly
- calculates the result of swapping these with other random objects in an
- attempt to improve the clustering outcome 
+ 
+\emph on
+Partitioning Around Medoids 
+\emph default
+(PAM) randomly chooses medoids, then randomly calculates the result of swapping
+ these with other random objects in an attempt to improve the clustering
+ outcome 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "kaufman1990pam"
@@ -747,7 +751,11 @@ key "kaufman1990pam"
 .
  This approach works adequately for small source sets, but does not scale
  well as complexity as each iteration is quadratic.
- Clustering LARge Applications (CLARA)
+ 
+\emph on
+Clustering LARge Applications
+\emph default
+ (CLARA)
 \emph on
  
 \emph default
@@ -765,9 +773,9 @@ key "kaufman1990fgd"
  of sample data chosen.
 
 \emph on
- 
+ Clustering Large Applications based on RANdomised Search
 \emph default
-Clustering Large Applications based on RANdomised Search 
+ 
 \emph on
 (
 \emph default
@@ -799,7 +807,7 @@ UltraK-Medoids
 \end_layout
 
 \begin_layout Subsection
-Density-Based Clustering Algorithms
+Density-based clustering algorithms
 \end_layout
 
 \begin_layout Standard
@@ -842,7 +850,11 @@ Literature exists on several techniques that utilise the density-based clusterin
 g concept.
  
 \emph on
-DENCLUE (DENsity based CLUstEring) 
+DENsity based CLUstEring 
+\emph default
+(DENCLUE)
+\emph on
+ 
 \emph default
 uses multiple clustering paradigms (including density-based, partitioning
  and hierarchical), is based on a set of density distribution functions,
@@ -859,10 +871,10 @@ key "hinneburg1998eac"
  can adversely affect the average linear time complexity.
  
 \emph on
-DBSCAN (Density-Based Spatial Clustering of Applications with Noise)
+Density-Based Spatial Clustering of Applications with Noise
 \emph default
- locates and grows regions with sufficient density as specified by input
- parameters 
+ (DBSCAN) locates and grows regions with sufficient density as specified
+ by input parameters 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "ester1996dba"
@@ -891,10 +903,10 @@ but can be as poor as quadratic when a spatial index is not used.
  defined in the literature.
  
 \emph on
-OPTICS (Ordering Points To Identify the Clustering Structure)
+Ordering Points To Identify the Clustering Structure
 \emph default
- is similar to DBSCAN but produces augmented cluster ordering instead of
- defining actual clusters
+ (OPTICS) is similar to DBSCAN but produces augmented cluster ordering instead
+ of defining actual clusters
 \begin_inset CommandInset citation
 LatexCommand cite
 key "ankerst1999oop"
@@ -915,8 +927,11 @@ n
 ).
  
 \emph on
-GDBSCAN (Generalized Density-Based Spatial Clustering of Applications with
- Noise) 
+Generalized Density-Based Spatial Clustering of Applications with Noise
+\emph default
+ (GDBSCAN)
+\emph on
+ 
 \emph default
 can cluster both polygons and points, and does not rely on any set definition
  of a neighbourhood; the method can use non-spatial attributes rather than
@@ -965,7 +980,7 @@ UltraDBSCAN
 \end_layout
 
 \begin_layout Subsection
-Alternative Clustering Methods
+Alternative clustering methods
 \end_layout
 
 \begin_layout Standard
@@ -1065,7 +1080,7 @@ key "wang1997ssi"
 \end_layout
 
 \begin_layout Subsection
-Alternative Analysis Techniques
+Alternative analysis techniques
 \end_layout
 
 \begin_layout Standard
@@ -1830,55 +1845,47 @@ Capability comparison
 \end_layout
 
 \begin_layout Standard
-Placing responsiblity for choosing correct input parameters on the user
- has clear disadvantages.
+Direction responsiblity for choosing correct input parameters toward the
+ user has clear disadvantages.
  Given different circumstances in terms of data shapes and data set size,
- markedly different results can be achieved using the same algorithm.
- K-Medoids requires the user to nominate a desired number of clusters, and
- an incorrect choice can seriously compromise results.
+ markedly different results can be seen using the same algorithm.
+ K-Means, K-Medoids and Ultra K-Medoids require the user to nominate a desired
+ number of clusters, and an incorrect choice can seriously compromise results.
  If too high a number is chosen, related points may be clustered apart,
  whilst too low a choice may result in noise points being allocated to a
  legitimate cluster.
- DBSCAN suffers this issue to a higher degree; it requires both a cluster
- radius and minimum points variable.
-\end_layout
-
-\begin_layout Standard
-
+ DBSCAN and OPTICS support location of an arbitrary number of clusters (no
+ 
 \emph on
-limitation for k is that they consider all points to be considered to a
- cluster - can't be left out as noise as in DBSCAN - hence sensitive to
- noise because of this
+k
+\emph default
+-cluster limitation), but they require both a cluster radius and minimum-points-
+per-cluster specification, and thus suffer similar problems in terms of
+ cluster accuracy to the K-algorithms.
+ Incorrect choice of these variables can lead to effects on the final clusters
+ similar to those aforementioned.
+ Ultra DBSCAN, however, alleviates this issue and improves noise removal
+ through allowing dynamic change of 
+\begin_inset Formula $\varepsilon$
+\end_inset
+
+by the algorithm during processing.
+ The minimium points variable is still required, but the effect of a set
+ 
+\begin_inset Formula $\varepsilon$
+\end_inset
+
+ is reduced.
+ This is highly effective on tightly-grouped sets, but may lead to relevent
+ relationships being discarded in less compact sets.
 \end_layout
 
 \begin_layout Standard
-Each of the clustering algorithms mentioned previously 
-\end_layout
-
-\begin_layout Standard
-What's the result of comparing these individual algorithms:
-\end_layout
-
-\begin_layout Itemize
-Need to select input values -> Can arbitrary numbers of clusters be found
- or not?
-\end_layout
-
-\begin_layout Itemize
-Different sizes and shapes of clusters - can handle them or not?
-\end_layout
-
-\begin_layout Itemize
-Sensitivity to noise?
-\end_layout
-
-\begin_layout Itemize
-Scalability, efficiency, time complexity, attribute dimensionality
-\end_layout
-
-\begin_layout Itemize
-Draw conclusions about the types of data that each technique is most suited
- for
+K-algorithms require that all points in the set are clustered, whereas DBSCAN
+ and its descendents do not.
+ This disadvantages the K-series as even noise points are required to be
+ assigned to previously legitimate clusters, whereas DBSCAN-type algorithms
+ will correctly discard them as noise.
 \end_layout
 
 \begin_layout Standard
@@ -1889,6 +1896,42 @@ The DBSCAN algorithm, like other density-based techniques, is most suited
  - K-Medoids or K-Means - under review.
  Both of these algorithms are sensitive to noise, though K-medoids has slighly
  improved tolerance than K-Means.
+ 
+\end_layout
+
+\begin_layout Standard
+K-Means will scale more effectively than K-medoids due to its reduced processing
+ requirements, but density-based algorithms are far more applicable to larger
+ data sets due to their inherantly robust nature.
+ The K-algorims work very well for smaller data sets (in terms of both dimension
+ality and quantity of records), but lose efficiency as the size of the source
+ set increases.
+ In terms of efficiency, which is directly related to scalability, K-algorithms
+ perform better than density-based for small sets, but are surpassed in
+ performance by DBSCAN and OPTICS when larger sets are introduced.
+ This conclusion is supported by the time-complexity metric for each technique;
+ K-algorithms operate in quadratic time, whereas density-based have O(
+\emph on
+n
+\emph default
+log
+\emph on
+n
+\emph default
+) average times, and quadratic only in worst-case scenarios.
+ 
+\end_layout
+
+\begin_layout Standard
+Given the aforementioned observations and conclusions, traditional K-algorithms
+ are recommended for low-dimensional data sets with few records, low noise
+ and spherical data groupings.
+ The original density-based algorithms are well-equipped to handle more
+ expansive sets with higher dimensionality, larger quanties of tuples, widesprea
+d noise and arbitrary-shaped cluster formations.
+ Of the adapted algorithms proposed in this paper, Ultra K-Medoids is recommende
+d for the same style of data set as its ancestors, while UltraDBSCAN is
+ recommended for lower-noise sets of the type suited to its ancestors.
  
 \end_layout
 
@@ -2191,7 +2234,7 @@ name "Sub:Experimental-Details"
 
 \end_inset
 
-Experimental Details
+Experimental details
 \end_layout
 
 \begin_layout Standard
@@ -2262,7 +2305,7 @@ name "Sub:Comparison-Results"
 
 \end_inset
 
-Comparison Results
+Comparison results
 \end_layout
 
 \begin_layout Subparagraph*
