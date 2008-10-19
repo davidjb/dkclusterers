@@ -2976,6 +2976,21 @@ Future Work
 \end_layout
 
 \begin_layout Standard
+limitation for k is that they consider all points to be considered to a
+ cluster - can't be left out as noise as in DBSCAN - hence sensitive to
+ noise because of this
+\end_layout
+
+\begin_layout Standard
+*future work - research as above - construct method that works on both principle
+s
+\end_layout
+
+\begin_layout Standard
+------
+\end_layout
+
+\begin_layout Standard
 Describe potential improvements to the methodologies we've presented within
  this paper.
  Others can extend our work by seeking other ways of improving the semantics
