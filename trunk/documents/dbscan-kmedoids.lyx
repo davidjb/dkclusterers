@@ -483,6 +483,13 @@ name "Sec:Related-Work"
 Related Work
 \end_layout
 
+\begin_layout Standard
+
+\emph on
+need to write about the other types of density and partiioning that have
+ been tried other than dbscan and kmedoids
+\end_layout
+
 \begin_layout Subsection
 Data Analysis
 \end_layout
@@ -688,6 +695,97 @@ k
 ) and experience problems defining arbitrarily shaped clusters.
 \end_layout
 
+\begin_layout Standard
+Previous work has outlined several clustering methods within the partitioning
+ family; 
+\emph on
+K-means
+\emph default
+ converts data to numerical points on a set of axes and calculates the numerical
+ mean of these points to dictate cluster centroids 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "hartigan1979kmc"
+
+\end_inset
+
+, 
+\emph on
+K-modes 
+\emph default
+is similar to K-means though it calculates the mode of point groupings instead
+ of the mean to define cluster centroids , and 
+\emph on
+K-medoids
+\emph default
+ converts data points to objects on a set of axes and arbitrarily chooses
+ different objects to act as cluster centroids until the clusters are optimised
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "kaufman1987cmm"
+
+\end_inset
+
+.
+ As K-Medoids provides dramatic improvements in noise immunity a great deal
+ of further research has been pursued, including the forthcoming work in
+ this paper.
+ 
+\emph on
+PAM (Partitioning Around Medoids)
+\emph default
+ randomly chooses medoids, then randomly calculates the result of swapping
+ these with other random objects in an attempt to improve the clustering
+ outcome 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "kaufman1990pam"
+
+\end_inset
+
+.
+ This approach works adequately for small source sets, but does not scale
+ well as complexity at each iteration is quadratic.
+ 
+\emph on
+CLARA (Clustering LARge Applications) 
+\emph default
+takes a single random selection of points in the set as representative data
+ and then applies PAM to this smaller subset 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "kaufman1990fgd"
+
+\end_inset
+
+.
+ Reducing the size of the set for analysis improves scalability as complexity
+ at each iterations is linear, but the method suffers depending on the quality
+ of sample data chosen.
+ 
+\emph on
+CLARANS (Clustering Large Applications based on RANdomized Search) 
+\emph default
+takes a random dynamic selection of data at each step of process – thus
+ the same sample set is not used throughout the clustering process.
+ As a result, better randomisation of source data is achieved, but the method
+ still suffers depending on the selection and can be very slow as the algorithm
+ is approximately quadratic
+\emph on
+ 
+\emph default
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ng1994eae"
+
+\end_inset
+
+.
+ UltraK-Medoids, the algorithm proposed in this paper, aims to bla bla bla..............
+\end_layout
+
 \begin_layout Subsection
 Density-Based Clustering Algorithms
 \end_layout
@@ -705,10 +803,14 @@ key "Kolatch01clusteringalgorithms"
 \end_inset
 
 .
+ The process of adding points to a cluster is iterative, unlike partitioning
+ methods.
+ Nearest neighbours of each point can thus be investigated, arbitrary shapes
+ formed, and existing clusters merged as the algorithm moves through all
+ points.
  As a result, analysis can easily isolate noise instances from relevant
- instances, whilst being able to analyse data sets with arbitrary shapes.
- These types of methods are also able to cluster data object sets that include
- hollow formations.
+ data, whilst being able to cluster data object sets that include hollow
+ formations.
  
 \end_layout
 
@@ -716,11 +818,43 @@ key "Kolatch01clusteringalgorithms"
 Density-based algorithms provide advantages over other methods through their
  noise handling capabilities and ability to determine clusters with arbitrary
  shapes (eg.
- a circle, torus or other non-convex formation).
+ a hollow circle, torus or other non-convex formation).
  As with partitioning techniques, computational cost is a disadvantage when
  the technique is used with large amounts of source data and sets containing
  excessive noise.
  
+\end_layout
+
+\begin_layout Standard
+Literature exists on several techniques that utilise the density-based clusterin
+g concept.
+ DENCLUE 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "hinneburg1998eac"
+
+\end_inset
+
+ and DBSCAN 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ester1996dba"
+
+\end_inset
+
+.
+ OPTICS 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ankerst1999oop"
+
+\end_inset
+
+, GDBSCAN etc.
+\end_layout
+
+\begin_layout Standard
+UltraDBSCAN, the algorithm proposed in this paper, aims to bla bla bla..............
 \end_layout
 
 \begin_layout Subsection
