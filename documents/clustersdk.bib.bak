@@ -342,6 +342,19 @@
   file = {:C\:\\Documents and Settings\\User\\Desktop\\5030checkout\\papers\\KMeansLikeAlgorithm.pdf:PDF}
 }
 
+@ARTICLE{sander1998dbc,
+  author = {Sander, J. and Ester, M. and Kriegel, H.P. and Xu, X.},
+  title = {{Density-Based Clustering in Spatial Databases: The Algorithm GDBSCAN
+	and Its Applications}},
+  journal = {Data Mining and Knowledge Discovery},
+  year = {1998},
+  volume = {2},
+  pages = {169--194},
+  number = {2},
+  file = {:C\:\\Documents and Settings\\User\\Desktop\\5030checkout\\papers\\GDBSCAN.pdf:PDF},
+  publisher = {Springer}
+}
+
 @CONFERENCE{sheikholeslami1998wmr,
   author = {Sheikholeslami, G. and Chatterjee, S. and Zhang, A.},
   title = {{WaveCluster: A Multi-Resolution Clustering Approach for Very Large
@@ -349,7 +362,7 @@
   booktitle = {Proceedings of the International Conference On Very Large Databases},
   year = {1998},
   pages = {428--439},
-  organization = {INSTITUTE OF ELECTRICAL \& ELECTRONICS ENGINEERS},
+  organization = {Institute of Electrical \& Electronics Engineers (IEEE)},
   file = {:C\:\\Documents and Settings\\User\\Desktop\\5030checkout\\papers\\wavecluster.pdf:PDF}
 }
 
@@ -359,7 +372,7 @@
   booktitle = {Proceedings of the International Conference On Very Large Databases},
   year = {1997},
   pages = {186--195},
-  organization = {INSTITUTE OF ELECTRICAL \& ELECTRONICS ENGINEERS (IEEE)},
+  organization = {Institute of Electrical \& Electronics Engineers (IEEE)},
   file = {:C\:\\Documents and Settings\\User\\Desktop\\5030checkout\\papers\\STING.pdf:PDF}
 }
 

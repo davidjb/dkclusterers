@@ -768,14 +768,7 @@ key "kaufman1990fgd"
 CLARANS (Clustering Large Applications based on RANdomized Search) 
 \emph default
 takes a random dynamic selection of data at each step of process – thus
- the same sample set is not used throughout the clustering process.
- As a result, better randomisation of source data is achieved, but the method
- still suffers depending on the selection and can be very slow as the algorithm
- is approximately quadratic
-\emph on
- 
-\emph default
-
+ the same sample set is not used throughout the clustering process 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "ng1994eae"
@@ -783,7 +776,14 @@ key "ng1994eae"
 \end_inset
 
 .
- UltraK-Medoids, the algorithm proposed in this paper, aims to bla bla bla..............
+ As a result, better randomisation of source data is achieved, but the method
+ still suffers depending on the selection and can be very slow as the algorithm
+ is approximately quadratic.
+ 
+\emph on
+UltraK-Medoids
+\emph default
+, the algorithm proposed in this paper, aims to bla bla bla..............
 \end_layout
 
 \begin_layout Subsection
@@ -828,14 +828,29 @@ Density-based algorithms provide advantages over other methods through their
 \begin_layout Standard
 Literature exists on several techniques that utilise the density-based clusterin
 g concept.
- DENCLUE 
+ 
+\emph on
+DENCLUE (DENsity based CLUstEring) 
+\emph default
+uses multiple clustering paradigms (including density-based, partitioning
+ and hierarchical), is based on a set of density distribution functions,
+ and uses influence functions between points to model the data space 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "hinneburg1998eac"
 
 \end_inset
 
- and DBSCAN 
+.
+ The method has a strong mathenatical foundation which provides advantages
+ in terms of set representation, but density and noise parameter selection
+ can adversely affect the average linear time complexity.
+ 
+\emph on
+DBSCAN (Density-Based Spatial Clustering of Applications with Noise)
+\emph default
+ locates and grows regions with sufficient density as specified by input
+ parameters 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "ester1996dba"
@@ -843,18 +858,95 @@ key "ester1996dba"
 \end_inset
 
 .
- OPTICS 
+ The algorithm does not require that all points are allocated to clusters
+ which provides tolerance to noise and supports clustering of arbitrary
+ shapes, but can suffer if input parameters are selected incorrectly.
+ Time complexity is typically O(
+\emph on
+n
+\emph default
+log
+\emph on
+n
+\emph default
+)
+\emph on
+ 
+\emph default
+but can be as poor as quadratic when a spatial index is not used.
+ DBSCAN is widely used due to its ability to handle noise and define clusters
+ with non-standard shapes, and thus many extensions to its algorithm are
+ defined in the literature.
+ 
+\emph on
+OPTICS (Ordering Points To Identify the Clustering Structure)
+\emph default
+ is similar to DBSCAN but produces augmented cluster ordering instead of
+ defining actual clusters
 \begin_inset CommandInset citation
 LatexCommand cite
 key "ankerst1999oop"
 
 \end_inset
 
-, GDBSCAN etc.
+.
+ This approach is advantageous as the ordering can be used to both derive
+ key cluster characteristics and analyse the structure of the cluster space,
+ and time complexity is the same as DBSCAN; averaging O(
+\emph on
+n
+\emph default
+log
+\emph on
+n
+\emph default
+).
+ 
+\emph on
+GDBSCAN (Generalized Density-Based Spatial Clustering of Applications with
+ Noise) 
+\emph default
+can cluster both polygons and points, and does not rely on any set definition
+ of a neighbourhood; the method can use non-spatial attributes rather than
+ number of objects to define neighbourhood density
+\emph on
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "sander1998dbc"
+
+\end_inset
+
+
+\emph default
+.
+ The technique does not limit clusters to a maximum radius and thus achieves
+ independence from a neighbourhood size input variable.
+ Time complexity is similar to DBSCAN, though O(
+\emph on
+n
+\emph default
+log
+\emph on
+n
+\emph default
+) is achieved only using RTrees 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "berry2006lnd"
+
+\end_inset
+
+.
+ 
 \end_layout
 
 \begin_layout Standard
-UltraDBSCAN, the algorithm proposed in this paper, aims to bla bla bla..............
+
+\emph on
+UltraDBSCAN
+\emph default
+, the algorithm proposed in this paper, aims to bla bla bla..............
 \end_layout
 
 \begin_layout Subsection
