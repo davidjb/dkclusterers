@@ -487,13 +487,6 @@ name "Sec:Related-Work"
 Related Work
 \end_layout
 
-\begin_layout Standard
-
-\emph on
-need to write about the other types of density and partitioning that have
- been tried other than DBSCAN and kmedoids
-\end_layout
-
 \begin_layout Subsection
 Data analysis
 \end_layout
@@ -866,7 +859,7 @@ key "hinneburg1998eac"
 \end_inset
 
 .
- The method has a strong mathenatical foundation which provides advantages
+ The method has a strong mathematical foundation which provides advantages
  in terms of set representation, but density and noise parameter selection
  can adversely affect the average linear time complexity.
  
@@ -1080,7 +1073,7 @@ key "wang1997ssi"
 \end_layout
 
 \begin_layout Subsection
-Alternative analysis techniques
+Alternative data mining techniques
 \end_layout
 
 \begin_layout Standard
@@ -1129,7 +1122,7 @@ supervised
 \end_inset
 
  due to example data exposure.
- Once the model is complete it can be applied to real, labelled data and
+ Once the model is complete it can be applied to real, labeled data and
  assign each new tuple to its respective class
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -1484,7 +1477,7 @@ These newly introduced distances are used to order the objects within a
  given set of data.
  Clusters become extracted based upon the reachability information and core
  distances associated with each object.
- From this, clusters are then able to be modelled according to reachability
+ From this, clusters are then able to be modeled according to reachability
  and cluster assignments, thus potentially revealing more relevant information
  about the attributes for each cluster.
 \end_layout
@@ -1845,7 +1838,7 @@ Capability comparison
 \end_layout
 
 \begin_layout Standard
-Direction responsiblity for choosing correct input parameters toward the
+Direction responsibility for choosing correct input parameters toward the
  user has clear disadvantages.
  Given different circumstances in terms of data shapes and data set size,
  markedly different results can be seen using the same algorithm.
@@ -1870,19 +1863,19 @@ per-cluster specification, and thus suffer similar problems in terms of
 \end_inset
 
 by the algorithm during processing.
- The minimium points variable is still required, but the effect of a set
+ The minimum points variable is still required, but the effect of a set
  
 \begin_inset Formula $\varepsilon$
 \end_inset
 
  is reduced.
- This is highly effective on tightly-grouped sets, but may lead to relevent
+ This is highly effective on tightly-grouped sets, but may lead to relevant
  relationships being discarded in less compact sets.
 \end_layout
 
 \begin_layout Standard
 K-algorithms require that all points in the set are clustered, whereas DBSCAN
- and its descendents do not.
+ and its descendants do not.
  This disadvantages the K-series as even noise points are required to be
  assigned to previously legitimate clusters, whereas DBSCAN-type algorithms
  will correctly discard them as noise.
@@ -1894,7 +1887,7 @@ The DBSCAN algorithm, like other density-based techniques, is most suited
  and also when the number, shape, or size of clusters present are not known.
  These are two benefits which are not available from the partitioning techniques
  - K-Medoids or K-Means - under review.
- Both of these algorithms are sensitive to noise, though K-medoids has slighly
+ Both of these algorithms are sensitive to noise, though K-medoids has slightly
  improved tolerance than K-Means.
  
 \end_layout
@@ -1902,10 +1895,10 @@ The DBSCAN algorithm, like other density-based techniques, is most suited
 \begin_layout Standard
 K-Means will scale more effectively than K-medoids due to its reduced processing
  requirements, but density-based algorithms are far more applicable to larger
- data sets due to their inherantly robust nature.
- The K-algorims work very well for smaller data sets (in terms of both dimension
-ality and quantity of records), but lose efficiency as the size of the source
- set increases.
+ data sets due to their inherently robust nature.
+ The K-algorithms work very well for smaller data sets (in terms of both
+ dimensionality and quantity of records), but lose efficiency as the size
+ of the source set increases.
  In terms of efficiency, which is directly related to scalability, K-algorithms
  perform better than density-based for small sets, but are surpassed in
  performance by DBSCAN and OPTICS when larger sets are introduced.
@@ -1927,8 +1920,8 @@ Given the aforementioned observations and conclusions, traditional K-algorithms
  are recommended for low-dimensional data sets with few records, low noise
  and spherical data groupings.
  The original density-based algorithms are well-equipped to handle more
- expansive sets with higher dimensionality, larger quanties of tuples, widesprea
-d noise and arbitrary-shaped cluster formations.
+ expansive sets with higher dimensionality, larger quantities of tuples,
+ widespread noise and arbitrary-shaped cluster formations.
  Of the adapted algorithms proposed in this paper, Ultra K-Medoids is recommende
 d for the same style of data set as its ancestors, while UltraDBSCAN is
  recommended for lower-noise sets of the type suited to its ancestors.
@@ -2646,14 +2639,14 @@ k.
  This time complexity can be attributed to the number of calculations that
  need to take place for each given cluster being examined.
  Thus, these results are to be expected from the standard K-Medoids algorithm.
- The modified version of K-Meoids was the most robust, however.
+ The modified version of K-Medoids was the most robust, however.
  This demonstrates that the changes suggested are able to have a notable
  effect on the processing time, given that far fewer recalculations are
  required for a given data set.
  Finally, the K-Means algorithm ranked between the other two methods, and
  showed a gradual increase in processing time needed.
  Most notably though, this rate change was less than that of K-Medoids,
- but visibily greater than that of the customised algorithm.
+ but visibly greater than that of the customised algorithm.
 \end_layout
 
 \begin_layout Standard
@@ -2853,8 +2846,14 @@ reference "Sub:Comparison-Results"
  found and similar durations of processing required.
 \end_layout
 
-\begin_layout Subsection
-Conclusions
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "Sec:Conclusion"
+
+\end_inset
+
+Conclusion
 \end_layout
 
 \begin_layout Standard
@@ -2885,7 +2884,7 @@ minPoints
 \end_inset
 
 , will be negligible.
- This stands in constrast to the change in performance seen when the value
+ This stands in contrast to the change in performance seen when the value
  of the 
 \emph on
 k
@@ -2922,7 +2921,7 @@ bridge
 \emph default
  of objects between them.
  As the algorithm begins to cross the bridge from an initial cluster, it
- will decrease the distance it checks for neighours accordingly, essentially
+ will decrease the distance it checks for neighbours accordingly, essentially
  severing the link, and declaring each point of the bridge as noise.
  
 \end_layout
@@ -2944,25 +2943,6 @@ Overall, the different methods of clustering have been shown to produce
  Whilst there are similarities between the clustering algorithms and their
  generalised types, the overall results produced show that a choice of technique
  is one of the most important decisions to be made in clustering.
-\end_layout
-
-\begin_layout Section
-\begin_inset CommandInset label
-LatexCommand label
-name "Sec:Conclusion"
-
-\end_inset
-
-Conclusion
-\end_layout
-
-\begin_layout Standard
-Overall: better or worse? Able to satisfy or not-possible? It might not
- be given the complexity and time limitations
-\end_layout
-
-\begin_layout Standard
-summarise topic and close.
 \end_layout
 
 \begin_layout Section
