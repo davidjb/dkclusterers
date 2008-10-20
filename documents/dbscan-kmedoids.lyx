@@ -2976,53 +2976,74 @@ Future Work
 \end_layout
 
 \begin_layout Standard
-limitation for k is that they consider all points to be considered to a
- cluster - can't be left out as noise as in DBSCAN - hence sensitive to
- noise because of this
-\end_layout
-
-\begin_layout Standard
-*future work - research as above - construct method that works on both principle
-s
-\end_layout
-
-\begin_layout Standard
-------
-\end_layout
-
-\begin_layout Standard
-Describe potential improvements to the methodologies we've presented within
- this paper.
- Others can extend our work by seeking other ways of improving the semantics
- of the algorithm, rather than attempting to improve its operation itself.
- Given that these algorithms this paper discusses have been in existence
- for <X> years, and that there have been many various papers and theses
- produced regarding these issues, this appears the logical path for improvements
- to take.
- Should any future developers decide to follow through on the same path,
- this paper has logically set out its concepts and ideas, and will provide
- a solid basis for such research.
-\end_layout
-
-\begin_layout Standard
 As the topic of data mining, and more specifically, clustering, becomes
  more of a part of every-day business and organisational operation, the
  necessity for faster and equally accurate algorithms rises.
- This paper has shown this, and several other applications do exist, and
- it can only be assumed that 
+ The improvements suggested in this paper, while novel and logically presented,
+ are not entirely comprehensive and thus scope for further ongoing research
+ exists in several areas.
+ There are many other potential improvements that could be investigated
+ with clustering techniques - extensions to the work presented here are
+ essentially unbounded.
+ 
 \end_layout
 
 \begin_layout Standard
-There are many other potential improvements that could be investigated with
- clustering techniques - extensions to the work presented here are essentially
- unable to be bounded.
- Suggestions that come to mind would be to attempt to limit the importance
- of input variables and their effect on the results of clustering.
- As methodologies stand at present, incorrect parameters can result in vastly
- different clustering results being generated.
- By being able to reduce or eliminate the presence and effects these variables
- have on results, a system will be able to produce more objective results
- with greater accuracy.
+Partitioning techniques (including the suggested Ultra K-Medoids algorithm)
+ require that all points in the data set are allocated to a cluster, unlike
+ density-based methods which can leave noise points in an unclustered state.
+ This creates varying levels of noise sensitivity across the K-algorithms,
+ and research into development of a method that works on both principles
+ would be beneficial.
+ 
+\end_layout
+
+\begin_layout Standard
+The requirement that both partitioning and density-based techniques specify
+ input parameters places certain limitations on the effectiveness of the
+ algorithms when these values are not optimised.
+ Choosing the values correctly takes both experimentation and time, which
+ adds overhead to the process of drawing useful conclusions from mined data.
+ Partitioning methods require that the number of clusters to be found is
+ statically set, and incorrect choice of this value can lead to serious
+ noise sensitivity.
+ Investigation of the advantages of allowing the algorithm to dynamically
+ choose the number of clusters (as used in density-based techniques) is
+ thus justified.
+ Density-based methods suffer from incorrect choice of i
+\begin_inset Formula $\varepsilon$
+\end_inset
+
+ neighbourhood radius and minimum points per cluster.
+ Ultra DBSCAN has addressed the issue of 
+\begin_inset Formula $\varepsilon$
+\end_inset
+
+ selection by allowing the algorithm to dynamically chose this value as
+ it progresses through the points.
+ However, more research into minimising the effect of the minimum points
+ variable would be clearly beneficial.
+ By reducing or eliminating the effects these variables have on results,
+ a system will be able to produce more objective results with greater accuracy.
+\end_layout
+
+\begin_layout Standard
+Given that the algorithms this paper discusses have been in existence for
+ up to 20 years, and that there have been various papers and theses produced
+ regarding the aforementioned issues, the suggestions made in this section
+ appear as the logical path for future investigation.
+ Others can extend this work by seeking alternative ways of improving the
+ semantics of the proposed algorithms, rather than attempting to improve
+ the actual operations which have been already been fine tuned through the
+ extensive research summaries in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "Sec:Related-Work"
+
+\end_inset
+
+.
+ 
 \end_layout
 
 \begin_layout Standard
