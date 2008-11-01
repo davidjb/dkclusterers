@@ -2503,7 +2503,7 @@ reference "fig:DBSCAN-performance-attrib"
 \emph on
 minPoints, 
 \emph default
-the overall trend appears to be that as the value increasees, the time taken
+the overall trend appears to be that as the value increases, the time taken
  to achieve results decreases.
  The exception to this appears to be the OPTICS algorithm, which was otherwise
  essentially the same throughout.
@@ -3014,11 +3014,17 @@ Conclusion
 \end_layout
 
 \begin_layout Standard
-The results demonstrate that for density-based algorithms, a change in 
+The results demonstrate that for density-based algorithms, an incorrect
+ or non-optimised selection of 
 \begin_inset Formula $\varepsilon$
 \end_inset
 
- distance had very little effect on the performance experienced.
+ distance can significantly alter the clusters defined.
+ However, a change in 
+\begin_inset Formula $\varepsilon$
+\end_inset
+
+ distance had very little effect on the efficiency of the technique.
  This outcome is caused by the way in which this type of clusterer progresses
  through the database.
  Whilst some algorithms may utilise recursion to examine points, the time
