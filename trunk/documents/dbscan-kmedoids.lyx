@@ -899,15 +899,11 @@ key "ester1996dba"
  The algorithm does not require that all points are allocated to clusters
  which provides tolerance to noise and supports clustering of arbitrary
  shapes, but can suffer if input parameters are selected incorrectly.
- Time complexity is typically O(
-\emph on
-n
-\emph default
-log
-\emph on
-n
-\emph default
-)
+ Time complexity is typically 
+\begin_inset Formula $O(n\log n)$
+\end_inset
+
+
 \emph on
  
 \emph default
@@ -930,15 +926,11 @@ key "ankerst1999oop"
 .
  This approach is advantageous as the ordering can be used to both derive
  key cluster characteristics and analyse the structure of the cluster space,
- and time complexity is the same as DBSCAN; averaging O(
-\emph on
-n
-\emph default
-log
-\emph on
-n
-\emph default
-).
+ and time complexity is the same as DBSCAN; averaging 
+\begin_inset Formula $O(n\log n)$
+\end_inset
+
+.
  
 \emph on
 Generalized Density-Based Spatial Clustering of Applications with Noise
@@ -963,15 +955,11 @@ key "sander1998dbc"
 .
  The technique does not limit clusters to a maximum radius and thus achieves
  independence from a neighbourhood size input variable.
- Time complexity is similar to DBSCAN, though O(
-\emph on
-n
-\emph default
-log
-\emph on
-n
-\emph default
-) is achieved only using RTrees 
+ Time complexity is similar to DBSCAN, though 
+\begin_inset Formula $O(n\log n)$
+\end_inset
+
+ is achieved only using RTrees 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "berry2006lnd"
@@ -1923,15 +1911,11 @@ K-Means will scale more effectively than K-medoids due to its reduced processing
  perform better than density-based for small sets, but are surpassed in
  performance by DBSCAN and OPTICS when larger sets are introduced.
  This conclusion is supported by the time-complexity metric for each technique;
- K-algorithms operate in quadratic time, whereas density-based have O(
-\emph on
-n
-\emph default
-log
-\emph on
-n
-\emph default
-) average times, and quadratic only in worst-case scenarios.
+ K-algorithms operate in quadratic time, whereas density-based have 
+\begin_inset Formula $O(n\log n)$
+\end_inset
+
+ average times, and quadratic only in worst-case scenarios.
  
 \end_layout
 
@@ -2042,7 +2026,7 @@ status open
 
 \end_inset
 
-ds
+
 \end_layout
 
 \begin_layout Plain Layout
@@ -3194,7 +3178,377 @@ Implementation
 \end_layout
 
 \begin_layout Standard
-Here's when we describe how to implement stuff in WEKA
+This paper presents a method for developing for classes for WEKA, using
+ a Java integrated development environment (IDE) named IntelliJ.
+ Developed by a company named JetBrains, IntelliJ has been found to be one
+ of the most powerful and useful development environments, and as such,
+ these instructions are specific to this program.
+ They may be extended, with some investigation, to other development environment
+s, such as NetBeans.
+ However, no assurances can be placed upon whether the same procedure here
+ can be replicated using another program.
+\end_layout
+
+\begin_layout Standard
+Follow these guidelines to easily create and further develop clustering
+ algorithms, classifiers and association rules processes for use within
+ WEKA:
+\end_layout
+
+\begin_layout Enumerate
+Install the latest version of IntelliJ from 
+\family typewriter
+http://www.jetbrains.com/idea/
+\family default
+\lang english
+.
+ It is a commercially licenced piece of software, so a developer either
+ needs to use the trial version, or otherwise purchase or obtain a licence
+ key.
+ You will also need a Java Development Kit (JDK); version 1.6 is the latest
+ as of the time of writing.
+\end_layout
+
+\begin_layout Enumerate
+Install the latest version of WEKA from 
+\family typewriter
+http://www.cs.waikato.ac.nz/ml/weka/
+\family default
+\lang english
+.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Create a new IntelliJ project, and set up your JDK accordingly.
+\end_layout
+
+\begin_layout Enumerate
+Set up your project so that you can use the WEKA classes within your own.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Go to File 
+\begin_inset Formula $\Rightarrow$
+\end_inset
+
+ Settings 
+\begin_inset Formula $\Rightarrow$
+\end_inset
+
+ Project Settings 
+\begin_inset Formula $\Rightarrow$
+\end_inset
+
+ Global Libraries
+\end_layout
+
+\begin_layout Enumerate
+Add a new 
+\emph on
+Global Library 
+\emph default
+and call it something like 
+\begin_inset Quotes eld
+\end_inset
+
+WEKA
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Attach WEKA's JAR file by selecting 
+\begin_inset Quotes eld
+\end_inset
+
+Attach Classes
+\begin_inset Quotes erd
+\end_inset
+
+ and locating the relevant file.
+ You will find this located in your WEKA install location.
+ You may wish to make a copy or move this JAR into your own project folder.
+\end_layout
+
+\begin_layout Enumerate
+Click onto 
+\begin_inset Quotes eld
+\end_inset
+
+Apply
+\begin_inset Quotes erd
+\end_inset
+
+ to save the changes.
+ The library will be parsed accordingly and you can now access and utilise
+ WEKA libraries in your own code.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Add a run configuration for WEKA, so you can run and debug your code from
+ IntelliJ.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Go to Run 
+\begin_inset Formula $\Rightarrow$
+\end_inset
+
+ Edit Configurations
+\end_layout
+
+\begin_layout Enumerate
+Click onto the 
+\begin_inset Quotes eld
+\end_inset
+
+Add
+\begin_inset Quotes erd
+\end_inset
+
+ button, and select 
+\begin_inset Quotes eld
+\end_inset
+
+Application
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Under 
+\begin_inset Quotes eld
+\end_inset
+
+Main class
+\begin_inset Quotes erd
+\end_inset
+
+ enter 
+\family typewriter
+weka.gui.Main
+\end_layout
+
+\begin_layout Enumerate
+Under 
+\begin_inset Quotes eld
+\end_inset
+
+VM Parameters
+\begin_inset Quotes erd
+\end_inset
+
+ you can control the JVM environment.
+ Using a value such as 
+\family typewriter
+-Xmx512m
+\family default
+ will allocate the JVM 512MB of RAM, rather than 128MB or less that would
+ otherwise be the default.
+ Tweaking these settings is especially useful if you find your data set
+ is too complex and it causes the JVM to run out of memory.
+\end_layout
+
+\begin_layout Enumerate
+You may wish to change your 
+\begin_inset Quotes eld
+\end_inset
+
+Working directory
+\begin_inset Quotes erd
+\end_inset
+
+ to be where your data sets reside, for ease of access.
+ This location specifies where the default folder is for when you open any
+ file dialogs within WEKA.
+\end_layout
+
+\begin_layout Enumerate
+Ensure that your 
+\emph on
+classpath
+\emph default
+ is specified to be that of your current project so your classes can be
+ found within WEKA.
+\end_layout
+
+\begin_layout Enumerate
+Ensure that under 
+\begin_inset Quotes eld
+\end_inset
+
+Before launch
+\begin_inset Quotes erd
+\end_inset
+
+ the option 
+\begin_inset Quotes eld
+\end_inset
+
+Make
+\begin_inset Quotes erd
+\end_inset
+
+ is 
+\emph on
+not 
+\emph default
+ticked.
+ If it is, your classes will not be visible as your build location will
+ be inadvertently cleaned when you run WEKA.
+\end_layout
+
+\begin_layout Enumerate
+Click 
+\begin_inset Quotes eld
+\end_inset
+
+OK
+\begin_inset Quotes erd
+\end_inset
+
+ to save the changes.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Make your classes visible within WEKA requires an extra step, as classes
+ are found dynamically in the latest version of the data mining suite.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Locate the previously-used JAR file for the WEKA library - it is most likely
+ in your WEKA install location.
+\end_layout
+
+\begin_layout Enumerate
+Open it within your favourite archive extraction utility, noting that you
+ may need to rename the 
+\family typewriter
+.jar
+\family default
+ to 
+\family typewriter
+.zip
+\family default
+, if your program does not support the 
+\family typewriter
+.jar
+\family default
+ format.
+\end_layout
+
+\begin_layout Enumerate
+Enter the 
+\begin_inset Quotes eld
+\end_inset
+
+weka
+\begin_inset Quotes erd
+\end_inset
+
+ folder, and then the 
+\begin_inset Quotes eld
+\end_inset
+
+gui
+\begin_inset Quotes erd
+\end_inset
+
+ folder.
+\end_layout
+
+\begin_layout Enumerate
+Find the 
+\family typewriter
+GenericPropertiesCreator.props
+\family default
+ file and extract this into the base of your user home directory.
+\end_layout
+
+\begin_layout Enumerate
+Edit the file in a text editor, and near the top, locate the line 
+\family typewriter
+UseDynamic=false
+\family default
+.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Change the 
+\family typewriter
+false
+\family default
+ to 
+\family typewriter
+true
+\family default
+ and your classes, once created correctly, will be accessible from within
+ WEKA.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Build your classes, taking the following into account:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Make each of your classes part of the 
+\family typewriter
+weka
+\family default
+ package.
+ For example, if you were creating a clusterer, like the ones described
+ in this paper, use the 
+\family typewriter
+weka.clusterers
+\family default
+ package.
+\end_layout
+
+\begin_layout Enumerate
+Make each of your classes extend a certain interface or abstract class from
+ WEKA.
+ This is necessary to allow WEKA to dynamically find your classes, and IntelliJ
+ will automatically fill out which methods need to be implemented and extended.
+ For example, you can use DensityBasedClusterer for this type of clusterer,
+ or RandomisableClusterer for those that need some degree of randomisation
+ in their processing.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+When you want to test your classes, go to Build 
+\begin_inset Formula $\Rightarrow$
+\end_inset
+
+ Rebuild Project.
+ Your classes will be compiled in your build directory.
+ Then, run the WEKA configuration from IntelliJ.
+ WEKA will start, and your new classes can be tested.
+\end_layout
+
+\begin_layout Standard
+This introduction has introduced the method of creating new classes for
+ the WEKA data mining environment.
+ Further documentation is available, as at the time of writing, from 
+\family typewriter
+http://weka.wiki.sourceforge.net/
+\family default
+.
+ The various resources at this website explain details at even more depth
+ on how each part of your code is used in WEKA.
 \end_layout
 
 \begin_layout Standard
