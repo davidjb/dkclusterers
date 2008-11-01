@@ -16,10 +16,7 @@ import java.util.*;
  * UltraKMedoids algorithm - to infinity and beyond!
  */
 public class UltraKMedoids extends RandomizableClusterer implements OptionHandler {
-
-
-
-
+	
 	/**
 	 * Maintain the medoids of clusters that have been found
 	 */
