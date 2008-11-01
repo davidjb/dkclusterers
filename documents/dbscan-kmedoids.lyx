@@ -2352,7 +2352,7 @@ UltraDBScan (Custom)
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -2374,6 +2374,46 @@ name "fig:DBSCAN-Performance-Results"
 \end_inset
 
 Density-based performance by epsilon
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename dbscanspeedminpoints.png
+	lyxscale 75
+	width 85col%
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:DBSCAN-Performance-Results-2"
+
+\end_inset
+
+Density-based performance by 
+\emph on
+minPoints
 \end_layout
 
 \end_inset
@@ -2433,6 +2473,13 @@ reference "fig:DBSCAN-Performance-Results"
 
 \end_inset
 
+, 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:DBSCAN-Performance-Results-2"
+
+\end_inset
+
  and 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -2442,7 +2489,7 @@ reference "fig:DBSCAN-performance-attrib"
 
  show a detailed comparison of the performance of these density-based clustering
  algorithms.
- The former demonstrates the speed of clustering based upon different 
+ The first demonstrates the speed of clustering based upon different 
 \begin_inset Formula $\varepsilon$
 \end_inset
 
@@ -2451,8 +2498,17 @@ reference "fig:DBSCAN-performance-attrib"
 \end_inset
 
  value would result in generally larger clusters being found.
- The latter examines the change in speed for each method given an increasing
- number of attributes that need to be processed.
+ The second graph shows that whilst there are minor fluctuations from the
+ change in 
+\emph on
+minPoints, 
+\emph default
+the overall trend appears to be that as the value increasees, the time taken
+ to achieve results decreases.
+ The exception to this appears to be the OPTICS algorithm, which was otherwise
+ essentially the same throughout.
+ The final figure examines the change in speed for each method given an
+ increasing number of attributes that need to be processed.
 \end_layout
 
 \begin_layout Standard
@@ -2702,6 +2758,13 @@ reference "fig:DBSCAN-performance-noise"
 
 \end_inset
 
+ and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:DBSCAN-performance-noise-2"
+
+\end_inset
+
 .
  
 \end_layout
@@ -2710,7 +2773,7 @@ reference "fig:DBSCAN-performance-noise"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -2731,7 +2794,51 @@ name "fig:DBSCAN-performance-noise"
 
 \end_inset
 
-Density-based performance by resulting noise
+Density-based performance by resulting noise from change in epsilon
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename dbscanminpoints.png
+	lyxscale 75
+	width 85col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:DBSCAN-performance-noise-2"
+
+\end_inset
+
+Density-based performance by resulting noise from change in 
+\emph on
+minPoints
 \end_layout
 
 \end_inset
@@ -2749,6 +2856,11 @@ The overall trend described by these tests demonstrates the expected behaviour
  of any density-based technique: as the distance checked for neighbours
  increases, the number of points classified as noise decreases.
  In addition, this directly affects the size of the clusters discovered.
+ Similarly, as the value of 
+\emph on
+minPoints
+\emph default
+ increases, the number of points being classified as noise increases also.
 \end_layout
 
 \begin_layout Standard
@@ -2764,18 +2876,44 @@ The results demonstrate that all techniques - with the exception of OPTICS
 \begin_inset Formula $\varepsilon$
 \end_inset
 
- distances tested, discovered a slightly greater amount of noise.
- The reasoning for this change is directly associated with the dynamic change
- of 
+ distances, and values of 
+\emph on
+minPoints
+\emph default
+, tested, discovered a slightly greater amount of noise, or a greater number
+ of clusters.
+ The reasoning for these changes is directly associated with the dynamic
+ change of 
 \begin_inset Formula $\varepsilon$
 \end_inset
 
 , as the size of clusters grew throughout the processing of the database.
- The original WEKA implementation of DBSCAN performed comparably with the
- newly implemented UltraDBScan for all tests.
+ Having this modification present also demonstrated that the number of points
+ assigned to certain clusters changed also.
+ For instance, with a 
+\emph on
+minPoints
+\emph default
+ value of 1, the size of several clusters changed considerably, thus illustratin
+g the the dynamic 
+\begin_inset Formula $\varepsilon$
+\end_inset
+
+ value is having an effect.
+ In comparison, the same cluster was defined as only a single point for
+ the other methods.
+ Thus, these results demonstrate that, depending on the application, this
+ type of interchangeable variable may bring about more-suitable clustering
+ assignments.
+\end_layout
+
+\begin_layout Standard
+Overall, the original WEKA implementation of DBSCAN performed comparably
+ with the newly implemented UltraDBScan for all tests.
  This result demonstrates that not only was the new implementation able
- to compute clusters correctly, but that the provided algorithm was not
- as efficiently written.
+ to compute clusters correctly, as it was able to find the same amounts
+ of noise and clusters, but that the provided algorithm was not as efficiently
+ written.
  
 \end_layout
 
@@ -3042,6 +3180,15 @@ reference "Sec:Related-Work"
 
 .
  
+\end_layout
+
+\begin_layout Section
+\start_of_appendix
+Implementation
+\end_layout
+
+\begin_layout Standard
+Here's when we describe how to implement stuff in WEKA
 \end_layout
 
 \begin_layout Standard
