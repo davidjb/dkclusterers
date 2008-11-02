@@ -3200,10 +3200,9 @@ Install the latest version of IntelliJ from
 \family typewriter
 http://www.jetbrains.com/idea/
 \family default
-\lang english
 .
- It is a commercially licenced piece of software, so a developer either
- needs to use the trial version, or otherwise purchase or obtain a licence
+ It is a commercially licensed piece of software, so a developer either
+ needs to use the trial version, or otherwise purchase or obtain a license
  key.
  You will also need a Java Development Kit (JDK); version 1.6 is the latest
  as of the time of writing.
@@ -3214,7 +3213,6 @@ Install the latest version of WEKA from
 \family typewriter
 http://www.cs.waikato.ac.nz/ml/weka/
 \family default
-\lang english
 .
  
 \end_layout
