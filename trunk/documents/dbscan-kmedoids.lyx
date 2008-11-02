@@ -941,17 +941,13 @@ Generalized Density-Based Spatial Clustering of Applications with Noise
 \emph default
 can cluster both polygons and points, and does not rely on any set definition
  of a neighbourhood; the method can use non-spatial attributes rather than
- number of objects to define neighbourhood density
-\emph on
- 
+ number of objects to define neighbourhood density 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "sander1998dbc"
 
 \end_inset
 
-
-\emph default
 .
  The technique does not limit clusters to a maximum radius and thus achieves
  independence from a neighbourhood size input variable.
